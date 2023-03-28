@@ -24,7 +24,7 @@
             <li><a class="dropdown-item" href="#">Giỏ hàng</a></li>
             <li><a class="dropdown-item" href="#">Lịch sử mua vé</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Đăng xuất</a></li>
+            <li><a class="dropdown-item" href="login">Đăng nhập</a></li>
           </ul>
         </div>
       </div>
