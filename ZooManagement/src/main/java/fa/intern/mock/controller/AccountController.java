@@ -15,8 +15,7 @@ public class AccountController {
 	
 	@RequestMapping("login")
 	public String showLoginPage(Model model) {
-		System.out.println("controller");
 		model.addAttribute("account", new Account());
-		return "customer/login";
+		return "admin/Login";
 	}
 }
