@@ -14,7 +14,7 @@
         <header>
             <div class="image-text">
                 <span class="image">
-                	<img src = '<c:url value="/resources/images/logo.jpg"></c:url>'>
+                	<img src = '<c:url value="/resources/images/eevee.png"></c:url>'>
                 </span>
 
                 <div class="text logo-text">
