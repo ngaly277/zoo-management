@@ -1,14 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Animal Management page</title>
-<link  href = "CSS/test.css" rel ="stylesheet" type ="text/css"> 
+<title>Cage Management page</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href='<c:url value="/resources/css/style-page-admin.css" />' rel="stylesheet" type ="text/css"> 
+ <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
  <nav class="sidebar close">
@@ -20,7 +20,7 @@
 
                 <div class="text logo-text">
                     <span class="name">Rainie</span>
-                    <span class="profession">Animal Site</span>
+                    <span class="profession">Staff Site</span>
                 </div>
             </div>
 
@@ -43,14 +43,14 @@
                     </li>
 
                     <li class="nav-link">
-                        <a href="#">
+                        <a href="Animal.jsp">
                             <i class='bx bxs-dog icon' ></i>
                             <span class="text nav-text">Quản lý động vật</span>
                         </a>
                     </li>
 
                     <li class="nav-link">
-                        <a href="#">
+                        <a href="Inventory.jsp">
                             <i class='bx bx-box icon'></i>
                             <span class="text nav-text">Quản lý kho</span>
                         </a>
@@ -64,7 +64,7 @@
                     </li>
 
                     <li class="nav-link">
-                        <a href="Staff.jsp">
+                        <a href="#">
                             <i class='bx bx-user icon' ></i>
                             <span class="text nav-text">Quản lý nhân viên</span>
                         </a>
@@ -104,15 +104,15 @@
     </nav>
 
     <section class="home">
-        		<div class="text">Animal Page</div>
-        <h2 class = "banner ">Animal Management Table</h2>
+        		<div class="text">Staff Page</div>
+        <h2 class = "banner ">Staff Management Table</h2>
  <form class = "searchform" action="" method="post">
 					<p class = "text2" >Search Information by:</p>
     								<select class="select">
-     									 <option value="1">Tên</option>
-      									 <option value="2">Loài</option>
-      									 <option value="3">Chuồng</option>
-      									 <option value="4">Loại thức ăn</option>
+     									 <option value="1">Mã NV</option>
+      									 <option value="2">Tên</option>
+      									 <option value="3">Loại NV</option>
+      									  <option value="4">Username</option>
     								</select>
                 	<p class = "text2" >Type here:</p>
   						<div class="searchbar"><input type="search" placeholder='Search'></div>
@@ -122,15 +122,19 @@
         </form>
 <br>
 <br>
+<a href="">
+    <button style = "margin-left: 70px" class = "button-search">Thêm NV</button>
+  </a>
 <div class="table-wrapper">
     <table class="fl-table">
         <thead>
         <tr>
-            <th>Tên</th>
-            <th>Loài</th>
-            <th>Chuồng</th>
-            <th>Trạng thái</th>
-            <th>Loại thức ăn</th>
+            <th>Mã NV</th>
+            <th>Tên NV</th>
+            <th>Lương</th>
+            <th>Hợp đồng</th>
+            <th>Loại nhân viên</th>
+            <th>Username</th>
             <th>Action</th>
         </tr>
         </thead>
@@ -139,6 +143,8 @@
             <td>Testing1</td>
             <td>Testing1</td>
             <td>Testing1</td>
+            <td><a class = "bx bx-notepad bx-xs" style="text-decoration:none; color: green" href = "">
+  					</a></td>
             <td>Testing1</td>
             <td>Testing1</td>
             <td><a class = "bx bxs-edit bx-xs" style="text-decoration:none; color: green" href = "">
@@ -151,6 +157,8 @@
             <td>Testing2</td>
             <td>Testing2</td>
             <td>Testing2</td>
+            <td><a class = "bx bx-notepad bx-xs" style="text-decoration:none; color: green" href = "">
+  					</a></td>
             <td>Testing2</td>
             <td>Testing2</td>
             <td><a class = "bx bxs-edit bx-xs" style="text-decoration:none; color: green" href = "">
@@ -163,6 +171,8 @@
             <td>Testing3</td>
             <td>Testing3</td>
             <td>Testing3</td>
+            <td><a class = "bx bx-notepad bx-xs" style="text-decoration:none; color: green" href = "">
+  					</a></td>
             <td>Testing3</td>
             <td>Testing3</td>
             <td><a class = "bx bxs-edit bx-xs" style="text-decoration:none; color: green" href = "">
@@ -176,7 +186,6 @@
 </div>
         </div>
     </section>
-
 </body>
-    <script src = '<c:url value="/resources/js/js-page-admin.js" />' ></script>
+   <script src = '<c:url value="/resources/js/js-page-admin.js" />' ></script>
 </html>
