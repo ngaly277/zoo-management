@@ -1,4 +1,4 @@
-window.onload = function() {
+function sidebar() {
   const body = document.querySelector('body'),
     sidebar = body.querySelector('nav'),
     toggle = body.querySelector(".toggle"),
@@ -21,3 +21,4 @@ window.onload = function() {
     }
   });
 }
+addEventListener("load", (event) => {sidebar()});

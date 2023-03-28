@@ -1,14 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Animal Management page</title>
-<link  href = "CSS/test.css" rel ="stylesheet" type ="text/css"> 
+<title>Inventory Management page</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href='<c:url value="/resources/css/style-page-admin.css" />' rel="stylesheet" type ="text/css"> 
+ <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
  <nav class="sidebar close">
@@ -20,7 +20,7 @@
 
                 <div class="text logo-text">
                     <span class="name">Rainie</span>
-                    <span class="profession">Animal Site</span>
+                    <span class="profession">Cage Site</span>
                 </div>
             </div>
 
@@ -43,7 +43,7 @@
                     </li>
 
                     <li class="nav-link">
-                        <a href="#">
+                        <a href="Animal.jsp">
                             <i class='bx bxs-dog icon' ></i>
                             <span class="text nav-text">Quản lý động vật</span>
                         </a>
@@ -104,15 +104,15 @@
     </nav>
 
     <section class="home">
-        		<div class="text">Animal Page</div>
-        <h2 class = "banner ">Animal Management Table</h2>
+        		<div class="text">Inventory Page</div>
+        <h2 class = "banner ">Inventory Management Table</h2>
  <form class = "searchform" action="" method="post">
 					<p class = "text2" >Search Information by:</p>
     								<select class="select">
-     									 <option value="1">Tên</option>
-      									 <option value="2">Loài</option>
-      									 <option value="3">Chuồng</option>
-      									 <option value="4">Loại thức ăn</option>
+     									 <option value="1">Mã kho</option>
+      									 <option value="2">Tên kho</option>
+      									 <option value="3">Địa chỉ</option>
+      									 <option value="4">Loại kho</option>
     								</select>
                 	<p class = "text2" >Type here:</p>
   						<div class="searchbar"><input type="search" placeholder='Search'></div>
@@ -126,50 +126,58 @@
     <table class="fl-table">
         <thead>
         <tr>
-            <th>Tên</th>
-            <th>Loài</th>
-            <th>Chuồng</th>
-            <th>Trạng thái</th>
-            <th>Loại thức ăn</th>
+            <th>Mã kho</th>
+            <th>Tên kho</th>
+            <th>Địa chỉ</th>
+            <th>Loại kho</th>
             <th>Action</th>
         </tr>
         </thead>
         <tbody>
         <tr>
             <td>Testing1</td>
-            <td>Testing1</td>
-            <td>Testing1</td>
+            <td>Testing1
+            	&nbsp &nbsp
+  				<a class = "bx bxs-box bx-xs" style="text-decoration:none; color: blue " href = "">
+  					</a></td>
             <td>Testing1</td>
             <td>Testing1</td>
             <td><a class = "bx bxs-edit bx-xs" style="text-decoration:none; color: green" href = "">
   					</a>
   					&nbsp &nbsp
             <a class = "bx bxs-trash bx-xs" style="text-decoration:none; color: red " href = "">
-  					</a></td>
+  					</a>
+  					</td>
         </tr>
         <tr>
             <td>Testing2</td>
-            <td>Testing2</td>
-            <td>Testing2</td>
+            <td>Testing2
+            	&nbsp &nbsp
+  				<a class = "bx bxs-box bx-xs" style="text-decoration:none; color: blue " href = "">
+  					</a></td>
             <td>Testing2</td>
             <td>Testing2</td>
             <td><a class = "bx bxs-edit bx-xs" style="text-decoration:none; color: green" href = "">
   					</a>
   					&nbsp &nbsp
             <a class = "bx bxs-trash bx-xs" style="text-decoration:none; color: red " href = "">
-  					</a></td>
+  					</a>
+  					</td>
         </tr>
         <tr>
             <td>Testing3</td>
-            <td>Testing3</td>
-            <td>Testing3</td>
+            <td>Testing3
+            	&nbsp &nbsp
+  				<a class = "bx bxs-box bx-xs" style="text-decoration:none; color: blue " href = "">
+  					</a></td>
             <td>Testing3</td>
             <td>Testing3</td>
             <td><a class = "bx bxs-edit bx-xs" style="text-decoration:none; color: green" href = "">
   					</a>
   					&nbsp &nbsp
             <a class = "bx bxs-trash bx-xs" style="text-decoration:none; color: red " href = "">
-  					</a></td>
+  					</a>
+  					</td>
         </tr>
         <tbody>
     </table>
