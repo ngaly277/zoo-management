@@ -67,8 +67,6 @@
 		</div>
 		
 	</div>
-	<div class="img-container">
-		<img src='<c:url value="/resources/images/footer.png"></c:url>' alt="animals"/>
-	</div>
+	<jsp:include page="footer.jsp"></jsp:include>
 </body>
 </html>
