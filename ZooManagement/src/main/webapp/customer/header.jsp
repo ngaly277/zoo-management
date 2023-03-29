@@ -5,7 +5,7 @@
 <link href="<c:url value="/resources/css/style-header.css" />" rel="stylesheet">
 <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">
+    <a class="navbar-brand" href="/ZooManagement/">
     	 <img src='<c:url value="/resources/images/logo.jpg"></c:url>' alt="Logo" width="60" height="50" />
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -13,8 +13,8 @@
     </button>
     <div id="navbarNavAltMarkup">
       <div class="navbar-nav">
-        <a class="nav-link active" aria-current="page" href="#">Trang chủ</a>
-        <a class="nav-link" href="#">Mua vé</a>
+        <a class="nav-link active" aria-current="page" href="/ZooManagement/">Trang chủ</a>
+        <a class="nav-link" href="tickets">Mua vé</a>
         <a class="nav-link" href="#">Về chúng tôi</a>
         <div class="nav-item dropdown ml-3">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">

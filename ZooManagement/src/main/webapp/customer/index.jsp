@@ -1,72 +1,130 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
 <html>
 <head>
-	<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-	<link href="<c:url value="/resources/css/style-header.css" />" rel="stylesheet">
-	<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="<c:url value="/resources/css/style-home-page.css" />" rel="stylesheet">
+<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+<title>Chào mừng bạn đến với Sở thú</title>
 </head>
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
-	<div class="img-container">
-        <img src='<c:url value="/resources/images/zoo.jpg"></c:url>' alt="person" width="70%" height="550px"/>
-	</div>
-	<div class="text-container">
-		<div>SỞ THÚ MỞ CỬA TẤT CẢ CÁC NGÀY TRONG TUẦN - BAO GỒM LỄ TẾT TỪ 9h - 17h </div>
-		<div>VỚI GIÁ VÉ CỔNG VÀ GIÁ TẤT CẢ DỊCH VỤ KHÁC NHƯ NGÀY THƯỜNG</div>
-	</div>
-	<div class="first-container">
-		<h2>Mua vé cổng trực tuyến - Khỏi lo xếp hàng</h2>
-		<div class="step-container">
-			<div class="step-detail">
-			    <img src='<c:url value="/resources/images/buy-ticket.webp"></c:url>' alt="person" width="80" height="80"/>
-			    <div class="">Mua vé</div>
+	
+	<main>
+		<section class="hero-landing">
+			<img class="img-back" src='<c:url value="/resources/images/tiger-in-zoo-trail.webp"></c:url>' alt="tiger-in-zoo"/>
+			<span class="background-overlay"></span>
+			<img class="landing-left" src='<c:url value="/resources/images/hero-landing-left-3.webp"></c:url>' alt="landing-left"/>
+			<img class="landing-right" src='<c:url value="/resources/images/hero-landing-right-3.webp"></c:url>' alt="landing-right"/>
+			<div class="landing-heading">
+				<h1 class="heading1">Tham quan Sở thú</h1>
+				<p class="heading2">Đặt vé ngay và nhận ưu đãi</p>
 			</div>
-			<div >
-				<i class='fas fa-long-arrow-alt-right' style='font-size:70px;color:#E78F8F'></i>
-			</div>
-			<div class="step-detail">
-			    <img src='<c:url value="/resources/images/payment.png"></c:url>' alt="person" width="80" height="80"/>
-			    <div>Thanh toán</div>
-			</div>
-			<div >
-				<i class='fas fa-long-arrow-alt-right' style='font-size:70px;color:#E78F8F'></i>
-			</div>
-			<div class="step-detail">
-			    <img src='<c:url value="/resources/images/ticket-icon.webp"></c:url>' alt="person" width="80" height="80"/>
-			    <div>Nhận mã</div>
-			</div>
-			<div>
-				<i class='fas fa-long-arrow-alt-right' style='font-size:70px;color:#E78F8F'></i>
-			</div>
-			<div class="step-detail">
-			    <img src='<c:url value="/resources/images/done.png"></c:url>' alt="person" width="80" height="80"/>
-			</div>
-		</div>
-		<a href="#" class="book-btn">Đặt vé ngay</a>
-	</div>
-	<div class="second-container">
-		<div class="sub-container">
-			<div class="card-container">
-				<div class="img-card-container">
-					<img class="img-card" src='<c:url value="/resources/images/animals.jpg"></c:url>' alt="animals"/>
+		</section>
+		<section class="main-section">
+			<div class="pricing-tabel__inner">
+				<div class="pricing-tabel__heading">Mua vé trực tuyến - Khỏi lo xếp hàng</div>
+				<div class="pricing-tabel__left">
+					<div class="pricing-tabel__img-container">
+						<img class="pricing-tabel__img" src='<c:url value="/resources/images/monkey.webp"></c:url>' alt="monkey"/>
+						
+					</div>
 				</div>
-				<div>7 lớp với hơn 1000 cá thể gồm hàng chục loài có vú, hàng chục giống chim, nhiều giống bò sát và giống có cánh các loại,  như: khỉ, gấu ngựa, gấu chó, hổ Đông Dương, hổ Bengal, báo hoa mai, báo lửa, sư tử, tinh tinh, ngựa vằn, linh dương, hươu,  nai, heo rừng, mang, nhím, rùa, rái cá, voi châu Á, tê giác trắng, cá sấu hoa cà, cá sấu nước ngọt, trăn đất, công, bò tót, hà mã, báo đốm Mỹ , hươu cao cổ…</div>
+				<div class="pricing-tabel__right">
+					<h3 class="pricing-tabel__right-heading">Vé tham quan và vui chơi</h3>
+					<div>
+						<div class="pricing-tabel__ticket">
+							<span class="pricing-tabel__type">Người lớn (trên 12 tuổi)</span>
+							<span class="pricing-tabel__price">60.000đ - 100.000đ</span>
+						</div>
+						<div class="pricing-tabel__ticket">
+							<span class="pricing-tabel__type">Trẻ em (từ 2-11 tuổi)</span>
+							<span class="pricing-tabel__price">40.000đ - 80.000đ</span>
+						</div>
+						<div class="pricing-tabel__ticket">
+							<span class="pricing-tabel__type">Trẻ em (dưới 2 tuổi)</span>
+							<span class="pricing-tabel__price">Miễn phí</span>
+						</div>
+					</div>
+					<a href="#" class="link">
+						<span>Mua vé ngay</span>
+						<i class='fa fa-chevron-circle-right' style='color:rgba(223, 92, 92);'></i>
+					</a>
+					<hr style='color:rgba(223, 92, 92);border-bottom-width: 2px; border-bottom-style: solid;'/>
+				</div>
 			</div>
-			<div class="card-container">
-				<div class="img-card-container">
-					<img class="img-card" src='<c:url value="/resources/images/forest.jpg"></c:url>' alt="animals"/>
-				</div>				
-				<div>Thực vật có 1.800 cây gỗ thuộc 260 loài, 23 loài lan nội địa, 33 loài xương rồng, 34 loại bonsai và thảm cỏ xanh trên diện tích 20 ha. Trong đó có những cây cổ thụ hàng trăm năm tuổi, vào hàng quý hiếm nhất Việt nam</div>
+		</section>
+		
+		<section class="animals">
+			<div class="img-right">
+				<svg style="fill: #109e6c;" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" viewBox="0 0 737 700" class="callout-color__body-shape callout-color__body-shape--green"><path d="M23.745 700H737V0H31L0 155.137 44.354 299l-28.59 288.214L23.745 700z"></path></svg>
 			</div>
+			<div class="img-left">
+				<svg style="fill: #ffc959;" aria-hidden="true" viewBox="0 0 54.477 603.316" xmlns="http://www.w3.org/2000/svg" class="base-symbol callout-color__image-shape callout-color__image-shape--green"><use xlink:href="/wp-content/themes/philadelphia-zoo/dist/svgs/symbol-callout-color-left.svg#icon"></use></svg>
+			</div>
+			<div class="main-img">
+				<img class="img-back" src='<c:url value="/resources/images/bao.webp"></c:url>' alt="kingkong"/>
+			</div>
+			<div class="animals-detail-container">
+				<div class="animals-detail-card">
+					<div class="animals-detail">
+						<h2 class="animals-detail-title">7 lớp động vật</h2>
+						<p class="animals-detail-content">
+							Hơn 1000 cá thể gồm hàng chục loài có vú, hàng chục giống chim, nhiều giống bò sát và giống có cánh các loại
+						</p>
+						<a class="btn-animals-detail" href="#">Khám phá động vật</a>
+					</div>
+				</div>
+			</div>
+		</section>
+		
+		<section class="link-cards">
+			<div class="link-cards__inner">
+				<div class="link-cards__left">
+					<h2 class="link-cards__heading">Khám phá sở thú</h2>
+					<div class="link-cards__wrapper">
+						<a href="#" class="link-cards__link">
+							<div class="link-cards__img-wrapper">
+								<img class="link-cards__img" src='<c:url value="/resources/images/img1.webp"></c:url>' alt=""/>
+							</div>
+							<span class="link-cards__label">Zoo360</span>
+						</a>
+					</div>
+				</div>
+				<div class="link-cards__right">
+					<div class="link-cards__wrapper2">
+						<a href="#" class="link-cards__link">
+							<div class="link-cards__img-wrapper2">
+								<img class="link-cards__img" src='<c:url value="/resources/images/img2.webp"></c:url>' alt=""/>
+							</div>
+							<span class="link-cards__label">Zoo Map</span>
+						</a>
+					</div>
+				</div>
+			</div>
+		</section>
+	</main>
+	
+	<div class="footer-top">
+		<div class="footer-inner">
+			<p class="footer-title">Bắt đầu chuyến tham quan</p>
+			<ul class="footer-list">
+				<li class="footer-item">
+					<a href="#" class="footer-link">Đăng nhập</a>
+				</li>
+				<li class="footer-item">
+					<a href="#" class="footer-link">Mua vé ngay</a>
+				</li>
+			</ul>
 		</div>
-		<div align="center" style="margin-top: 30px;">
-			<a href="#" class="book-btn">Xem bản đồ</a>
-		</div>
+	</div>
+	<div class="footer-bottom">
 		
 	</div>
+	
 	<jsp:include page="footer.jsp"></jsp:include>
 </body>
 </html>
