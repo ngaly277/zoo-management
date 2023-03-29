@@ -49,7 +49,7 @@
 							<span class="pricing-tabel__price">Miễn phí</span>
 						</div>
 					</div>
-					<a href="#" class="link">
+					<a href="tickets" class="link">
 						<span>Mua vé ngay</span>
 						<i class='fa fa-chevron-circle-right' style='color:rgba(223, 92, 92);'></i>
 					</a>
@@ -113,10 +113,10 @@
 			<p class="footer-title">Bắt đầu chuyến tham quan</p>
 			<ul class="footer-list">
 				<li class="footer-item">
-					<a href="#" class="footer-link">Đăng nhập</a>
+					<a href="login" class="footer-link">Đăng nhập</a>
 				</li>
 				<li class="footer-item">
-					<a href="#" class="footer-link">Mua vé ngay</a>
+					<a href="tickets" class="footer-link">Mua vé ngay</a>
 				</li>
 			</ul>
 		</div>
