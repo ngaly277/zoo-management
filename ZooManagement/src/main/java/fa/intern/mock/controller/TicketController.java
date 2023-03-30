@@ -16,4 +16,9 @@ public class TicketController {
 	public String showAllTickets(Model model) {
 		return "customer/tickets";
 	}
+	
+	@RequestMapping("add-tickets")
+	public String showAddTicket(Model model) {
+		return "customer/add-ticket-card";
+	}
 }
