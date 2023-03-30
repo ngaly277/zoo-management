@@ -21,26 +21,26 @@
 					<i class='fa fa-exclamation-circle' style='color:#0F9F6C;font-size:30px;margin-right:20px;'></i>
 					<div style="font-size: 20px;">
 						Bạn đã có tài khoản? 
-						<a href="#">Đăng nhập</a>
+						<a href="login">Đăng nhập</a>
 						Chưa có tài khoản?
 						<a href="#">Đăng ký ngay</a>
 					</div>
 				</div>
 				<div class="tickets-list">
 					<article class="ticket">
-						<a href="#" class="ticket-img-link">
+						<a href="add-tickets" class="ticket-img-link">
 							<figure>
 								<img class="ticket-img" src='<c:url value="/resources/images/img3.jpg"></c:url>' alt=""/>
 								
 							</figure>
 						</a>
-						<a href="#" class="ticket-name">
+						<a href="add-tickets" class="ticket-name">
 							<h2 class="ticket-name-content">Vé vào cổng</h2>
 						</a>
 						<div class="ticket-desc">
 							Yêu cầu đặt vé trực tuyến trước để vào cổng 
 						</div>
-						<a href="#" class="ticket-link">Chọn</a>
+						<a href="add-tickets" class="ticket-link">Chọn</a>
 					</article>
 					<article class="ticket">
 						<a href="#" class="ticket-img-link">
@@ -59,6 +59,7 @@
 					</article>
 				</div>
 			</div>
+			<jsp:include page="cart.jsp"></jsp:include>
 		</div>
 	</main>
 	

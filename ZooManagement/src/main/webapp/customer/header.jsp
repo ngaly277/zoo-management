@@ -6,7 +6,7 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top">
   <div class="container-fluid">
     <a class="navbar-brand" href="/ZooManagement/">
-    	 <img src='<c:url value="/resources/images/logo.jpg"></c:url>' alt="Logo" width="60" height="50" />
+    	 <img src='<c:url value="/resources/images/logo.jpg"></c:url>' alt="Logo" width="80" height="70" />
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
