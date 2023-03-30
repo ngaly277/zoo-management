@@ -49,7 +49,7 @@
                     </li>
 
                     <li class="nav-link">
-                        <a href="Inventory.jsp">
+                        <a href="<%=request.getContextPath()%>/viewInventory">
                             <i class='bx bx-box icon'></i>
                             <span class="text nav-text">Quản lý kho</span>
                         </a>

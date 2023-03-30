@@ -108,14 +108,14 @@
         <h2 class = "banner ">Inventory Management Table</h2>
  <form class = "searchform" action="" method="post">
 					<p class = "text2" >Search Information by:</p>
-    								<select class="select">
-     									 <option value="1">Mã kho</option>
-      									 <option value="2">Tên kho</option>
-      									 <option value="3">Địa chỉ</option>
-      									 <option value="4">Loại kho</option>
+    								<select name="op" class="select">
+     									 <option value="ID_Inventory">Mã kho</option>
+      									 <option value="Inventory_Name">Tên kho</option>
+      									 <option value="Inventory_Address">Địa chỉ</option>
+      									 <option value="ID_Inventory_Type">Loại kho</option>
     								</select>
                 	<p class = "text2" >Type here:</p>
-  						<div class="searchbar"><input type="search" placeholder='Search'></div>
+  						<div class="searchbar"><input name="search" type="search" placeholder='Search'></div>
   						<button class = "button-search" type = "submit">Search</button>
                 		<button class = "button-search" type = "reset">Reset</button>
 
@@ -134,14 +134,15 @@
         </tr>
         </thead>
         <tbody>
+        <c:forEach items="${inventory}" var="item">
         <tr>
-            <td>Testing1</td>
-            <td>Testing1
+            <td><c:out value="${item.id}" /></td>
+            <td><c:out value="${item.name}" />
             	&nbsp &nbsp
   				<a class = "bx bxs-box bx-xs" style="text-decoration:none; color: blue " href = "">
   					</a></td>
-            <td>Testing1</td>
-            <td>Testing1</td>
+            <td><c:out value="${item.address}" /></td>
+            <td><c:out value="${item.idType}" /></td>
             <td><a class = "bx bxs-edit bx-xs" style="text-decoration:none; color: green" href = "">
   					</a>
   					&nbsp &nbsp
@@ -149,36 +150,7 @@
   					</a>
   					</td>
         </tr>
-        <tr>
-            <td>Testing2</td>
-            <td>Testing2
-            	&nbsp &nbsp
-  				<a class = "bx bxs-box bx-xs" style="text-decoration:none; color: blue " href = "">
-  					</a></td>
-            <td>Testing2</td>
-            <td>Testing2</td>
-            <td><a class = "bx bxs-edit bx-xs" style="text-decoration:none; color: green" href = "">
-  					</a>
-  					&nbsp &nbsp
-            <a class = "bx bxs-trash bx-xs" style="text-decoration:none; color: red " href = "">
-  					</a>
-  					</td>
-        </tr>
-        <tr>
-            <td>Testing3</td>
-            <td>Testing3
-            	&nbsp &nbsp
-  				<a class = "bx bxs-box bx-xs" style="text-decoration:none; color: blue " href = "">
-  					</a></td>
-            <td>Testing3</td>
-            <td>Testing3</td>
-            <td><a class = "bx bxs-edit bx-xs" style="text-decoration:none; color: green" href = "">
-  					</a>
-  					&nbsp &nbsp
-            <a class = "bx bxs-trash bx-xs" style="text-decoration:none; color: red " href = "">
-  					</a>
-  					</td>
-        </tr>
+        </c:forEach>
         <tbody>
     </table>
 </div>
