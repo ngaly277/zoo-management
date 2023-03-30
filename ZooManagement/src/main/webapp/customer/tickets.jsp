@@ -27,7 +27,26 @@
 					</div>
 				</div>
 				<div class="tickets-list">
-					<article class="ticket">
+				<c:if test="${not empty ticketTypeList}">
+			      <c:forEach var="ticketType" items="${ticketTypeList}">
+						<article class="ticket">
+							<a href="add-tickets" class="ticket-img-link">
+								<figure>
+									<img class="ticket-img" src='<c:url value="/resources/images/img3.jpg"></c:url>' alt=""/>
+									
+								</figure>
+							</a>
+							<a href="add-tickets" class="ticket-name">
+								<h2 class="ticket-name-content">${ticketType.ticket_Type}</h2>
+							</a>
+							<div class="ticket-desc">
+								${ticketType.ticket_Description }
+							</div>
+							<a href="add-tickets" class="ticket-link">Chọn</a>
+						</article>
+			      </c:forEach>
+			    </c:if>
+					<%-- <article class="ticket">
 						<a href="add-tickets" class="ticket-img-link">
 							<figure>
 								<img class="ticket-img" src='<c:url value="/resources/images/img3.jpg"></c:url>' alt=""/>
@@ -56,7 +75,7 @@
 							Tham gia chuyến tàu SEPTA PZ Express của chúng tôi để có được trải nghiệm tốt nhất
 						</div>
 						<a href="#" class="ticket-link">Chọn</a>
-					</article>
+					</article> --%>
 				</div>
 			</div>
 			<jsp:include page="cart.jsp"></jsp:include>
