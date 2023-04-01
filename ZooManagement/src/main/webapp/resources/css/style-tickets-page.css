@@ -125,15 +125,15 @@
 }
 
 .cart-title {
-	background-color: #26303D;
-    color: #fff;
+	background-color: #FDEBD3;
+    color: #000;
     line-height: 32px;
     border-bottom: none;
     margin: 0;
     text-align: center;
     padding: 20px;
     font-size: 26px;
-    font-weight: 600;
+    font-weight: 400;
 }
 
 .content {

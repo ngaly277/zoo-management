@@ -16,11 +16,12 @@
 <title>Chào mừng bạn đến với Sở thú</title>
 </head>
 <body>
-	<jsp:include page="header.jsp"></jsp:include>
+	<jsp:include page="header-not-sticky.jsp"></jsp:include>
 	
 	<main class="main-container">
 		<div class="content-container">
-			<h1 class="content-title">Vé vào cổng</h1>
+		<c:if test="${not empty listTickets}">
+			<h1 class="content-title">${listTickets.get(0).ticket_Type.ticket_Type }</h1>
 			<div class="warning-container">
 				<div class="message-container">
 					<i class='fa fa-exclamation-circle' style='color:#0F9F6C;font-size:30px;margin-right:20px;'></i>
@@ -37,7 +38,7 @@
 						
 					</figure>
 					<div class="ticket-detail-desc" style="font-size:20px;">
-						Yêu cầu đặt vé trực tuyến trước để vào cổng 
+						${listTickets.get(0).ticket_Type.ticket_Description }
 					</div>
 				</article>
 				<form class="ticket-form">
@@ -46,76 +47,165 @@
 						<div class="choose-date">
 							<h3 class="choose-date-label">Chọn ngày</h3>
 							<div class="choose-date-picker">
-								<input class="choose-date-picker-input" id="basicDate" data-input placeholder="Chọn ngày">
-								</input>
+								<input class="choose-date-picker-input" id="basicDate" data-input placeholder="Chọn ngày" />
 							</div>
 						</div>
 						<div class="select-amount">
 							<h3 class="choose-date-label">Chọn số lượng vé</h3>
 							<div class="tickets">
 								<div class="tickets-group">
-									<div class="ticket-type">
-										<div class="ticket-type-desc">
-											<div class="ticket-type-desc-title">Người lớn (Trên 12 tuổi)</div>
-											<div class="price-container">
-												<div class="price-value">80.000đ</div>
+									<c:forEach var="ticket" items="${listTickets}">
+										<div class="ticket-type">
+											<div class="ticket-type-desc">
+												<div class="ticket-type-desc-title">${ticket.ticket_Age.age_Description }</div>
+												<div class="price-container">
+													<div class="price-value">
+														<c:if test="${ticket.price > 0 }">
+															${ticket.price} đ
+														</c:if>
+														<c:if test="${ticket.price == 0 }">
+															Miễn phí
+														</c:if>
+													</div>
+												</div>
+											</div>
+											<div class="stepper">
+												<button id="minus-btn${ticket.ticket_Age.id_Ticket_Age }" class="minus-btn" type="button" disabled onClick="changeCount(${ticket.ticket_Age.id_Ticket_Age}, ${ticket.amount }, 2);">-</button>
+												<span id="count${ticket.ticket_Age.id_Ticket_Age }" class="count">0</span>
+												<button id="plus-btn${ticket.ticket_Age.id_Ticket_Age }" class="plus-btn" type="button" onClick="changeCount(${ticket.ticket_Age.id_Ticket_Age}, ${ticket.amount }, 1);">+</button>
 											</div>
 										</div>
-										<div class="stepper">
-											<button class="minus-btn" type="button" disabled>-</button>
-											<span class="count">0</span>
-											<button class="plus-btn" type="button">+</button>
-										</div>
-									</div>
-									<div class="ticket-type">
-										<div class="ticket-type-desc">
-											<div class="ticket-type-desc-title">Trẻ em (Từ 2-11 tuổi)</div>
-											<div class="price-container">
-												<div class="price-value">60.000đ</div>
-											</div>
-										</div>
-										<div class="stepper">
-											<button class="minus-btn" type="button" disabled>-</button>
-											<span class="count">0</span>
-											<button class="plus-btn" type="button">+</button>
-										</div>
-									</div>
-									<div class="ticket-type">
-										<div class="ticket-type-desc">
-											<div class="ticket-type-desc-title">Trẻ em (Dưới 2 tuổi)</div>
-											<div class="price-container">
-												<div class="price-value">Miễn phí</div>
-											</div>
-										</div>
-										<div class="stepper">
-											<button class="minus-btn" type="button" disabled>-</button>
-											<span class="count">0</span>
-											<button class="plus-btn" type="button">+</button>
-										</div>
-									</div>
+			      					</c:forEach>
+									
+									
 								</div>
 							</div>
 						</div>
+							<div id="message" class="message-container" style="background-color: #FDEBD3; display:none;">
+								<i class='fa fa-exclamation-circle' style='color:rgb(223, 92, 92);font-size:30px;margin-right:20px;'></i>
+								<div style="font-size: 20px;">
+									Bạn phải chọn ngày và chọn số lượng vé!!!
+								</div>
+							</div>
 						<div class="btn-container">
 							<button class="add-btn" type="submit">Thêm vào giỏ hàng</button>
-							<button class="back-btn">Quay lại</button>
+							<button class="back-btn" type="button" onclick="history.back();">Quay lại</button>
 						</div>
 					</div>
 				</form>
 			</div>
 			<jsp:include page="cart.jsp"></jsp:include>
+			 </c:if>
 		</div>
 	</main>
 	
 	<jsp:include page="footer.jsp"></jsp:include>
 	
 	
-	<script>
+	<script >
 	$("#basicDate").flatpickr({
 	    enableTime: false,
 	    minDate: "today",
 	    dateFormat: "d-m-Y"
 	});
+	$(".ticket-form").submit(function(e){
+		e.preventDefault();
+		
+		if(validateForm()){
+			const now = new Date();
+			let listTicket = JSON.parse(window.localStorage.getItem("listTicket")) || {tickets: [], expiry: now.getTime() + 60000};
+	
+			let item = listTicket.tickets.filter(ticket => ticket.id === (${listTickets.get(0).ticket_Type.id_Ticket_Type } + $('#basicDate').val()))[0];
+			let idCountTicket = "";
+			let ticketAge = {};
+			if (item && item.date === $('#basicDate').val()) {
+				<c:forEach var="ticket" items="${listTickets}">
+					ticketAge = item.ticketAges.filter(age => age.id === ${ticket.ticket_Age.id_Ticket_Age })[0];
+					idCountTicket = "#count" + ${ticket.ticket_Age.id_Ticket_Age };
+					if (Number($(idCountTicket).text()) > 0) {
+						if (ticketAge) {
+							ticketAge.count = ticketAge.count + Number($(idCountTicket).text());
+						} else {
+							ticketAge = {
+				        		id: ${ticket.ticket_Age.id_Ticket_Age },
+				        		name: "${ticket.ticket_Age.age_Description }",
+				        		count: Number($(idCountTicket).text()),
+				        		price: ${ticket.price }
+				        	};
+			        		item.ticketAges.push(ticketAge);	
+						}
+					}
+		    	</c:forEach>
+			} else {
+				item = {
+					id: ${listTickets.get(0).ticket_Type.id_Ticket_Type } + $('#basicDate').val(),
+				  	ticketType : "${listTickets.get(0).ticket_Type.ticket_Type }",
+				  	date : $('#basicDate').val(),
+				  	ticketAges: []
+				};
+				
+				<c:forEach var="ticket" items="${listTickets}">
+					idCountTicket = "#count" + ${ticket.ticket_Age.id_Ticket_Age };
+					if (Number($(idCountTicket).text()) > 0) {
+			        	ticketAge = {
+			        		id: ${ticket.ticket_Age.id_Ticket_Age },
+			        		name: "${ticket.ticket_Age.age_Description }",
+			        		count: Number($(idCountTicket).text()),
+			        		price: ${ticket.price }
+			        	};
+		        		item.ticketAges.push(ticketAge);
+					}
+		    	</c:forEach>
+	
+				listTicket.tickets.push(item);
+			}
+			
+			window.localStorage.setItem("listTicket", JSON.stringify(listTicket));
+			
+			window.location.replace('/ZooManagement/tickets');
+		} else {
+			$("#message").css("display", "flex");
+		}
+	});
+	
+	function validateForm(){
+		let idCountTicket = "";
+		let check = false;
+		<c:forEach var="ticket" items="${listTickets}">
+			idCountTicket = "#count" + ${ticket.ticket_Age.id_Ticket_Age };
+			if (Number($(idCountTicket).text()) > 0) {
+	        	check = true;
+			}
+		</c:forEach>
+		if ($('#basicDate').val() === "") {
+			check = false;
+		}
+		return check;
+	}
+	
+	function changeCount(id, amount, type){
+		let idCount = "#count" + id;
+		let idMinusBtn = "#minus-btn" + id;
+		let idPlusBtn = "#plus-btn" + id;
+		 $(idCount).html(function(i, val) { 
+			 	if (type == 1){
+			    	val = val*1 + 1;
+			 	} else {
+			 		val = val*1 - 1;
+			 	}
+		    	if (val > 0) {
+		    		$(idMinusBtn).prop("disabled", false);
+		    	} else {
+		    		$(idMinusBtn).prop("disabled", true);
+		    	}
+		    	if (val >= amount) {
+		    		$(idPlusBtn).prop("disabled", true);
+		    	} else {
+		    		$(idPlusBtn).prop("disabled", false);
+		    	}
+		    	return val;
+		 });
+	}
 	</script>
 </body>
 </html>

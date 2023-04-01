@@ -9,9 +9,10 @@
 <link href="<c:url value="/resources/css/style-tickets-page.css" />" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <title>Chào mừng bạn đến với Sở thú</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
-	<jsp:include page="header.jsp"></jsp:include>
+	<jsp:include page="header-not-sticky.jsp"></jsp:include>
 	
 	<main class="main-container">
 		<div class="content-container">
@@ -27,36 +28,26 @@
 					</div>
 				</div>
 				<div class="tickets-list">
-					<article class="ticket">
-						<a href="add-tickets" class="ticket-img-link">
-							<figure>
-								<img class="ticket-img" src='<c:url value="/resources/images/img3.jpg"></c:url>' alt=""/>
-								
-							</figure>
-						</a>
-						<a href="add-tickets" class="ticket-name">
-							<h2 class="ticket-name-content">Vé vào cổng</h2>
-						</a>
-						<div class="ticket-desc">
-							Yêu cầu đặt vé trực tuyến trước để vào cổng 
-						</div>
-						<a href="add-tickets" class="ticket-link">Chọn</a>
-					</article>
-					<article class="ticket">
-						<a href="#" class="ticket-img-link">
-							<figure>
-								<img class="ticket-img" src='<c:url value="/resources/images/img4.jpg"></c:url>' alt=""/>
-								
-							</figure>
-						</a>
-						<a href="#" class="ticket-name">
-							<h2 class="ticket-name-content">Vé tàu SEPTA PZ Express</h2>
-						</a>
-						<div class="ticket-desc">
-							Tham gia chuyến tàu SEPTA PZ Express của chúng tôi để có được trải nghiệm tốt nhất
-						</div>
-						<a href="#" class="ticket-link">Chọn</a>
-					</article>
+				<c:if test="${not empty ticketTypeList}">
+			      <c:forEach var="ticketType" items="${ticketTypeList}">
+						<article class="ticket">
+							<a href="add-tickets" class="ticket-img-link">
+								<figure>
+									<img class="ticket-img" src='<c:url value="/resources/images/img3.jpg"></c:url>' alt=""/>
+									
+								</figure>
+							</a>
+							<a href="add-tickets" class="ticket-name">
+								<h2 class="ticket-name-content">${ticketType.ticket_Type}</h2>
+							</a>
+							<div class="ticket-desc">
+								${ticketType.ticket_Description }
+							</div>
+							<a href="customer/${ticketType.id_Ticket_Type }" class="ticket-link">Chọn</a>
+						</article>
+			      </c:forEach>
+			    </c:if>
+					
 				</div>
 			</div>
 			<jsp:include page="cart.jsp"></jsp:include>
