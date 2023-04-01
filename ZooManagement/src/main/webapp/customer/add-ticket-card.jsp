@@ -24,8 +24,8 @@
 			<h1 class="content-title">${listTickets.get(0).ticket_Type.ticket_Type }</h1>
 			<div class="warning-container">
 				<div class="message-container">
-					<i class='fa fa-exclamation-circle' style='color:#0F9F6C;font-size:30px;margin-right:20px;'></i>
-					<div style="font-size: 20px;">
+					<i class='fa fa-exclamation-circle' style='color:#0F9F6C;font-size:20px;margin-right:20px;'></i>
+					<div style="font-size: 16px;">
 						Bạn đã có tài khoản? 
 						<a href="login">Đăng nhập</a>
 						Chưa có tài khoản?
