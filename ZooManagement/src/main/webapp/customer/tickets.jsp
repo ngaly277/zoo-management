@@ -9,9 +9,10 @@
 <link href="<c:url value="/resources/css/style-tickets-page.css" />" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <title>Chào mừng bạn đến với Sở thú</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
-	<jsp:include page="header.jsp"></jsp:include>
+	<jsp:include page="header-not-sticky.jsp"></jsp:include>
 	
 	<main class="main-container">
 		<div class="content-container">
@@ -42,7 +43,7 @@
 							<div class="ticket-desc">
 								${ticketType.ticket_Description }
 							</div>
-							<a href="add-tickets" class="ticket-link">Chọn</a>
+							<a href="customer/${ticketType.id_Ticket_Type }" class="ticket-link">Chọn</a>
 						</article>
 			      </c:forEach>
 			    </c:if>
