@@ -1,5 +1,6 @@
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,14 +25,14 @@
     <div class="bg-img">
     <div class="bg-img2">
     </div>
-    <form action = "login" method = "post">
+    <form:form modelAttribute="account" action = "processLogin" method = "post">
         <h3>Login Here</h3>
 
         <label for="username">Username</label>
-        <input type="text" placeholder="Username" id="Username" name = "Username">
+        <form:input type="text" path="username" placeholder="Username" id="Username" name = "Username"/>
 
         <label for="password">Password</label>
-        <input type="password" placeholder="Password" id="Password" name = "Password">
+        <form:input type="password" path="password" placeholder="Password" id="Password" name = "Password"/>
         <button type = "submit">Log In</button>
         <div class="checkbox-wrapper-54">
 		  <label class="switch">
@@ -55,7 +56,7 @@
           <div class="go"><i class="fab fa-google"></i>  Google</div>
           <div class="fb"><i class="fab fa-facebook"></i>  Facebook</div>
         </div>
-    </form>
+    </form:form>
     </div>
 </body>
 </html>

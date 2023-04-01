@@ -63,7 +63,7 @@
                     </li>
 
                     <li class="nav-link">
-                        <a href="Staff.jsp">
+                        <a href="stafflist">
                             <i class='bx bx-user icon' ></i>
                             <span class="text nav-text">Quản lý nhân viên</span>
                         </a>

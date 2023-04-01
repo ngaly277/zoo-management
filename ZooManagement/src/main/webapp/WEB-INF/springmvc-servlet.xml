@@ -11,6 +11,7 @@
     http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
     http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
     
+<!--     add support for component scanning bean and store in IoC -->
 	<context:component-scan base-package="fa.intern.mock"></context:component-scan>
 	<context:annotation-config />
 
@@ -27,9 +28,10 @@
 	<bean id="dataSource"
 	    class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 	    <property name="driverClassName" value="com.mysql.jdbc.Driver" />
-	    <property name="url" value="jdbc:mysql://localhost:3306/MockProject" />
+	    <property name="url" value="jdbc:mysql://localhost:3306/mockproject" />
 	    <property name="username" value="root" />
-	    <property name="password" value="123456789" />
+	    <!-- <property name="password" value="123456789" /> -->
+	    <property name="password" value="06032001" />
 	  </bean>
 	  
 	  <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
