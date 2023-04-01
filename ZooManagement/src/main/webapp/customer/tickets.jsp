@@ -47,36 +47,6 @@
 						</article>
 			      </c:forEach>
 			    </c:if>
-					<%-- <article class="ticket">
-						<a href="add-tickets" class="ticket-img-link">
-							<figure>
-								<img class="ticket-img" src='<c:url value="/resources/images/img3.jpg"></c:url>' alt=""/>
-								
-							</figure>
-						</a>
-						<a href="add-tickets" class="ticket-name">
-							<h2 class="ticket-name-content">Vé vào cổng</h2>
-						</a>
-						<div class="ticket-desc">
-							Yêu cầu đặt vé trực tuyến trước để vào cổng 
-						</div>
-						<a href="add-tickets" class="ticket-link">Chọn</a>
-					</article>
-					<article class="ticket">
-						<a href="#" class="ticket-img-link">
-							<figure>
-								<img class="ticket-img" src='<c:url value="/resources/images/img4.jpg"></c:url>' alt=""/>
-								
-							</figure>
-						</a>
-						<a href="#" class="ticket-name">
-							<h2 class="ticket-name-content">Vé tàu SEPTA PZ Express</h2>
-						</a>
-						<div class="ticket-desc">
-							Tham gia chuyến tàu SEPTA PZ Express của chúng tôi để có được trải nghiệm tốt nhất
-						</div>
-						<a href="#" class="ticket-link">Chọn</a>
-					</article> --%>
 				</div>
 			</div>
 			<jsp:include page="cart.jsp"></jsp:include>

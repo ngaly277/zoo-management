@@ -32,6 +32,5 @@ public class TicketType {
 	public TicketType() {
 		super();
 	}
-	
-	
 }
+
