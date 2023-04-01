@@ -105,16 +105,18 @@
     </nav>
 
     <section class="home">
-        		<div class="text">Inventory Page</div>
-        <h2 class = "banner ">Inventory Management Table</h2>
+        		<div class="text">Product Page In "Kho 1"</div>
+        <h2 class = "banner ">Product Management Table</h2>
           <c:url value="/SearchInventory" var="SearchInventory"/>
  		<form:form class = "searchform" action="SearchInventory" method="post">
 					<p class = "text2" >Search Information by:</p>
     								<select name="op" class="select">
-     									 <option value="ID_Inventory">Mã kho</option>
-      									 <option value="Inventory_Name">Tên kho</option>
-      									 <option value="Inventory_Address">Địa chỉ</option>
-      									 <option value="ID_Inventory_Type">Loại kho</option>
+     									 <option value="ID_Inventory">STT</option>
+      									 <option value="Inventory_Name">Tên sản phẩm</option>
+      									 <option value="Inventory_Address">Số lượng tồn kho</option>
+      									 <option value="ID_Inventory_Type">Nhà cung cấp</option>
+      									 <option value="ID_Inventory_Type">Kho</option>
+      									 <option value="ID_Inventory_Type">Đơn Giá</option>
     								</select>
                 	<p class = "text2" >Type here:</p>
   						<div class="searchbar"><input name="search" type="search" placeholder='Search' /></div>
@@ -128,27 +130,31 @@
     <table class="fl-table">
         <thead>
         <tr>
-            <th>Mã kho</th>
-            <th>Tên kho</th>
-            <th>Địa chỉ</th>
-            <th>Loại kho</th>
-            <th>Action</th>
+            <th>STT</th>
+            <th>Tên sản phẩm</th>
+            <th>ID bill detail</th>
+            <th>Số lượng tồn kho</th>
+            <th>Nhà cung cấp</th>
+            <th>Đơn Giá</th>
+            <th>Action</th> 
         </tr>
         </thead>
         <tbody>
-        <c:forEach items="${inventory}" var="item">
+        <c:forEach items="${product}" var="item">
         <tr>
             <td><c:out value="${item.id}" /></td>
             <td><c:out value="${item.name}" />
             	&nbsp &nbsp
-  				<a class = "bx bxs-box bx-xs" style="text-decoration:none; color: blue " href = "<%=request.getContextPath()%>/viewProduct?id=<c:out value="${item.id}" />">
+  				<a class = "bx bxs-box bx-xs" style="text-decoration:none; color: blue " href = "">
   					</a></td>
-            <td><c:out value="${item.address}" /></td>
-            <td><c:out value="${item.productType.name}" /></td>
+            <td><c:out value="${item.idBillDetail}" /></td>
+            <td><c:out value="${item.amount}" /></td>
+            <td><c:out value="${item.supplier.name}" /></td>
+            <td><c:out value="${item.price}" /></td>
             <td><a class = "bx bxs-edit bx-xs" style="text-decoration:none; color: green" href = "">
   					</a>
   					&nbsp &nbsp
-            <a class = "bx bxs-trash bx-xs" style="text-decoration:none; color: red " href = "<%=request.getContextPath()%>/deleteInventory?id=<c:out value="${item.id}" />">
+            <a class = "bx bxs-trash bx-xs" style="text-decoration:none; color: red " href = "<%=request.getContextPath()%>/deleteProduct?id=<c:out value="${item.id}" />">
   					</a>
   					</td>
         </tr>

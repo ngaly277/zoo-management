@@ -10,11 +10,24 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import fa.intern.mock.bean.Inventory;
+import fa.intern.mock.bean.ProductType;
+import fa.intern.mock.dao.AccountDAO.AccountMapper;
 
 @Repository
 public class InventoryDAO {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
+	
+	public ProductType getProductTypeByID(int id){    
+	    return jdbcTemplate.query("SELECT * FROM product_type WHERE ID_Product_Type = " + id,new RowMapper<ProductType>(){    
+	        public ProductType mapRow(ResultSet rs, int row) throws SQLException {    
+	        	ProductType e = new ProductType();    
+	            e.setId(rs.getInt(1)); 
+	            e.setName(rs.getString(2));
+	            return e;    
+	        }    
+	    }).get(0);    
+		} 
 	
 	public List<Inventory> getAllInventory(){    
 	    return jdbcTemplate.query("select * from inventory",new RowMapper<Inventory>(){    
@@ -24,6 +37,7 @@ public class InventoryDAO {
 	            e.setAddress(rs.getString(2));
 	            e.setName(rs.getString(3)); 	             
 	            e.setIdType(rs.getInt(4)); 
+	            e.setProductType(getProductTypeByID(rs.getInt(1)));
 	            return e;    
 	        }    
 	    });    
@@ -37,8 +51,15 @@ public class InventoryDAO {
 	            e.setAddress(rs.getString(2));
 	            e.setName(rs.getString(3)); 	             
 	            e.setIdType(rs.getInt(4)); 
+	            e.setProductType(getProductTypeByID(rs.getInt(1)));
 	            return e;    
 	        }    
 	    });    
-		}    
+		}   
+	
+	public int deleteInventory(int id){    
+	    String sql="delete from inventory where ID_Inventory="+id+"";    
+	    return jdbcTemplate.update(sql);    
+	}   
+	
 	}   

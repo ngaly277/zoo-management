@@ -20,4 +20,8 @@ public class InventoryService {
 	public List<Inventory> getInventoryByOption(String op, String value) {
 		return inventoryDAO.getInventoryByOption(op, value);
 	}
+	
+	public void deleteInventory(int id) {
+		inventoryDAO.deleteInventory(id);
+	}
 }
