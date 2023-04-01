@@ -4,6 +4,7 @@ public class TicketType {
 	private int id_Ticket_Type;
 	private String ticket_Type;
 	private String ticket_Description;
+	
 	public int getId_Ticket_Type() {
 		return id_Ticket_Type;
 	}
