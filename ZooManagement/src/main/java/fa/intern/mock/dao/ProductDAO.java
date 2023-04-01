@@ -9,6 +9,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import fa.intern.mock.bean.Inventory;
 import fa.intern.mock.bean.Product;
 import fa.intern.mock.bean.Supplier;
 
@@ -48,6 +49,23 @@ public class ProductDAO {
 	    });    
 		} 
 	
+	public List<Product> getProductcsByOption(String op, String value){    
+	    return jdbcTemplate.query("select * from product where " + op + " = '" + value + "'",new RowMapper<Product>(){    
+	        public Product mapRow(ResultSet rs, int row) throws SQLException {    
+	        	Product e=new Product();    
+	            e.setId(rs.getInt(1)); 
+	            e.setName(rs.getString(2));
+	            e.setIdBillDetail(rs.getInt(3)); 	             
+	            e.setAmount(rs.getInt(4)); 
+	            e.setIdSupplier(rs.getInt(5));
+	            e.setIdInventory(rs.getInt(6));
+	            e.setPrice(rs.getInt(7));
+	            e.setSupplier(getSupplierByID(rs.getInt(5)));
+	            return e;    
+	        }    
+	    });    
+		} 
+	
 	public List<Product> getListProductcsByIDInventory(int id){    
 	    return jdbcTemplate.query("select * from product where ID_Inventory = " + id,new RowMapper<Product>(){    
 	        public Product mapRow(ResultSet rs, int row) throws SQLException {    
@@ -70,4 +88,9 @@ public class ProductDAO {
 	    String sql="delete from product where ID_Product="+id+"";    
 	    return jdbcTemplate.update(sql);    
 	}  
+	
+	public int updateProduct(Product p){    
+	    String sql="update inventory set ID_Product='"+p.getId()+"', Product_Name="+p.getName()+"', ID_Bill_Detail="+p.getIdBillDetail()+"', Amount="+p.getAmount()+"', ID_Supplier="+p.getIdSupplier()+"', ID_Inventory="+p.getIdInventory()+"', Price="+p.getPrice()+"' where ID_Product="+p.getId()+"";    
+	    return jdbcTemplate.update(sql);    
+	} 
 }

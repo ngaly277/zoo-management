@@ -62,4 +62,9 @@ public class InventoryDAO {
 	    return jdbcTemplate.update(sql);    
 	}   
 	
+	public int updateInventory(Inventory p){    
+	    String sql="update inventory set ID_Inventory='"+p.getId()+"', Inventory_Address="+p.getAddress()+"', Inventory_Name="+p.getName()+"', ID_Inventory_Type="+p.getIdType()+"' where ID_Inventory="+p.getId()+"";    
+	    return jdbcTemplate.update(sql);    
+	}  
+	
 	}   
