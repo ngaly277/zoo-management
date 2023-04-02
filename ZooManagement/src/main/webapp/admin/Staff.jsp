@@ -93,17 +93,17 @@
 	<section class="home">
 		<div class="text">Staff Page</div>
 		<h2 class="banner ">Staff Management Table</h2>
-		<form class="searchform" action="" method="post">
-			<p class="text2">Search Information by:</p>
+		<form class="searchform" action="staffsearch" method="post">
+			<!-- <p class="text2">Search Information by:</p>
 			<select class="select">
 				<option value="1">Mã NV</option>
 				<option value="2">Tên</option>
 				<option value="3">Loại NV</option>
 				<option value="4">Username</option>
-			</select>
+			</select> -->
 			<p class="text2">Type here:</p>
 			<div class="searchbar">
-				<input type="search" placeholder='Search'>
+				<input type="search" name="searchString" placeholder='Search'>
 			</div>
 			<button class="button-search" type="submit">Search</button>
 			<button class="button-search" type="reset">Reset</button>

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -42,6 +43,15 @@ public class StaffListController {
 		List<Staff> staffById = staffService.getStaffById(idStaff);
 		model.addAttribute("staff",staffById);
 		return "admin/StaffUpdate";
+	}
+	
+	@PostMapping("staffsearch")
+	public String showStaffSearch(Model model, @RequestParam("searchString") String searchString) {
+		List<Staff> staffSeach = staffService.getStaffSearch(searchString);
+		List<StaffType> staffTypeList = staffService.getStaffTypeList();
+		model.addAttribute("staffList", staffSeach);
+		model.addAttribute("staffTypeList", staffTypeList);
+		return "admin/Staff";
 	}
 	
 //	@GetMapping("staffupdate")

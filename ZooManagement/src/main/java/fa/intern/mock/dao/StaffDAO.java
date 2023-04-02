@@ -100,4 +100,26 @@ public class StaffDAO {
 		});
 		return staffList;
 	}
+	
+	public List<Staff> getStaffSearch(String searchString){
+		String sql = "SELECT * FROM staff WHERE Staff_Name LIKE '%"+searchString+"%' or  Username LIKE '%"+searchString+"%'";
+		List<Staff> staffList = jdbcTemplate.query(sql, new RowMapper<Staff>() {
+			
+			public Staff mapRow(ResultSet rs, int rowNum) throws SQLException {
+				Staff staff = new Staff();
+				
+				staff.setIdStaff(rs.getInt("ID_Staff"));
+				staff.setStaffName(rs.getString("Staff_Name"));
+				staff.setSalary(rs.getInt("Salary"));
+				staff.setIdContract(rs.getInt("ID_Contract"));
+				staff.setIdStaffType(rs.getInt("ID_Staff_Type"));
+				staff.setUsername(rs.getString("Username"));
+				
+				System.out.println("updateee: "+staff.getIdStaff()+"-"+staff.getStaffName()+"-"+staff.getIdContract()+"-"+staff.getIdStaffType()+"-"+staff.getSalary()+"-"+staff.getUsername());
+				return staff;
+				
+			}
+		});
+		return staffList;
+	}
 }

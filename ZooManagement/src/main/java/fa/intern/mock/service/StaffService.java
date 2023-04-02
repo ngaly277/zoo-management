@@ -27,4 +27,8 @@ public class StaffService {
 		return staffDAO.getStaffById(id);
 	}
 	
+	public List<Staff> getStaffSearch(String searchString){
+		return staffDAO.getStaffSearch(searchString);
+	}
+	
 }
