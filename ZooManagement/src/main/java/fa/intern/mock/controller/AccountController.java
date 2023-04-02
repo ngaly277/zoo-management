@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import fa.intern.mock.bean.Account;
 import fa.intern.mock.dao.AccountDAO;
@@ -26,7 +27,8 @@ public class AccountController {
 	}
 	
 	@PostMapping("processLogin")
-	public String show(Model model, @ModelAttribute("account") Account account) {
+	public String show(Model model, @RequestParam("username") String u, @ModelAttribute("account") Account account) {
+		System.out.println("usernaaae: "+u);
 		System.out.println(account.getUsername()+"-"+account.getPassword());
 		Account a = accountService.getAccount(account.getUsername());
 		System.out.println(a+"?");

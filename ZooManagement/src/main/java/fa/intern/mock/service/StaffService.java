@@ -23,4 +23,8 @@ public class StaffService {
 		return staffDAO.getStaffTypeList();
 	}
 	
+	public List<Staff> getStaffById(int id) {
+		return staffDAO.getStaffById(id);
+	}
+	
 }

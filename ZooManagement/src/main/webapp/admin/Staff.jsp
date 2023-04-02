@@ -17,6 +17,7 @@
 	rel='stylesheet'>
 </head>
 <body>
+	
 	<nav class="sidebar close">
 		<header>
 			<div class="image-text">
@@ -126,10 +127,12 @@
 					</tr>
 				</thead>
 				<tbody>
+					<%-- <form action="staffupdate" method="get"> --%>
 					<c:forEach items="${staffList}" var="stafflist" >
 					<%-- <c:forEach items="${staffTypeList}" var="stafftypelist"> --%>
 					
 					<tr>
+						
 						<td>${stafflist.idStaff}</td>
 						<td>${stafflist.staffName}</td>
 						<td>${stafflist.salary}</td>
@@ -143,8 +146,10 @@
 						</c:if>
 						</c:forEach>
 						<td>${stafflist.username}</td>
-						<td><a class="bx bxs-edit bx-xs"
-							style="text-decoration: none; color: green" href=""></a> &nbsp
+						<td>
+						<a class="bx bxs-edit bx-xs"
+							<%-- style="text-decoration: none; color: green" href="staffupdate/${stafflist.idStaff}"></a> &nbsp --%>
+							style="text-decoration: none; color: green" href="staffupdate?id=${stafflist.idStaff}"></a> &nbsp
 							&nbsp <a class="bx bxs-trash bx-xs"
 							style="text-decoration: none; color: red" href=""></a></td>
 					</tr>
@@ -176,6 +181,7 @@
 							&nbsp <a class="bx bxs-trash bx-xs"
 							style="text-decoration: none; color: red" href=""> </a></td>
 					</tr> -->
+					<%-- </form> --%>
 				<tbody>
 			</table>
 		</div>
