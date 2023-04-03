@@ -109,7 +109,7 @@
 			<button class="button-search" type="reset">Reset</button>
 
 		</form>
-		<br> <br> <a href="">
+		<br> <br> <a href="staffcreateform">
 			<button style="margin-left: 70px" class="button-search">Thêm
 				NV</button>
 		</a>
@@ -148,8 +148,8 @@
 						<td>${stafflist.username}</td>
 						<td>
 						<a class="bx bxs-edit bx-xs"
-							<%-- style="text-decoration: none; color: green" href="staffupdate/${stafflist.idStaff}"></a> &nbsp --%>
-							style="text-decoration: none; color: green" href="staffupdate?id=${stafflist.idStaff}"></a> &nbsp
+							style="text-decoration: none; color: green" href="staffupdate/${stafflist.idStaff}"></a> &nbsp
+							<%-- style="text-decoration: none; color: green" href="staffupdate?id=${stafflist.idStaff}"></a> &nbsp --%>
 							&nbsp <a class="bx bxs-trash bx-xs"
 							style="text-decoration: none; color: red" href=""></a></td>
 					</tr>

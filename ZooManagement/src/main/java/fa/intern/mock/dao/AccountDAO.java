@@ -15,27 +15,33 @@ import fa.intern.mock.bean.Account;
 public class AccountDAO {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
-	
+
 //	public Account getAccount(String username) {
 //		String query = "SELECT * FROM Account WHERE Username = " + username;
 //		return jdbcTemplate.query(query, new AccountMapper()).get(0);
 //	}
-	
+
 	public Account getAccount(String username) {
 		String query = "SELECT * FROM Account WHERE Username = " + username;
-		Account account =   jdbcTemplate.query(query, new AccountMapper()).get(0);
-		System.out.println("hoho"+account.getPassword()+"-"+account.getPassword()+"-"+account.getId_Account_Type());
+		Account account = jdbcTemplate.query(query, new AccountMapper()).get(0);
+		System.out.println(
+				"hoho" + account.getPassword() + "-" + account.getPassword() + "-" + account.getId_Account_Type());
 		return account;
 	}
-	
+
 	public class AccountMapper implements RowMapper<Account> {
-		  public Account mapRow(ResultSet rs, int rowNum) throws SQLException {
-			  Account a = new Account();
-			  a.setUsername(rs.getString("Username"));
-			  a.setPassword(rs.getString("Pass"));
-			  a.setId_Account_Type(rs.getInt("ID_Account_Type"));
-			  
-			  return a;
-		  }
+		public Account mapRow(ResultSet rs, int rowNum) throws SQLException {
+			Account a = new Account();
+			a.setUsername(rs.getString("Username"));
+			a.setPassword(rs.getString("Pass"));
+			a.setId_Account_Type(rs.getInt("ID_Account_Type"));
+
+			return a;
 		}
+	}
+	
+	public void createAccountThroughAddNewStaff(String string) {
+		String sql = "insert into account (Username, Pass, ID_Account_Type) VALUE ('"+string+"', '"+string+"', 2)";
+		jdbcTemplate.update(sql);
+	}
 }

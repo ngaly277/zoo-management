@@ -30,7 +30,7 @@ public class StaffType {
 	}
 	@Override
 	public String toString() {
-		return "idStaffType [idStaffType=" + idStaffType + ", staffType=" + staffType + ", details=" + details + "]";
+		return idStaffType + "-" + staffType;
 	}
 	
 	public StaffType() {

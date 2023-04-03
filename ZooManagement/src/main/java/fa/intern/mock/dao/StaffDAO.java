@@ -51,7 +51,7 @@ public class StaffDAO {
 				staffType.setStaffType(rs.getString("Staff_Type"));
 				staffType.setDetails(rs.getString("Details"));
 				
-				System.out.println(staffType.getIdStaffType()+"-"+staffType.getStaffType()+"-"+staffType.getDetails());
+//				System.out.println(staffType.getIdStaffType()+"-"+staffType.getStaffType()+"-"+staffType.getDetails());
 				return staffType;
 				
 			}
@@ -121,5 +121,10 @@ public class StaffDAO {
 			}
 		});
 		return staffList;
+	}
+	
+	public void createStaff(Staff staff) {
+		String sql = "INSERT INTO staff (Staff_Name, Salary, ID_Contract, ID_Staff_Type, Username) VALUES ('"+staff.getStaffName()+"', "+staff.getSalary()+","+staff.getIdContract()+" , "+staff.getIdStaffType()+", '"+staff.getUsername()+"')";
+		jdbcTemplate.update(sql);
 	}
 }

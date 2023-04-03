@@ -1,20 +1,26 @@
 package fa.intern.mock.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import fa.intern.mock.bean.Contracts;
 import fa.intern.mock.bean.Staff;
 import fa.intern.mock.bean.StaffType;
+import fa.intern.mock.service.AccountService;
+import fa.intern.mock.service.ContractService;
 import fa.intern.mock.service.StaffService;
 
 @Controller
@@ -27,6 +33,12 @@ public class StaffListController {
 	
 	@Autowired
 	private StaffService staffService;
+	
+	@Autowired 
+	private ContractService contractService;
+	
+	@Autowired
+	private AccountService accountService;
 	
 	@GetMapping("stafflist")
 	public String showStaffList(Model model) {
@@ -54,8 +66,41 @@ public class StaffListController {
 		return "admin/Staff";
 	}
 	
-//	@GetMapping("staffupdate")
-//	public String showStaffUpdate(Model model) {
-//		return "admin/StaffUpdate";
+	@GetMapping("staffcreateform")
+	public String showStaffCreateForm(Model model) {
+		System.out.println("!!!!!!!!!!!!!");
+		List<StaffType> staffTypeList = staffService.getStaffTypeList();
+//		List<StaffType> staffTypeNameList = new ArrayList<StaffType>();
+//		for (StaffType staffType : staffTypeList) {
+//			staffTypeNameList.add(staffType.getStaffType());
+//			System.out.println(staffType.getStaffType());
+//		}
+		model.addAttribute("staffTypeList",staffTypeList);
+		model.addAttribute("staff", new Staff());
+		return "admin/StaffCreate";
+	}
+	
+	@PostMapping("staffcreate")
+	public String processStaffCreate(Model model, @ModelAttribute("staff") Staff staff, @RequestParam("staffTypeClicked") String staffTypeClicked) {
+		int idStaffType = Integer.parseInt(staffTypeClicked);
+		staff.setIdStaffType(idStaffType);
+		System.out.println("---------------------");
+		System.out.println(staff.getUsername());
+		accountService.createAccountThroughAddNewStaff(staff.getUsername());
+		contractService.createContract();
+		List<Contracts> contractList = contractService.getTheLastContract();
+		staff.setIdContract(contractList.get(0).getIdContract());
+		System.out.println(staff.getStaffName()+"-"+staff.getSalary()+"-"+staff.getIdContract()+"-"+staff.getIdStaffType()+"-"+staff.getUsername());
+		staffService.createStaff(staff);
+		
+		return "redirect:/stafflist";
+		
+	}
+	
+//	@PostMapping("staffcreate")
+//	public String processStaffCreate(Model model, ModelAttribute("staff") Staff staff) {
+//		model.addAttribute("staff", new Staff());
+//		return "admin/StaffCreate";
 //	}
+
 }

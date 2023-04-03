@@ -31,4 +31,8 @@ public class StaffService {
 		return staffDAO.getStaffSearch(searchString);
 	}
 	
+	public void createStaff(Staff staff) {
+		staffDAO.createStaff(staff);
+	}
+	
 }

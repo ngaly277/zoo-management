@@ -14,4 +14,8 @@ public class AccountService {
 	public Account getAccount(String username) {
 		return accountDAO.getAccount(username);
 	}
+	
+	public void createAccountThroughAddNewStaff(String string) {
+		accountDAO.createAccountThroughAddNewStaff(string);
+	}
 }
