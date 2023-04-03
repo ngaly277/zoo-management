@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -17,7 +17,8 @@
 	<jsp:include page="header-not-sticky.jsp"></jsp:include>
 	
 	<main class="main-container">
-		<div class="content-container">
+		<div >
+			<form id="form-checkout" method="post"class="content-container" onsubmit = "return(validate());">
 			<h1 class="content-title">Thông tin thanh toán</h1>
 			<div class="warning-container">
 			<div class="form-wrapper">
@@ -39,26 +40,32 @@
 				</div>
 				<div class="purchase-details">
 					<h2 class="title-section">Thông tin khách hàng</h2>
-					<form class="identity-form">
+					<div class="identity-form">
 						<div class="form-input-group">
 							<label class="form-input">
 								<span class="label">Họ và tên</span>
-								<input type="text" name="name" id="name" class="input" required/>
+								<input type="text" name="name" id="name" class="input"/>
+								<span id="name-invalid" style="color: #eb1c26; margin-top: 10px; display:none">Trường họ tên không được để trống.</span>
 							</label>
 							<label class="form-input">
 								<span class="label">Địa chỉ</span>
-								<input type="text" name="address" id="address" class="input" required/>
+								<input type="text" name="address" id="address" class="input"/>
+								<span id="address-invalid" style="color: #eb1c26; margin-top: 10px; display:none">Trường địa chỉ không được để trống.</span>
 							</label>
 							<label class="form-input">
 								<span class="label">Số điện thoại</span>
-								<input type="text" name="phone" id="phone" class="input" required/>
+								<input type="text" name="phone" id="phone" class="input"/>
+								<span id="phone-invalid" style="color: #eb1c26; margin-top: 10px; display:none">Trường số điện thoại không được để trống và phải đúng định dạng.</span>
+								
 							</label>
 							<label class="form-input">
 								<span class="label">Email</span>
-								<input type="email" name="email" id="email" class="input" required/>
+								<input type="email" name="email" id="email" class="input"/>
+								<span id="email-invalid" style="color: #eb1c26; margin-top: 10px; display:none">Trường email không được để trống và phải đúng định dạng.</span>
+								
 							</label>
 						</div>
-					</form>
+					</div>
 					
 				</div>
 				<div class="btn-container flex-end">
@@ -66,10 +73,109 @@
 				</div>
 			</div>
 			</div>
-			<jsp:include page="cart.jsp"></jsp:include>
+			<jsp:include page="cartCheckout.jsp"></jsp:include>
+			</form>
 		</div>
 	</main>
 	
 	<jsp:include page="footer.jsp"></jsp:include>
+	
+	<script>			
+		const validatePhone = (phone) => {
+		  return phone.match(
+		    /^(0|\(84\)\+)(90|91)[0-9]{7}$/
+		  );
+		};	
+		
+		const validateEmail = (email) => {
+		  return email.match(
+			  /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+		  );
+		};
+	
+		function validate() {
+			let check;
+			
+			if( document.getElementById("name").value == "" ) {
+	            document.getElementById("name").classList.add("is-invalid");
+	            document.getElementById("name-invalid").style.display = "block";
+	            check = false;
+	         } else {
+	            document.getElementById("name").classList.remove("is-invalid");
+	            check = true;
+	         }
+			
+			if( document.getElementById("address").value == "" ) {
+	            document.getElementById("address").classList.add("is-invalid");
+	            document.getElementById("address-invalid").style.display = "block";
+	            check = false;
+	         } else {
+	            document.getElementById("address").classList.remove("is-invalid");
+	            check = true;
+	         }
+			
+			if( document.getElementById("phone").value == "" || !validatePhone(document.getElementById("phone").value)) {
+	            document.getElementById("phone").classList.add("is-invalid");
+	            document.getElementById("phone-invalid").style.display = "block";
+	            check = false;
+	         } else {
+	            document.getElementById("phone").classList.remove("is-invalid");
+	            check = true;
+	         }
+			
+			if( document.getElementById("email").value == "" || !validateEmail(document.getElementById("email").value)) {
+	            document.getElementById("email").classList.add("is-invalid");
+	            document.getElementById("email-invalid").style.display = "block";
+	            check = false;
+	         } else {
+	            document.getElementById("email").classList.remove("is-invalid");
+	            check = true;
+	         }
+			
+			return check;
+		}
+		
+		$("#form-checkout").submit(function(e){
+			e.preventDefault();
+			
+
+			if(validate()) {
+				let listTicket = JSON.parse(window.sessionStorage.getItem("listTicket"));
+				let data = {};
+				data["ticket-amount"] = listTicket.tickets.length;
+				listTicket.tickets.forEach((ticket, id1) => {
+					let idTicket = ticket.id[0];
+					let date = ticket.date;
+					data["age-amount"+ date + (id1 + 1)] = ticket.ticketAges.length;
+					ticket.ticketAges.forEach((age, id) => {
+						data["idTicket" + date + (id1+1)] = idTicket;
+						data["date" + (id1+1)] = date;
+						data["idTicketAge" + date + (id1+1) + (id+1)] = age.id;
+						data["amount"+ date + (id1+1) + (id+1)] = age.count;
+					});
+				});
+				data["customer_Name"] = $("#name").val();
+				data["address"] = $("#address").val();
+				data["phone"] = $("#phone").val();
+				data["email"] = $("#email").val();
+				
+				$.ajax({
+					type: "GET",
+					contentType: "application/json; charset=utf-8",
+					url: "/ZooManagement/insertTicketHistory",
+					data : data,
+					dataType : 'json',
+					success: function(result) {	
+						window.sessionStorage.removeItem("listTicket");
+						window.location.replace('/ZooManagement/' + result.responseText);
+					},
+					error: function(e) {
+						window.sessionStorage.removeItem("listTicket");
+						window.location.replace('/ZooManagement/' + e.responseText);
+					}
+				});
+			}
+		});
+	</script>
 </body>
 </html>

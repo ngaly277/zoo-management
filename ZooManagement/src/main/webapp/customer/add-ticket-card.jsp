@@ -106,14 +106,14 @@
 	$("#basicDate").flatpickr({
 	    enableTime: false,
 	    minDate: "today",
-	    dateFormat: "d-m-Y"
+	    dateFormat: "Y-m-d"
 	});
 	$(".ticket-form").submit(function(e){
 		e.preventDefault();
 		
 		if(validateForm()){
 			const now = new Date();
-			let listTicket = JSON.parse(window.localStorage.getItem("listTicket")) || {tickets: [], expiry: now.getTime() + 60000};
+			let listTicket = JSON.parse(window.sessionStorage.getItem("listTicket")) || {tickets: [], expiry: now.getTime() + 600000};
 	
 			let item = listTicket.tickets.filter(ticket => ticket.id === (${listTickets.get(0).ticket_Type.id_Ticket_Type } + $('#basicDate').val()))[0];
 			let idCountTicket = "";
@@ -160,7 +160,7 @@
 				listTicket.tickets.push(item);
 			}
 			
-			window.localStorage.setItem("listTicket", JSON.stringify(listTicket));
+			window.sessionStorage.setItem("listTicket", JSON.stringify(listTicket));
 			
 			window.location.replace('/ZooManagement/tickets');
 		} else {

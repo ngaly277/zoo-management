@@ -37,3 +37,8 @@
 .flex-end{
 	justify-content: flex-end !important;
 }
+
+.is-invalid{
+	border-color: #eb1c26;
+	
+}
