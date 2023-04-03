@@ -97,6 +97,17 @@ public class StaffListController {
 		
 	}
 	
+	@PostMapping("staffbydepartment")
+	public String processStaffByDepartment(Model model, @RequestParam("staffTypeClicked") String staffTypeClicked) {
+		int idStaffType = Integer.parseInt(staffTypeClicked);
+		System.out.println("lllll: "+idStaffType);
+		List<Staff> staffList = staffService.getStaffByIdStaffType(idStaffType);
+		List<StaffType> staffTypeList = staffService.getStaffTypeList();
+		model.addAttribute("staffList", staffList);
+		model.addAttribute("staffTypeList", staffTypeList);
+		return "admin/Staff";
+	}
+	
 //	@PostMapping("staffcreate")
 //	public String processStaffCreate(Model model, ModelAttribute("staff") Staff staff) {
 //		model.addAttribute("staff", new Staff());

@@ -35,4 +35,8 @@ public class StaffService {
 		staffDAO.createStaff(staff);
 	}
 	
+	public List<Staff> getStaffByIdStaffType(int id){
+		return staffDAO.getStaffByIdStaffType(id);
+	}
+	
 }

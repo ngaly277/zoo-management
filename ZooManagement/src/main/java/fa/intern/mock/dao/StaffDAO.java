@@ -127,4 +127,26 @@ public class StaffDAO {
 		String sql = "INSERT INTO staff (Staff_Name, Salary, ID_Contract, ID_Staff_Type, Username) VALUES ('"+staff.getStaffName()+"', "+staff.getSalary()+","+staff.getIdContract()+" , "+staff.getIdStaffType()+", '"+staff.getUsername()+"')";
 		jdbcTemplate.update(sql);
 	}
+	
+	public List<Staff> getStaffByIdStaffType(int id){
+		String sql = "SELECT * FROM staff WHERE ID_Staff_Type = "+id;
+		List<Staff> staffList = jdbcTemplate.query(sql, new RowMapper<Staff>() {
+			
+			public Staff mapRow(ResultSet rs, int rowNum) throws SQLException {
+				Staff staff = new Staff();
+				
+				staff.setIdStaff(rs.getInt("ID_Staff"));
+				staff.setStaffName(rs.getString("Staff_Name"));
+				staff.setSalary(rs.getInt("Salary"));
+				staff.setIdContract(rs.getInt("ID_Contract"));
+				staff.setIdStaffType(rs.getInt("ID_Staff_Type"));
+				staff.setUsername(rs.getString("Username"));
+				
+				System.out.println("updateee: "+staff.getIdStaff()+"-"+staff.getStaffName()+"-"+staff.getIdContract()+"-"+staff.getIdStaffType()+"-"+staff.getSalary()+"-"+staff.getUsername());
+				return staff;
+				
+			}
+		});
+		return staffList;
+	}
 }
