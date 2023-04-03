@@ -39,4 +39,10 @@ public class StaffService {
 		return staffDAO.getStaffByIdStaffType(id);
 	}
 	
+
+	//---------------------update----------------------
+	public void updateStaff(Staff staff) {
+		staffDAO.updateStaff(staff);
+	}
+	
 }

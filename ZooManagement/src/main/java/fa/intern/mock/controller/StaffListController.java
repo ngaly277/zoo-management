@@ -49,13 +49,13 @@ public class StaffListController {
 		return "admin/Staff";
 	}
 	
-	@GetMapping(value = "staffupdate/{idStaff}")
-	public String showStaffUpdate(@PathVariable int idStaff, Model model) {
-		System.out.println("update: "+idStaff);
-		List<Staff> staffById = staffService.getStaffById(idStaff);
-		model.addAttribute("staff",staffById);
-		return "admin/StaffUpdate";
-	}
+//	@GetMapping(value = "staffupdate/{idStaff}")
+//	public String showStaffUpdate(@PathVariable int idStaff, Model model) {
+//		System.out.println("update: "+idStaff);
+//		List<Staff> staffById = staffService.getStaffById(idStaff);
+//		model.addAttribute("staff",staffById);
+//		return "admin/StaffUpdate";
+//	}
 	
 	@PostMapping("staffsearch")
 	public String showStaffSearch(Model model, @RequestParam("searchString") String searchString) {
@@ -106,6 +106,26 @@ public class StaffListController {
 		model.addAttribute("staffList", staffList);
 		model.addAttribute("staffTypeList", staffTypeList);
 		return "admin/Staff";
+	}
+	
+//  -------------------update-------------------
+//	@GetMapping("staffupdate/{idStaff}")
+	@GetMapping( value =  "staffupdateform")
+	public String showStaffUpdate(@RequestParam("id") int id, Model model) {
+		System.out.println("update: "+id);
+		List<Staff> staffById = staffService.getStaffById(id);
+		List<StaffType> staffTypeList = staffService.getStaffTypeList();
+		model.addAttribute("staffList",staffById);
+		model.addAttribute("staffTypeList", staffTypeList);
+		model.addAttribute("staffupdate", new Staff());
+		return "admin/StaffUpdate";
+	}
+	
+	@PostMapping("processupdatestaff")
+	public String processUpdateStaff(Model model, @ModelAttribute("staffupdate") Staff staff, @RequestParam("staffTypeClicked") String staffTypeClicked) {
+		staff.setIdStaffType(Integer.parseInt(staffTypeClicked));
+		staffService.updateStaff(staff);
+		return "redirect:/stafflist";
 	}
 	
 //	@PostMapping("staffcreate")

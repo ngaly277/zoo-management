@@ -167,10 +167,10 @@
 							</c:forEach>
 							<td>${stafflist.username}</td>
 							<td><a class="bx bxs-edit bx-xs"
-								style="text-decoration: none; color: green"
-								href="staffupdate/${stafflist.idStaff}"></a> &nbsp <%-- style="text-decoration: none; color: green" href="staffupdate?id=${stafflist.idStaff}"></a> &nbsp --%>
-								&nbsp <a class="bx bxs-trash bx-xs"
-								style="text-decoration: none; color: red" href=""></a></td>
+							<%-- style="text-decoration: none; color: green" href="staffupdate/${stafflist.idStaff}"></a> &nbsp --%>
+							style="text-decoration: none; color: green" href="staffupdateform?id=${stafflist.idStaff}"></a> &nbsp
+							&nbsp <a class="bx bxs-trash bx-xs"
+							style="text-decoration: none; color: red" href=""></a></td>
 						</tr>
 					</c:forEach>
 					<%-- </c:forEach> --%>
