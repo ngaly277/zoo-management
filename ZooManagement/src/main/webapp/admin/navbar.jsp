@@ -39,7 +39,7 @@
 							lý kho</span>
 				</a></li>
 				<li class="nav-link"><a href="#"> <i
-						class='bx bxs-coupon icon'></i> <span class="text nav-text">Quản
+						class="bx bxs-coupon icon <c:out value='${param.navToggle == "tickets" ? "active" : ""}' />"></i> <span class="text nav-text">Quản
 							lý đặt vé</span>
 				</a></li>
 				<li class="nav-link"><a href="Staff.jsp"> <i
