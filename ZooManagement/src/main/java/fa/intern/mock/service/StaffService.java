@@ -27,4 +27,9 @@ public class StaffService {
 		return staffDAO.getStaffById(id);
 	}
 	
+	//---------------------update----------------------
+	public void updateStaff(Staff staff) {
+		staffDAO.updateStaff(staff);
+	}
+	
 }

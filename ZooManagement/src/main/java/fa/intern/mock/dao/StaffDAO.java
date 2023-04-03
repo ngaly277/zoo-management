@@ -100,4 +100,11 @@ public class StaffDAO {
 		});
 		return staffList;
 	}
+	
+	
+	// ----------------------------update---------------------------
+	public void updateStaff(Staff staff) {
+		String sql = "UPDATE staff SET Staff_Name = '"+staff.getStaffName()+"', Salary="+staff.getSalary()+", ID_Staff_Type = "+staff.getIdStaffType()+" WHERE ID_Staff = "+staff.getIdStaff();
+		jdbcTemplate.update(sql);
+	}
 }

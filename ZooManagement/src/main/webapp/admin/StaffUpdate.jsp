@@ -93,7 +93,7 @@
 	<section class="home">
 		<div class="text">Staff Updating Page</div>
 		<h2 class="banner ">Staff Updating</h2>
-		<form:form modelAttribute="staffupdate" class="searchform" action="" method="post">
+		<form:form modelAttribute="staffupdate" class="searchform" action="processupdatestaff" method="post">
 			
 			<button style="" class="button-search">Cập Nhật</button>
 
@@ -104,27 +104,42 @@
 							<th>Mã NV</th>
 							<th>Tên NV</th>
 							<th>Lương</th>
+							<th>Hợp đồng</th>
 							<th>Loại nhân viên</th>
 							<th>Username</th>
-
 						</tr>
-						
 					</thead>
 					<tbody>
-						<tr>
-							<th><input type="text"></th>
-							<th><input type="text"></th>
-							<th><input type="text"></th>
-							<th><select class="select">
-									<option value="1">Nhân viên bán vé</option>
-									<option value="2">Nhân viên thú y</option>
-									<option value="3">Nhân viên viên vệ sinh</option>
-									<option value="4">Nhân viên chăm sóc</option>
-							</select></th>
-							<th><input type="text"></th>
-
-						</tr>
-					<tbody>
+					<c:forEach items="${staffList}" var="stafflist" >
+					<tr>
+						<td><form:input type="text" path="idStaff" value = "${stafflist.idStaff}" readonly="true"/></td>
+						<td><form:input type="text" path="staffName" value="${stafflist.staffName}"/></td>
+						<td><form:input type="text" path="salary" value="${stafflist.salary}"/></td>
+						<td><a class="bx bx-notepad bx-xs"
+							style="text-decoration: none; color: green" href="">${stafflist.idContract} </a></td>
+							
+						<%-- <c:forEach items="${staffTypeList}" var="stafftypelist">
+						<c:if test="${stafflist.idStaffType == stafftypelist.idStaffType}">
+						<td>${stafftypelist.staffType}</td>
+						</c:if>
+						</c:forEach> --%>
+						
+						<td>
+						<select name="staffTypeClicked">
+						<c:forEach items="${staffTypeList}" var="stafftypelist">
+						<c:if test="${stafflist.idStaffType == stafftypelist.idStaffType}">
+						<option value="${stafftypelist.idStaffType}" selected >${stafftypelist.staffType}</option>
+						</c:if>
+						<option value="${stafftypelist.idStaffType}">${stafftypelist.staffType}</option>
+						</c:forEach>
+						</select>
+						</td>
+						
+						<td><form:input type="text" path="username" value="${stafflist.username}"/></td>
+						
+					</tr>
+					</c:forEach>
+				<tbody>
 				</table>
 			</div>
 		</form:form>

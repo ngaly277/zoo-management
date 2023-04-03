@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -36,12 +38,24 @@ public class StaffListController {
 		return "admin/Staff";
 	}
 	
-	@GetMapping(value = "staffupdate/{idStaff}")
-	public String showStaffUpdate(@PathVariable int idStaff, Model model) {
-		System.out.println("update: "+idStaff);
-		List<Staff> staffById = staffService.getStaffById(idStaff);
-		model.addAttribute("staff",staffById);
+	//  -------------------update-------------------
+//	@GetMapping("staffupdate/{idStaff}")
+	@GetMapping( value =  "staffupdateform")
+	public String showStaffUpdate(@RequestParam("id") int id, Model model) {
+		System.out.println("update: "+id);
+		List<Staff> staffById = staffService.getStaffById(id);
+		List<StaffType> staffTypeList = staffService.getStaffTypeList();
+		model.addAttribute("staffList",staffById);
+		model.addAttribute("staffTypeList", staffTypeList);
+		model.addAttribute("staffupdate", new Staff());
 		return "admin/StaffUpdate";
+	}
+	
+	@PostMapping("processupdatestaff")
+	public String processUpdateStaff(Model model, @ModelAttribute("staffupdate") Staff staff, @RequestParam("staffTypeClicked") String staffTypeClicked) {
+		staff.setIdStaffType(Integer.parseInt(staffTypeClicked));
+		staffService.updateStaff(staff);
+		return "redirect:/stafflist";
 	}
 	
 //	@GetMapping("staffupdate")
