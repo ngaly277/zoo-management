@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+	<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
@@ -10,16 +10,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href='<c:url value="/resources/css/style-page-admin.css" />' rel="stylesheet" type ="text/css"> 
  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
- <link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-	crossorigin="anonymous">
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-	integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-	crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
 <body>
  <nav class="sidebar close">
@@ -115,20 +105,18 @@
     </nav>
 
     <section class="home">
-        		<div class="text">Inventory Page</div>
-        <h2 class = "banner ">Inventory Management Table</h2>
+        		<div class="text">Supplier Page</div>
+        <h2 class = "banner ">Supplier Management Table</h2>
         <div class = "banner">
-			<a href="<%=request.getContextPath()%>/viewSupplier" class="btn btn-info" role="button">View Supplier</a>
-			<a href="<%=request.getContextPath()%>/viewBillDetail" class="btn btn-info" role="button">View Bill</a>
+			<a href="<%=request.getContextPath()%>/showAddSupplier" class="button-search" role="button">Add Supplier</a>
+
 		</div>
           <c:url value="/SearchInventory" var="SearchInventory"/>
- 		<form:form class = "searchform" action="SearchInventory" method="post">
+ 		<form:form class = "searchform" action="SearchSupplier" method="post">
 					<p class = "text2" >Search Information by:</p>
     								<select name="op" class="select">
-     									 <option value="ID_Inventory">Mã kho</option>
-      									 <option value="Inventory_Name">Tên kho</option>
-      									 <option value="Inventory_Address">Địa chỉ</option>
-      									 <option value="ID_Inventory_Type">Loại kho</option>
+      									 <option value="Supplier_Name">Tên</option>
+      									 <option value="ID_Supplier_Type">Loại</option>
     								</select>
                 	<p class = "text2" >Type here:</p>
   						<div class="searchbar"><input name="search" type="search" placeholder='Search' /></div>
@@ -142,27 +130,24 @@
     <table class="fl-table">
         <thead>
         <tr>
-            <th>Mã kho</th>
-            <th>Tên kho</th>
-            <th>Địa chỉ</th>
-            <th>Loại kho</th>
+            <th>STT</th>
+            <th>Tên nhà cung cấp</th>
+            <th>Loại sản phẩm cung cấp</th>
+            <th>Hợp đồng</th>
             <th>Action</th>
         </tr>
         </thead>
         <tbody>
-        <c:forEach items="${inventory}" var="item">
+        <c:forEach items="${supplier}" var="item">
         <tr>
             <td><c:out value="${item.id}" /></td>
-            <td><c:out value="${item.name}" />
-            	&nbsp &nbsp
-  				<a class = "bx bxs-box bx-xs" style="text-decoration:none; color: blue " href = "<%=request.getContextPath()%>/viewProduct?id=<c:out value="${item.id}" />">
-  					</a></td>
-            <td><c:out value="${item.address}" /></td>
-            <td><c:out value="${item.productType.name}" /></td>
-            <td><a class = "bx bxs-edit bx-xs" style="text-decoration:none; color: green" href = "">
+            <td><c:out value="${item.name}" /></td>
+  			<td><c:out value="${item.supplierType.supplierType}" /></td>
+            <td><c:out value="${item.contracts.details}" /></td>
+            <td><a class = "bx bxs-edit bx-xs" style="text-decoration:none; color: green" href = "<%=request.getContextPath()%>/showEditSupplier?id=<c:out value="${item.id}" />">
   					</a>
   					&nbsp &nbsp
-            <a class = "bx bxs-trash bx-xs" style="text-decoration:none; color: red " href = "<%=request.getContextPath()%>/deleteInventory?id=<c:out value="${item.id}" />">
+            <a class = "bx bxs-trash bx-xs" style="text-decoration:none; color: red " href = "<%=request.getContextPath()%>/deleteSupplier?id=<c:out value="${item.id}" />">
   					</a>
   					</td>
         </tr>

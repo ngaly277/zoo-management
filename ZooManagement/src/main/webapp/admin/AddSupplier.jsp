@@ -115,62 +115,48 @@
     </nav>
 
     <section class="home">
-        		<div class="text">Inventory Page</div>
-        <h2 class = "banner ">Inventory Management Table</h2>
-        <div class = "banner">
-			<a href="<%=request.getContextPath()%>/viewSupplier" class="btn btn-info" role="button">View Supplier</a>
-			<a href="<%=request.getContextPath()%>/viewBillDetail" class="btn btn-info" role="button">View Bill</a>
-		</div>
-          <c:url value="/SearchInventory" var="SearchInventory"/>
- 		<form:form class = "searchform" action="SearchInventory" method="post">
-					<p class = "text2" >Search Information by:</p>
-    								<select name="op" class="select">
-     									 <option value="ID_Inventory">Mã kho</option>
-      									 <option value="Inventory_Name">Tên kho</option>
-      									 <option value="Inventory_Address">Địa chỉ</option>
-      									 <option value="ID_Inventory_Type">Loại kho</option>
+<div class="container-xl px-4 mt-4">
+    <!-- Account page navigation-->
+    <div class="row">
+        <div class="col-xl-8">
+            <div class="card mb-4">
+                <div class="card-header">Insert Supplier with Contract</div>
+                <div class="card-body">
+                    <form:form class = "searchform" action="addSupplier" method="post">
+                    	<br/>
+                        <!-- Form Row-->
+                        <div class="row gx-3 mb-3">
+                            <!-- Form Group (first name)-->
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="Title">Tên nhà cung cấp</label>
+                                <input class="form-control" value="${supplier.name}" name="name" type="text" >
+                            </div>
+                            <!-- Form Group (last name)-->
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="Brief">Loại sản phẩm cung cấp</label>
+                                <select name="op" class="form-control">
+                                	<c:forEach items="${supplierType}" var="item">
+     									 <option value="${item.id}"><c:out value="${item.supplierType}" /></option>
+     								</c:forEach>
     								</select>
-                	<p class = "text2" >Type here:</p>
-  						<div class="searchbar"><input name="search" type="search" placeholder='Search' /></div>
-  						<button class = "button-search" type = "submit">Search</button>
-                		<button class = "button-search" type = "reset">Reset</button>
-
-        </form:form>
-<br>
-<br>
-<div class="table-wrapper">
-    <table class="fl-table">
-        <thead>
-        <tr>
-            <th>Mã kho</th>
-            <th>Tên kho</th>
-            <th>Địa chỉ</th>
-            <th>Loại kho</th>
-            <th>Action</th>
-        </tr>
-        </thead>
-        <tbody>
-        <c:forEach items="${inventory}" var="item">
-        <tr>
-            <td><c:out value="${item.id}" /></td>
-            <td><c:out value="${item.name}" />
-            	&nbsp &nbsp
-  				<a class = "bx bxs-box bx-xs" style="text-decoration:none; color: blue " href = "<%=request.getContextPath()%>/viewProduct?id=<c:out value="${item.id}" />">
-  					</a></td>
-            <td><c:out value="${item.address}" /></td>
-            <td><c:out value="${item.productType.name}" /></td>
-            <td><a class = "bx bxs-edit bx-xs" style="text-decoration:none; color: green" href = "">
-  					</a>
-  					&nbsp &nbsp
-            <a class = "bx bxs-trash bx-xs" style="text-decoration:none; color: red " href = "<%=request.getContextPath()%>/deleteInventory?id=<c:out value="${item.id}" />">
-  					</a>
-  					</td>
-        </tr>
-        </c:forEach>
-        <tbody>
-    </table>
-</div>
+                            </div>
+                        </div>
+                        <br/>
+                        <!-- Form Group (email address)-->
+                        <div class="mb-3">
+                            <label class="small mb-1" for="Content">Chi tiết hợp đồng</label>
+                            <textarea name="detail" class="form-control" rows="10" cols="50">${supplier.contracts.details}</textarea>
+                        </div>
+                        <!-- Save changes button-->
+                        <br>
+                        <button class="button-search" type="submit">Save</button>
+                    </form:form>
+                    <br>
+                </div>
+            </div>
         </div>
+    </div>
+</div>
     </section>
 
 </body>

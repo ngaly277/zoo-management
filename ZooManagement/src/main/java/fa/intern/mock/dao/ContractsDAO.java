@@ -36,4 +36,9 @@ public class ContractsDAO {
 	    String sql="update contracts set ID_Contract='"+p.getId()+"', Details="+p.getDetails()+"' where ID_Contract="+p.getId()+"";    
 	    return jdbcTemplate.update(sql);    
 	}  
+	
+	public int saveContracts(Contracts p){    
+	    String sql="insert into contracts(Details) values('"+p.getDetails()+"')";    
+	    return jdbcTemplate.update(sql);    
+	}    
 }
