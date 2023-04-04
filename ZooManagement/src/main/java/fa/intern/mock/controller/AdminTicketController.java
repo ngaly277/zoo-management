@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import fa.intern.mock.bean.Ticket;
+import fa.intern.mock.bean.TicketAge;
 import fa.intern.mock.bean.TicketType;
+import fa.intern.mock.service.TicketAgeService;
 import fa.intern.mock.service.TicketService;
 import fa.intern.mock.service.TicketTypeService;
 
@@ -19,6 +21,9 @@ public class AdminTicketController {
 	@Autowired
 	private TicketTypeService ticketTypeService;
 	
+	@Autowired
+	private TicketAgeService ticketAgeService;
+
 	@Autowired
 	private TicketService ticketService;
 	
@@ -77,6 +82,8 @@ public class AdminTicketController {
 		model.addAttribute("ticketData", data);
 		List<TicketType> ticketTypeList = ticketTypeService.getAllTicketType();
 		model.addAttribute("ticketTypeList", ticketTypeList);
+		List<TicketAge> ticketAgeList = ticketAgeService.getAllTicketAge(null);
+		model.addAttribute("ticketAgeList", ticketAgeList);
 		return "admin/ticketManagerEdit";
 	}
 
@@ -102,7 +109,7 @@ public class AdminTicketController {
 		data.setPrice(price);
 		
 		try {
-			
+
 		} catch (Exception ex) {
 			ex.printStackTrace();
 			return String.format("redirect:/admin/tickets/edit?id=", id);

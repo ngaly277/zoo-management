@@ -37,6 +37,7 @@
                         <th>ID</th>
                         <th>Type</th>
                         <th>Type Description</th>
+                        <th>Ticket age description</th>
                         <th>Amount</th>
                         <th>Price</th>
                         <th>Action</th>
@@ -48,6 +49,7 @@
                             <td>${item.id_Ticket}</td>
                             <td>${item.ticket_Type.ticket_Type}</td>
                             <td>${item.ticket_Type.ticket_Description}</td>
+                            <td>${item.ticket_Age.age_Description}</td>
                             <td>${item.amount}</td>
                             <td>${item.price}</td>
                             <td>

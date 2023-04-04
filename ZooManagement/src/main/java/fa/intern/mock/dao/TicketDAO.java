@@ -32,8 +32,9 @@ public class TicketDAO {
 					"SELECT",
 					"Ticket.ID_Ticket, Ticket_Type.ID_Ticket_Type, Ticket_Type.Ticket_Type, Ticket_Type.Ticket_Description,",
 					"Ticket.Amount, Ticket.Price,",
-					"0 as ID_Ticket_Age, N'' as Age_Description",
+					"Ticket_Age.ID_Ticket_Age, Ticket_Age.Age_Description",
 					"FROM Ticket INNER JOIN Ticket_Type ON Ticket.ID_Ticket_Type = Ticket_Type.ID_Ticket_Type",
+					"INNER JOIN Ticket_Age ON Ticket_Age.ID_Ticket_Age = Ticket.ID_Ticket_Age",
 					"WHERE Ticket_Type LIKE N'%%%s%%' OR Ticket.Amount LIKE N'%%%s%%' OR Ticket.Price LIKE N'%%%s%%'",
 					";"
 			};
@@ -58,8 +59,9 @@ public class TicketDAO {
 					"SELECT",
 					"Ticket.ID_Ticket, Ticket_Type.ID_Ticket_Type, Ticket_Type.Ticket_Type, Ticket_Type.Ticket_Description,",
 					"Ticket.Amount, Ticket.Price,",
-					"0 as ID_Ticket_Age, N'' as Age_Description",
+					"Ticket_Age.ID_Ticket_Age, Ticket_Age.Age_Description",
 					"FROM Ticket INNER JOIN Ticket_Type ON Ticket.ID_Ticket_Type = Ticket_Type.ID_Ticket_Type",
+					"INNER JOIN Ticket_Age ON Ticket_Age.ID_Ticket_Age = Ticket.ID_Ticket_Age",
 					"WHERE Ticket.ID_Ticket = %s LIMIT 1",
 					";"
 			};

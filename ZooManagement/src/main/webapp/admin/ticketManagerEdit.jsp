@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Ticket manager</title>
+    <title><c:out value='${ticketData != null ? "Edit" : "Add a"}' /> ticket<c:out value='${ticketData != null ? String.format(" ID = %d", ticketData.id_Ticket) : ""}' /></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href='<c:url value="/resources/css/style-page-admin.css" />' rel="stylesheet" type="text/css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -28,6 +28,13 @@
             <select class="select" name="typeid">
                 <c:forEach var="item" items="${ticketTypeList}">
                     <option value="${item.id_Ticket_Type}" title="${item.ticket_Description}" <c:out value='${item.id_Ticket_Type == ticketData.ticket_Type.id_Ticket_Type ? "selected" : ""}' />>${item.ticket_Type}</option>
+                </c:forEach>
+            </select>
+            <br>
+            <p class="text2">Ticket age:</p>
+            <select class="select" name="typeageid">
+                <c:forEach var="item" items="${ticketAgeList}">
+                    <option value="${item.id_Ticket_Age}" title="${item.age_Description}" <c:out value='${item.id_Ticket_Age == ticketData.ticket_Age.id_Ticket_Age ? "selected" : ""}' />>${item.age_Description}</option>
                 </c:forEach>
             </select>
             <br>
