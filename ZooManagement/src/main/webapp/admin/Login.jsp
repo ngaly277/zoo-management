@@ -1,5 +1,6 @@
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,18 +25,21 @@
     <div class="bg-img">
     <div class="bg-img2">
     </div>
-    <form action = "login" method = "post">
+    <form:form action = "login" method = "post" modelAttribute="account" onsubmit = "return(validate());">
         <h3>Login Here</h3>
-
+		<span id="password-invalid" style="color: #eb1c26; margin-top: 10px;">${error }</span>
+		
         <label for="username">Username</label>
-        <input type="text" placeholder="Username" id="Username" name = "Username">
-
+        <form:input path="username" type="text" placeholder="Username" id="username" name = "username" />
+		<span id="username-invalid" style="color: #eb1c26; margin-top: 10px; display:none">Please fill out this field.</span>
         <label for="password">Password</label>
-        <input type="password" placeholder="Password" id="Password" name = "Password">
+        <form:input path="password" type="password" placeholder="Password" id="password" name = "password" />
+        <span id="password-invalid" style="color: #eb1c26; margin-top: 10px; display:none">Please fill out this field.</span>
+        
         <button type = "submit">Log In</button>
         <div class="checkbox-wrapper-54">
 		  <label class="switch">
-    		<input type="checkbox" id = "check" name = "check">
+    		<input type="checkbox" id = "remember" name = "remember">
     		<span class="slider"></span>
   		 </label>
 		</div>
@@ -51,11 +55,34 @@
     		</a>
     			here
 		</p>
-        <div class="social">
+        <!-- <div class="social">
           <div class="go"><i class="fab fa-google"></i>  Google</div>
           <div class="fb"><i class="fab fa-facebook"></i>  Facebook</div>
-        </div>
-    </form>
+        </div> -->
+    </form:form>
     </div>
+    <script>
+    	function validate() {
+    		if( document.getElementById("username").value == "" ) {
+	            document.getElementById("username").classList.add("is-invalid");
+	            document.getElementById("username-invalid").style.display = "block";
+	            check = false;
+	         } else {
+	            document.getElementById("username").classList.remove("is-invalid");
+	            check = true;
+	         }
+			
+			if( document.getElementById("password").value == "" ) {
+	            document.getElementById("password").classList.add("is-invalid");
+	            document.getElementById("password-invalid").style.display = "block";
+	            check = false;
+	         } else {
+	            document.getElementById("password").classList.remove("is-invalid");
+	            check = true;
+	         }
+			
+			return check;
+    	}
+    </script>
 </body>
 </html>

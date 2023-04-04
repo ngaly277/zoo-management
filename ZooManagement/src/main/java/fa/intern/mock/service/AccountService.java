@@ -12,6 +12,27 @@ public class AccountService {
 	private AccountDAO accountDAO;
 	
 	public Account getAccount(String username) {
-		return accountDAO.getAccount(username);
+		try {
+			return accountDAO.getAccount(username);
+		} catch (Exception e) {
+			return null;
+		}
+	}
+	
+	public int loginAccount(String username, String password) {
+		Account account;
+		try {
+			account = accountDAO.getAccount(username);
+		} catch (Exception e) {
+			account = null;
+		}
+		int check = 0;
+		if (account != null) {
+			if (account.getPassword().equals(password)) {
+				check = 1;
+			} 
+			else check = -1;
+		} 
+		return check;
 	}
 }

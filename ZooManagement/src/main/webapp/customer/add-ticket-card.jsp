@@ -23,7 +23,7 @@
 		<c:if test="${not empty listTickets}">
 			<h1 class="content-title">${listTickets.get(0).ticket_Type.ticket_Type }</h1>
 			<div class="warning-container">
-				<div class="message-container">
+				<!-- <div class="message-container">
 					<i class='fa fa-exclamation-circle' style='color:#0F9F6C;font-size:20px;margin-right:20px;'></i>
 					<div style="font-size: 16px;">
 						Bạn đã có tài khoản? 
@@ -31,7 +31,7 @@
 						Chưa có tài khoản?
 						<a href="#">Đăng ký ngay</a>
 					</div>
-				</div>
+				</div> -->
 				<article >
 					<figure class="ticket-detail">
 						<img class="ticket-detail-img" src='<c:url value="/resources/images/img3.jpg"></c:url>' alt=""/>

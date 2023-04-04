@@ -1,5 +1,8 @@
 package fa.intern.mock.service;
 
+import java.sql.SQLException;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,5 +29,25 @@ public class TicketHistoryService {
 	
 	public Customer getIDCustomer(String email, String phone) {
 		return customerDAO.getIDCustomer(email, phone);
+	}
+	
+	public Customer getCustomerByUsername(String username) {
+		try {
+			return customerDAO.getCustomerByUsername(username);
+		} catch (Exception e) {
+			return null;
+		} 
+	}
+	
+	public List<Customer> getAllCustomer(){
+		return customerDAO.getAllCustomer();
+	}
+	
+	public void insertCustomerByUsername(Customer c) {
+		customerDAO.insertCustomerByUsername(c);
+	}
+	
+	public void updateCustomerByUsername(Customer c) {
+		customerDAO.updateCustomerByUsername(c);
 	}
 }
