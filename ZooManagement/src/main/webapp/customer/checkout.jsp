@@ -18,11 +18,11 @@
 	
 	<main class="main-container">
 		<div >
-			<form id="form-checkout" method="post"class="content-container" onsubmit = "return(validate());">
+			<form:form id="form-checkout" method="post" modelAttribute="customer" class="content-container" onsubmit = "return(validate());">
 			<h1 class="content-title">Thông tin thanh toán</h1>
 			<div class="warning-container">
 			<div class="form-wrapper">
-				<div class="message-container">
+				<!-- <div class="message-container">
 					<i class='fa fa-exclamation-circle' style='color:#0F9F6C;font-size:20px;margin-right:20px;'></i>
 					<div style="font-size: 16px;">
 						Bạn đã có tài khoản? 
@@ -30,7 +30,7 @@
 						Chưa có tài khoản?
 						<a href="#">Đăng ký ngay</a>
 					</div>
-				</div>
+				</div> -->
 				<div class="payment">
 					<h2 class="title-section">Thanh toán qua VNPAY</h2>
 					<div class="payment-detail">
@@ -44,23 +44,23 @@
 						<div class="form-input-group">
 							<label class="form-input">
 								<span class="label">Họ và tên</span>
-								<input type="text" name="name" id="name" class="input"/>
+								<form:input path="customer_Name" type="text" name="name" id="name" class="input"/>
 								<span id="name-invalid" style="color: #eb1c26; margin-top: 10px; display:none">Trường họ tên không được để trống.</span>
 							</label>
 							<label class="form-input">
 								<span class="label">Địa chỉ</span>
-								<input type="text" name="address" id="address" class="input"/>
+								<form:input path="address" type="text" name="address" id="address" class="input"/>
 								<span id="address-invalid" style="color: #eb1c26; margin-top: 10px; display:none">Trường địa chỉ không được để trống.</span>
 							</label>
 							<label class="form-input">
 								<span class="label">Số điện thoại</span>
-								<input type="text" name="phone" id="phone" class="input"/>
+								<form:input path="phone" type="text" name="phone" id="phone" class="input"/>
 								<span id="phone-invalid" style="color: #eb1c26; margin-top: 10px; display:none">Trường số điện thoại không được để trống và phải đúng định dạng.</span>
 								
 							</label>
 							<label class="form-input">
 								<span class="label">Email</span>
-								<input type="email" name="email" id="email" class="input"/>
+								<form:input path="email" type="email" name="email" id="email" class="input"/>
 								<span id="email-invalid" style="color: #eb1c26; margin-top: 10px; display:none">Trường email không được để trống và phải đúng định dạng.</span>
 								
 							</label>
@@ -74,7 +74,7 @@
 			</div>
 			</div>
 			<jsp:include page="cartCheckout.jsp"></jsp:include>
-			</form>
+			</form:form>
 		</div>
 	</main>
 	

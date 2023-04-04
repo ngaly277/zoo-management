@@ -16,6 +16,7 @@ import fa.intern.mock.bean.TicketHistory;
 import fa.intern.mock.service.TicketHistoryService;
 import fa.intern.mock.service.TicketService;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class TicketHistoryController {
@@ -26,14 +27,25 @@ public class TicketHistoryController {
 	private TicketService ticketService;
 	
 	@RequestMapping("checkout")
-	public String showCheckoutTickets(Model model) {
-		model.addAttribute("customer", new Customer());
+	public String showCheckoutTickets(Model model, HttpSession session) {
+		String username = (String)session.getAttribute("username");
+		
+		if (username == null) {
+			model.addAttribute("customer", new Customer());
+		} else {
+			Customer customer = ticketHistoryService.getCustomerByUsername(username);
+			if (customer == null) {
+				model.addAttribute("customer", new Customer());
+			} else {
+				model.addAttribute("customer", customer);
+			}
+		}
 		return "customer/checkout";
 
 	}
 	
 	@RequestMapping(value = "/insertTicketHistory")
-	public @ResponseBody String insertTicketHistory(HttpServletRequest request) {
+	public @ResponseBody String insertTicketHistory(HttpServletRequest request, HttpSession session) {
 		Customer customer = new Customer();
 		customer.setCustomer_Name(request.getParameter("customer_Name"));
 		customer.setAddress(request.getParameter("address"));
@@ -41,9 +53,23 @@ public class TicketHistoryController {
 		customer.setEmail(request.getParameter("email"));
 		
 		if (customer.getAddress() != "" && customer.getCustomer_Name() != "" & customer.getEmail() != "" & customer.getPhone() != "") { 
-//			ticketHistoryService.insertCustomer(customer);
-			Customer c = ticketHistoryService.getIDCustomer(customer.getEmail(), customer.getPhone());
-			int amountTicket = Integer.parseInt(request.getParameter("ticket-amount"));
+			String username = (String)session.getAttribute("username");
+			Customer c;
+			if (username != null) {
+				c = ticketHistoryService.getCustomerByUsername(username);
+				customer.setUsername(username);
+				if (c == null) {
+					ticketHistoryService.insertCustomerByUsername(customer);
+					c = ticketHistoryService.getAllCustomer().get(ticketHistoryService.getAllCustomer().size() - 1);
+				} else {
+					ticketHistoryService.updateCustomerByUsername(customer);
+				}
+			} else {
+				ticketHistoryService.insertCustomer(customer);
+				c = ticketHistoryService.getAllCustomer().get(ticketHistoryService.getAllCustomer().size() - 1);
+			}
+			
+ 			int amountTicket = Integer.parseInt(request.getParameter("ticket-amount"));
 			for (int i = 1; i <= amountTicket; i++) {
 				String date = request.getParameter("date" + i);
 				int idTicket = Integer.parseInt(request.getParameter("idTicket" + date + i));
