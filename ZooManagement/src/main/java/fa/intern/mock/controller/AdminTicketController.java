@@ -37,10 +37,21 @@ public class AdminTicketController {
 		@RequestParam(required = true) Integer price
 	) {
 		// TODO: Add here! If failed, return back to add ticket page
-		// return "redirect:/admin/tickets/add";
+		Ticket ticket = new Ticket();
+		ticket.setTicketTypeId(typeid);
+		ticket.setAmount(amount);
+		ticket.setPrice(price);
+		Boolean result = ticketService.addTicket(ticket);
 
-		// If successful, will return to main page.
-		return "redirect:/admin/tickets";
+		try {
+			// If successful, will return to main page.
+			if (result) {
+				return "redirect:/admin/tickets";
+			} else throw new Exception("Can't add ticket to database!");	
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			return "redirect:/admin/tickets/add";
+		}
 	}
 
 	@RequestMapping(value="/admin/tickets/edit", method = RequestMethod.GET)
@@ -87,7 +98,7 @@ public class AdminTicketController {
 		@RequestParam(required = true) Integer id
 	) {
 		// TODO: Delete here.
-		
+
 		// Any result will return to main page.
 		return String.format("redirect:/admin/tickets?q=%d", id);
 	}

@@ -24,4 +24,8 @@ public class TicketService {
 	public Ticket getTicketById(String ticketId) {
 		return ticketDAO.getTicketById(ticketId);
 	}
+
+	public boolean addTicket(Ticket ticket) {
+		return ticketDAO.addTicket(ticket);
+	}
 }

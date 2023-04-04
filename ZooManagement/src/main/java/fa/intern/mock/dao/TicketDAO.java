@@ -64,6 +64,22 @@ public class TicketDAO {
 		}
 		else return null;
 	}
+
+	public boolean addTicket(Ticket ticket) {
+		if (ticket == null)
+			return false;
+
+		// TODO: Need change this query because this database script hasn't contain "Ticket_Age" table!!!!!
+		String[] queryArray = {
+			"INSERT INTO Ticket(ID_Ticket_Type, Amount, Price)",
+			"VALUES (%d, %d, %d)",
+			";"
+		};
+
+		String query = String.join(" ", queryArray);
+		query = String.format(query, ticket.getTicketTypeId(), ticket.getAmount(), ticket.getPrice());
+		return jdbcTemplate.update(query) == 1;
+	}
 	
 	public class TicketMapper implements RowMapper<Ticket> {
 		public Ticket mapRow(ResultSet rs, int rowNum) throws SQLException {

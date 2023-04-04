@@ -3,6 +3,7 @@ package fa.intern.mock.bean;
 public class Ticket {
 	private int id_Ticket;
 	private TicketType ticket_Type;
+	private int ticketTypeId;
 	private int amount;
 	private int price;
 	private TicketAge ticket_Age;
@@ -14,6 +15,12 @@ public class Ticket {
 	}
 	public TicketType getTicket_Type() {
 		return ticket_Type;
+	}
+	public int getTicketTypeId() {
+		return ticketTypeId;
+	}
+	public void setTicketTypeId(int ticketTypeId) {
+		this.ticketTypeId = ticketTypeId;
 	}
 	public void setTicket_Type(TicketType ticket_Type) {
 		this.ticket_Type = ticket_Type;
