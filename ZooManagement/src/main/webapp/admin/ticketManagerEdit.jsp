@@ -25,17 +25,17 @@
                 <br>
             </c:if>
             <p class="text2">Ticket type (hover option for description):</p>
-            <select class="select" name="type">
+            <select class="select" name="typeid">
                 <c:forEach var="item" items="${ticketTypeList}">
                     <option value="${item.id_Ticket_Type}" title="${item.ticket_Description}" <c:out value='${item.id_Ticket_Type == ticketData.ticket_Type.id_Ticket_Type ? "selected" : ""}' />>${item.ticket_Type}</option>
                 </c:forEach>
             </select>
             <br>
             <p class="text2">Amount: </p>
-            <div class="searchbar"><input type="text" name="q" value="${ticketData.amount == null ? "" : ticketData.amount}"></div>
+            <div class="searchbar"><input type="text" name="amount" value="${ticketData.amount == null ? "" : ticketData.amount}"></div>
             <br>
             <p class="text2">Price: </p>
-            <div class="searchbar"><input type="text" name="q" value="${ticketData.price == null ? "" : ticketData.price}"></div>
+            <div class="searchbar"><input type="text" name="price" value="${ticketData.price == null ? "" : ticketData.price}"></div>
             <br>
             <button class="button-search" type="submit"><c:out value='${ticketData != null ? "Save changes" : "Add"}' /></button>
             <button class="button-search" type="reset">Clear data</button>

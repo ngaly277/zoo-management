@@ -1,6 +1,5 @@
 package fa.intern.mock.controller;
 
-import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,14 +23,31 @@ public class AdminTicketController {
 	private TicketService ticketService;
 	
 	@RequestMapping(value="/admin/tickets/add", method = RequestMethod.GET)
-	public String addTicket(Model model) {
+	public String pageTicketAdd(Model model) {
 		List<TicketType> data = ticketTypeService.getAllTicketType();
 		model.addAttribute("ticketTypeList", data);
 		return "admin/ticketManagerEdit";
 	}
 
+	@RequestMapping(value="/admin/tickets/add", method = RequestMethod.POST)
+	public String actionTicketAdd(
+		Model model,
+		@RequestParam(required = true) Integer typeid,
+		@RequestParam(required = true) Integer amount,
+		@RequestParam(required = true) Integer price
+	) {
+		// TODO: Add here! If failed, return back to add ticket page
+		// return "redirect:/admin/tickets/add";
+
+		// If successful, will return to main page.
+		return "redirect:/admin/tickets";
+	}
+
 	@RequestMapping(value="/admin/tickets/edit", method = RequestMethod.GET)
-	public String editTicket(@RequestParam(required = true) Integer id, Model model) {
+	public String pageTicketEdit(
+		Model model,
+		@RequestParam(required = true) Integer id
+	) {
 		// TODO: Check if ticket is exist before return to edit page.
 		// If id was not defined, will return to main page.
 		if (id == null)
@@ -50,15 +66,37 @@ public class AdminTicketController {
 		return "admin/ticketManagerEdit";
 	}
 
+	@RequestMapping(value="/admin/tickets/edit", method = RequestMethod.POST)
+	public String actionTicketEdit(
+		Model model,
+		@RequestParam(required = true) Integer id,
+		@RequestParam(required = true) Integer typeid,
+		@RequestParam(required = true) Integer amount,
+		@RequestParam(required = true) Integer price
+	) {
+		// TODO: Edit here! If failed, return back to edit ticket page
+		// return String.format("redirect:/admin/tickets/edit?id=%d", id);
+
+		// If successful, will return to main page.
+		return "redirect:/admin/tickets";
+	}
+
 	@RequestMapping(value="/admin/tickets/delete", method = RequestMethod.POST)
-	public String deleteTicket(@RequestParam(required = true) Integer id, Model model) {
+	public String deleteTicket(
+		Model model,
+		@RequestParam(required = true) Integer id
+	) {
 		// TODO: Delete here.
+		
 		// Any result will return to main page.
 		return String.format("redirect:/admin/tickets?q=%d", id);
 	}
 
 	@RequestMapping(value="/admin/tickets", method = RequestMethod.GET)
-	public String showAllTickets(@RequestParam(required = false) String q, Model model) {
+	public String pageShowTickets(
+		Model model,
+		@RequestParam(required = false) String q
+	) {
 		// model.addAttribute("ticketTypeList", ticketTypeService.getAllTicketType());
 		List<Ticket> data = ticketService.getAllTickets(q);
 		model.addAttribute("searchQuery", q);
