@@ -16,4 +16,8 @@ public class TicketService {
 	public List<Ticket> getAllTicketByType(int idTicketType) {
 		return ticketDAO.getAllTicketByType(idTicketType);
 	}
+	
+	public Ticket getTicket(int idTicketType, int idTicketAge) {
+		return ticketDAO.getTicket(idTicketType, idTicketAge);
+	}
 }
