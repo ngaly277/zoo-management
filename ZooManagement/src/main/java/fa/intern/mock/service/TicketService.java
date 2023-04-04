@@ -20,4 +20,8 @@ public class TicketService {
 	public List<Ticket> getAllTickets(String searchQuery) {
 		return ticketDAO.getAllTickets(searchQuery);
 	}
+
+	public Ticket getTicketById(String ticketId) {
+		return ticketDAO.getTicketById(ticketId);
+	}
 }

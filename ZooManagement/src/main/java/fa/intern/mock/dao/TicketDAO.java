@@ -43,6 +43,27 @@ public class TicketDAO {
 		);
 		return jdbcTemplate.query(query, new TicketMapper());
 	}
+
+	public Ticket getTicketById(String ticketId) {
+		// TODO: Need change this query because this database script hasn't contain "Ticket_Age" table!!!!!
+		String[] queryArray = {
+			"SELECT",
+			"Ticket.ID_Ticket, Ticket_Type.ID_Ticket_Type, Ticket_Type.Ticket_Type, Ticket_Type.Ticket_Description,",
+			"Ticket.Amount, Ticket.Price,",
+			"0 as ID_Ticket_Age, N'' as Age_Description",
+			"FROM Ticket INNER JOIN Ticket_Type ON Ticket.ID_Ticket_Type = Ticket_Type.ID_Ticket_Type",
+			"WHERE Ticket.ID_Ticket = %s LIMIT 1",
+			";"
+		};
+		String query = String.join(" ", queryArray);
+		query = String.format(query, ticketId);
+
+		List<Ticket> data = jdbcTemplate.query(query, new TicketMapper());
+		if (data.size() > 0) {
+			return data.get(0);
+		}
+		else return null;
+	}
 	
 	public class TicketMapper implements RowMapper<Ticket> {
 		public Ticket mapRow(ResultSet rs, int rowNum) throws SQLException {

@@ -33,8 +33,20 @@ public class AdminTicketController {
 	@RequestMapping(value="/admin/tickets/edit", method = RequestMethod.GET)
 	public String editTicket(@RequestParam(required = true) Integer id, Model model) {
 		// TODO: Check if ticket is exist before return to edit page.
-		// If not exist, will return to main page.
+		// If id was not defined, will return to main page.
+		if (id == null)
+			return "redirect:/admin/tickets";
+		
+		// TODO: If not exist ticket with this id, will return to main page, too.
+		Ticket data = ticketService.getTicketById(id.toString());
+		if (data == null)
+			return "redirect:/admin/tickets";
+
+		// Return to edit page.
 		model.addAttribute("ticketId", id);
+		model.addAttribute("ticketData", data);
+		List<TicketType> ticketTypeList = ticketTypeService.getAllTicketType();
+		model.addAttribute("ticketTypeList", ticketTypeList);
 		return "admin/ticketManagerEdit";
 	}
 
