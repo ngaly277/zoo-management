@@ -23,7 +23,8 @@
 }
 
 body{
-	overflow: hidden;
+	overflow-x: hidden;
+	overflow-y: auto;
     min-height: 100vh;
     background-color: var(--body-color);
     transition: var(--tran-05);
@@ -452,7 +453,7 @@ body.dark .home .banner {
 	position: static;
 	color: black;
 }
-.button-search, .savebutton {
+.button-search, .prev, .next {
   background: #324960;
   border-radius: 999px;
   box-shadow: #5E5DF0 0 10px 20px -10px;
@@ -473,7 +474,6 @@ body.dark .home .banner {
   word-break: break-word;
   border: 0;
 }
-
 .select-box {
 	text-align: center;
 }
@@ -532,11 +532,11 @@ input[type =search] {
     cursor: pointer;
     text-align: center;
     font-size: 1em;
-    height: 25px;
+    height: 27px;
     line-height: 1.2em;
     padding: 1px 1px;
     width: 100%;
-    width: calc(7% + 2em);	
+    width: calc(7% + 4em);	
 
 }
 
@@ -766,4 +766,45 @@ h2.banner {
     color: black;
     padding: 30px 0;
     font-family: 'Dancing Script', cursive;
+}
+
+/*----------------------------edit-create-----------------*/
+.img-account-profile {
+    height: 10rem;
+}
+.rounded-circle {
+    border-radius: 50% !important;
+}
+.card {
+    box-shadow: 0 0.15rem 1.75rem 0 rgb(33 40 50 / 15%);
+}
+.card .card-header {
+    font-weight: 500;
+}
+.card-header:first-child {
+    border-radius: 0.35rem 0.35rem 0 0;
+}
+.card-header {
+    padding: 1rem 1.35rem;
+    margin-bottom: 0;
+    background-color: rgba(33, 40, 50, 0.03);
+    border-bottom: 1px solid rgba(33, 40, 50, 0.125);
+}
+.form-control, .dataTable-input {
+    display: block;
+    width: 100%;
+    padding: 0.875rem 1.125rem;
+    font-size: 0.875rem;
+    font-weight: 400;
+    margin-block: 5px;
+    line-height: 1;
+    color: #69707a;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #c5ccd6;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 0.35rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }

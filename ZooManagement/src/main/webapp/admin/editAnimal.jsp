@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Admin page</title>
+<title>Edit or Create Animal page</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href='<c:url value="/resources/css/style-page-admin.css" />'
 	rel="stylesheet" type="text/css">
@@ -61,8 +61,8 @@
 					</a></li>
 
 					<li class="nav-link"><a href="Revenue.jsp"> <i
-							class='bx bx-pie-chart-alt icon'></i> <span
-							class="text nav-text">Doanh thu</span>
+							class='bx bx-pie-chart-alt icon'></i> <span class="text nav-text">Doanh
+								thu</span>
 					</a></li>
 				</ul>
 			</div>
@@ -87,7 +87,56 @@
 	</nav>
 
 	<section class="home">
-		<div class="text">Hi</div>
+		<div class="container-xl px-4 mt-4">
+			<hr class="mt-0 mb-4">
+			<div class="row">
+				<div class="col-xl-8">
+					<!-- Account details card-->
+					<div class="card mb-4">
+						<div class="card-header">Edit Animal</div>
+						<div class="card-body">
+							<form action="editCage" method="post">
+								<div class="row gx-3 mb-3">
+									<div class="col-md-6">
+										<label class="small mb-1" for="idCage">Tên Động vật</label> <input
+											readonly class="form-control" id="idCage" name="idCage"
+											type="text" placeholder="Nhập ID Động vật"
+											value="<c:out value="${animal.idAnimal == null ? '' : String.valueOf(animal.idAnimal)}"/>">
+									</div>
+									<div class="col-md-6">
+										<label class="small mb-1" for="cageName">Trạng thái Động vật</label> <input
+											class="form-control" id="cageName" name="cageName"
+											type="text" placeholder="Nhập tên chuồng"
+											value="<c:out value="${animal.animalStatus}"/>">
+									</div>
+								</div>
+								<div class="mb-3">
+									<label class="small mb-1" for="limit">Thông tin thêm</label> <input
+										class="form-control" id="limit" name="limit" type="text"
+										placeholder="Nhập giới hạn"
+										value="<c:out value="${animal.detail}"/>">
+								</div>
+								<div class="mb-3">
+									<label class="small mb-1" for="limit">Thức ăn</label> <input
+										class="form-control" id="limit" name="limit" type="text"
+										placeholder="Nhập giới hạn"
+										value="<c:out value="${animal.food}"/>">
+								</div>
+								<br> <label class="small mb-1" for="staffName">Loài động vật
+								</label> <select class="select" id="staffName" name="staffName">
+									<option value="">-- Chọn loài --</option>
+									<c:forEach var="type" items="${animalTypeList}">
+										<option value="<c:out value="${type.idAnimalType}"/>" <c:out value = "${type.animalType.equals(animal.types.animalType)? 'selected' : ''}"/>>${type.animalType}</option>
+									</c:forEach>
+								</select> <br> <br>
+								<button class="button-search" type="submit">Save</button>
+							</form>
+							<br>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</section>
 </body>
 <script src='<c:url value="/resources/js/js-page-admin.js" />'></script>
