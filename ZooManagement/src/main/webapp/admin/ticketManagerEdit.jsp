@@ -18,7 +18,7 @@
             <a href="${myContext}/admin/tickets"><i class='bx bx-left-arrow-alt' style="border: solid; border-width: 2px; border-radius: 100px;"></i></a>
             <c:out value='${ticketData != null ? "Edit" : "Add"}' /> a ticket
         </div>
-        <form id="editform" class="searchform" action="${myContext}/admin/tickets/${ticketData == null ? "add" : "edit"}" method="post">
+        <form name="editform" id="editform" class="searchform" action="${myContext}/admin/tickets/${ticketData == null ? "add" : "edit"}" onsubmit="return validateFormEdit()" method="post">
             <c:if test="${ticketData != null}">
                 <p class="text2">ID: </p>
                 <div class="searchbar"><input type="text" name="id" readonly value='${ticketData.id_Ticket}'></div>
@@ -44,10 +44,11 @@
             <p class="text2">Price: </p>
             <div class="searchbar"><input type="text" name="price" value="${ticketData.price == null ? "" : ticketData.price}"></div>
             <br>
-            <button class="button-search" type="submit"><c:out value='${ticketData != null ? "Save changes" : "Add"}' /></button>
-            <button class="button-search" type="reset">Clear data</button>
+            <input class="button-search" type="submit" value="<c:out value='${ticketData != null ? "Save changes" : "Add"}' />">
+            <input class="button-search" type="reset" value="Clear data">
         </form>
     </section>
 </body>
 <script src='<c:url value="/resources/js/js-page-admin.js" />'></script>
+<script src='<c:url value="/resources/js/admin-ticket-manager.js" />'></script>
 </html>

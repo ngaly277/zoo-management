@@ -35,12 +35,15 @@ public class TicketDAO {
 					"Ticket_Age.ID_Ticket_Age, Ticket_Age.Age_Description",
 					"FROM Ticket INNER JOIN Ticket_Type ON Ticket.ID_Ticket_Type = Ticket_Type.ID_Ticket_Type",
 					"INNER JOIN Ticket_Age ON Ticket_Age.ID_Ticket_Age = Ticket.ID_Ticket_Age",
-					"WHERE Ticket_Type LIKE N'%%%s%%' OR Ticket.Amount LIKE N'%%%s%%' OR Ticket.Price LIKE N'%%%s%%'",
+					"WHERE Ticket_Type LIKE N'%%%s%%' OR Ticket_Type.Ticket_Description LIKE N'%%%s%%' OR Ticket.Amount LIKE N'%%%s%%' OR Ticket.Price LIKE N'%%%s%%' OR Ticket_Age.Age_Description LIKE N'%%%s%%'",
+					"ORDER BY Ticket.ID_Ticket ASC",
 					";"
 			};
 			String query = String.join(" ", queryArray);
 			query = String.format(
 					query,
+					searchQuery == null ? "" : searchQuery,
+					searchQuery == null ? "" : searchQuery,
 					searchQuery == null ? "" : searchQuery,
 					searchQuery == null ? "" : searchQuery,
 					searchQuery == null ? "" : searchQuery);
@@ -88,13 +91,14 @@ public class TicketDAO {
 			// TODO: Need change this query because this database script hasn't contain
 			// "Ticket_Age" table!!!!!
 			String[] queryArray = {
-					"INSERT INTO Ticket(ID_Ticket_Type, Amount, Price)",
-					"VALUES (%d, %d, %d)",
+					"INSERT INTO Ticket(ID_Ticket_Type, ID_Ticket_Age, Amount, Price)",
+					"VALUES (%d, %d, %d, %d)",
 					";"
 			};
 
 			String query = String.join(" ", queryArray);
-			query = String.format(query, ticket.getTicket_Type().getId_Ticket_Type(), ticket.getAmount(),
+			query = String.format(query, ticket.getTicket_Type().getId_Ticket_Type(),
+					ticket.getTicket_Age().getId_Ticket_Age(), ticket.getAmount(),
 					ticket.getPrice());
 			return jdbcTemplate.update(query) == 1;
 		} catch (Exception ex) {
@@ -112,13 +116,14 @@ public class TicketDAO {
 			// "Ticket_Age" table!!!!!
 			String[] queryArray = {
 					"UPDATE Ticket",
-					"SET ID_Ticket_Type = %d, Amount = %d, Price = %d",
+					"SET ID_Ticket_Type = %d, ID_Ticket_Age = %d, Amount = %d, Price = %d",
 					"WHERE ID_Ticket = %d",
 					";"
 			};
 
 			String query = String.join(" ", queryArray);
-			query = String.format(query, ticket.getTicket_Type().getId_Ticket_Type(), ticket.getAmount(),
+			query = String.format(query, ticket.getTicket_Type().getId_Ticket_Type(),
+					ticket.getTicket_Age().getId_Ticket_Age(), ticket.getAmount(),
 					ticket.getPrice(), ticket.getId_Ticket());
 			return jdbcTemplate.update(query) == 1;
 		} catch (Exception ex) {

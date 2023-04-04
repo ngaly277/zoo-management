@@ -14,25 +14,112 @@ import fa.intern.mock.bean.TicketAge;
 @Repository
 public class TicketAgeDAO {
     @Autowired
-	private JdbcTemplate jdbcTemplate;
+    private JdbcTemplate jdbcTemplate;
 
     public List<TicketAge> getAllTicketAge(String searchQuery) {
         try {
             String[] queryArray = {
-                "SELECT * FROM Ticket_Age",
-                "WHERE ID_Ticket_Age LIKE N'%%%s%%' OR Age_Description LIKE N'%%%s%%'",
-                ";"
+                    "SELECT * FROM Ticket_Age",
+                    "WHERE ID_Ticket_Age LIKE N'%%%s%%' OR Age_Description LIKE N'%%%s%%'",
+                    ";"
             };
-            String query = String.join(" ", queryArray); 
+            String query = String.join(" ", queryArray);
             query = String.format(
-                query,
-                searchQuery == null ? "" : searchQuery,
-                searchQuery == null ? "" : searchQuery
-            );
+                    query,
+                    searchQuery == null ? "" : searchQuery,
+                    searchQuery == null ? "" : searchQuery);
             return jdbcTemplate.query(query, new TicketAgeMapper());
         } catch (Exception ex) {
             ex.printStackTrace();
             return null;
+        }
+    }
+
+    public TicketAge getTicketAgeById(String ticketAgeId) {
+        try {
+            String[] queryArray = {
+                    "SELECT * FROM Ticket_Age",
+                    "WHERE ID_Ticket_Age = %s",
+                    ";"
+            };
+            String query = String.join(" ", queryArray);
+            query = String.format(
+                    query,
+                    ticketAgeId);
+            List<TicketAge> data = jdbcTemplate.query(query, new TicketAgeMapper());
+            if (data.size() == 1) {
+                return data.get(0);
+            } else {
+                throw new Exception();
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return null;
+        }
+    }
+
+    public boolean addTicketAge(TicketAge ticket) {
+        if (ticket == null)
+            return false;
+
+        try {
+            // TODO: Need change this query because this database script hasn't contain
+            // "Ticket_Age" table!!!!!
+            String[] queryArray = {
+                    "INSERT INTO Ticket_Age(Age_Description)",
+                    "VALUES (N'%s')",
+                    ";"
+            };
+
+            String query = String.join(" ", queryArray);
+            query = String.format(query, ticket.getAge_Description());
+            return jdbcTemplate.update(query) == 1;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean editTicketAge(TicketAge ticket) {
+        if (ticket == null)
+            return false;
+
+        try {
+            // TODO: Need change this query because this database script hasn't contain
+            // "Ticket_Age" table!!!!!
+            String[] queryArray = {
+                    "UPDATE Ticket_Age",
+                    "SET Age_Description = N'%s'",
+                    "WHERE ID_Ticket_Age = %d",
+                    ";"
+            };
+
+            String query = String.join(" ", queryArray);
+            query = String.format(query, ticket.getAge_Description(), ticket.getId_Ticket_Age());
+            return jdbcTemplate.update(query) == 1;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean deleteTicketAgeById(String ticketAgeId) {
+        if (ticketAgeId == null)
+            return false;
+
+        try {
+            String[] queryArray = {
+                    "DELETE FROM Ticket_Age",
+                    "WHERE ID_Ticket_Age = %s",
+                    ";"
+            };
+
+            String query = String.join(" ", queryArray);
+            query = String.format(query, ticketAgeId);
+            return jdbcTemplate.update(query) == 1;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return false;
         }
     }
 

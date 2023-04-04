@@ -29,8 +29,10 @@ public class AdminTicketController {
 	
 	@RequestMapping(value="/admin/tickets/add", method = RequestMethod.GET)
 	public String pageTicketAdd(Model model) {
-		List<TicketType> data = ticketTypeService.getAllTicketType();
+		List<TicketType> data = ticketTypeService.getAllTicketType(null);
 		model.addAttribute("ticketTypeList", data);
+		List<TicketAge> ticketAgeList = ticketAgeService.getAllTicketAge(null);
+		model.addAttribute("ticketAgeList", ticketAgeList);
 		return "admin/ticketManagerEdit";
 	}
 
@@ -38,6 +40,7 @@ public class AdminTicketController {
 	public String actionTicketAdd(
 		Model model,
 		@RequestParam(required = true) Integer typeid,
+		@RequestParam(required = true) Integer typeageid,
 		@RequestParam(required = true) Integer amount,
 		@RequestParam(required = true) Integer price
 	) {
@@ -45,8 +48,12 @@ public class AdminTicketController {
 		TicketType ticketType = new TicketType();
 		ticketType.setId_Ticket_Type(typeid);
 
+		TicketAge ticketAge = new TicketAge();
+		ticketAge.setId_Ticket_Age(typeageid);
+
 		Ticket ticket = new Ticket();
 		ticket.setTicket_Type(ticketType);
+		ticket.setTicket_Age(ticketAge);
 		ticket.setAmount(amount);
 		ticket.setPrice(price);
 		Boolean result = ticketService.addTicket(ticket);
@@ -80,7 +87,7 @@ public class AdminTicketController {
 		// Return to edit page.
 		model.addAttribute("ticketId", id);
 		model.addAttribute("ticketData", data);
-		List<TicketType> ticketTypeList = ticketTypeService.getAllTicketType();
+		List<TicketType> ticketTypeList = ticketTypeService.getAllTicketType(null);
 		model.addAttribute("ticketTypeList", ticketTypeList);
 		List<TicketAge> ticketAgeList = ticketAgeService.getAllTicketAge(null);
 		model.addAttribute("ticketAgeList", ticketAgeList);
@@ -92,6 +99,7 @@ public class AdminTicketController {
 		Model model,
 		@RequestParam(required = true) Integer id,
 		@RequestParam(required = true) Integer typeid,
+		@RequestParam(required = true) Integer typeageid,
 		@RequestParam(required = true) Integer amount,
 		@RequestParam(required = true) Integer price
 	) {
@@ -104,12 +112,16 @@ public class AdminTicketController {
 		TicketType ticketType = data.getTicket_Type();
 		ticketType.setId_Ticket_Type(typeid);
 		
+		TicketAge ticketAge = new TicketAge();
+		ticketAge.setId_Ticket_Age(typeageid);
+
 		data.setTicket_Type(ticketType);
+		data.setTicket_Age(ticketAge);
 		data.setAmount(amount);
 		data.setPrice(price);
 		
 		try {
-
+			ticketService.editTicket(data);
 		} catch (Exception ex) {
 			ex.printStackTrace();
 			return String.format("redirect:/admin/tickets/edit?id=", id);
@@ -126,7 +138,7 @@ public class AdminTicketController {
 	) {
 		// TODO: Delete here.
 		// Use this for notify user for deletion was successful or failed.
-		boolean result = ticketService.deleteTicketById(id.toString());
+		ticketService.deleteTicketById(id.toString());
 
 		// Any result will return to main page.
 		return String.format("redirect:/admin/tickets?q=");

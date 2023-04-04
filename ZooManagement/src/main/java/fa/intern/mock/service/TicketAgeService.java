@@ -16,4 +16,20 @@ public class TicketAgeService {
     public List<TicketAge> getAllTicketAge(String searchQuery) {
         return ticketAgeDao.getAllTicketAge(searchQuery);
     }
+
+    public TicketAge getTicketAgeById(String ticketAgeId) {
+        return ticketAgeDao.getTicketAgeById(ticketAgeId);
+    }
+
+    public boolean addTicketAge(TicketAge ticketAge) {
+        return ticketAgeDao.addTicketAge(ticketAge);
+    }
+
+    public boolean deleteTicketAgeById(String ticketAgeId) {
+        return ticketAgeDao.deleteTicketAgeById(ticketAgeId);
+    }
+
+    public boolean editTicketAge(TicketAge ticketAge) {
+        return ticketAgeDao.editTicketAge(ticketAge);
+    }
 }

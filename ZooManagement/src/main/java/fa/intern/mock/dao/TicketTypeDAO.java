@@ -16,8 +16,13 @@ public class TicketTypeDAO {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	
-	public List<TicketType> getAllTicketType() {
-		String query = "SELECT * FROM Ticket_Type";
+	public List<TicketType> getAllTicketType(String searchQuery) {
+		String query = "SELECT * FROM Ticket_Type WHERE ID_Ticket_Type LIKE '%%%s%%' OR Ticket_Type LIKE '%%%s%%' OR Ticket_Description LIKE '%%%s%%' ORDER BY ID_Ticket_Type ASC;";
+		query = String.format(
+			query,
+			searchQuery == null ? "" : searchQuery,
+			searchQuery == null ? "" : searchQuery,
+			searchQuery == null ? "" : searchQuery);
 		return jdbcTemplate.query(query, new TicketTypeMapper());
 	}
 	

@@ -13,7 +13,7 @@ public class TicketTypeService {
 	@Autowired
 	private TicketTypeDAO ticketDAO;
 	
-	public List<TicketType> getAllTicketType(){
-		return ticketDAO.getAllTicketType();
+	public List<TicketType> getAllTicketType(String searchQuery){
+		return ticketDAO.getAllTicketType(searchQuery);
 	}
 }
