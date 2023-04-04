@@ -24,6 +24,7 @@ public class CageDAO {
             cage.setLimit(rs.getInt("Limit"));
             Staff staff = new Staff();
             staff.setIdStaff(rs.getInt("ID_Staff"));
+            staff.setStaffName(rs.getString("Staff_Name"));
             cage.setStaffs(staff);
             return cage;
         }
@@ -41,9 +42,11 @@ public class CageDAO {
 		String sql = null;
 
 	        if (option.equals("Mã chuồng")) {
-	        	sql = "SELECT * FROM cage WHERE ID_Cage LIKE " + "'%" + search + "%'";
+	        	sql = "SELECT * FROM cage JOIN staff on cage.ID_Staff = staff.ID_Staff "
+	        			+ "WHERE ID_Cage LIKE " + "'%" + search + "%'";
 	        } else if (option.equals("Tên chuồng")) {
-	        	sql = "SELECT * FROM cage WHERE Name_Cage LIKE " + "'%" + search + "%'";
+	        	sql = "SELECT * FROM cage JOIN staff on cage.ID_Staff = staff.ID_Staff "
+	        			+ "WHERE Name_Cage LIKE " + "'%" + search + "%'";
 	        } else if (option.equals("Người chăm sóc")) {
 	        	sql = "SELECT c.ID_Cage, c.Name_Cage, c.Limit,s.ID_Staff, s.Staff_Name\r\n"
 	            		+ "FROM Cage c\r\n"
@@ -55,20 +58,30 @@ public class CageDAO {
 	}
 
 	public List<Cage> showAllCage() {
-		  String sql = "SELECT * FROM cage";
+		  String sql = "SELECT * FROM cage JOIN staff ON cage.ID_Staff = staff.ID_Staff";
 	        return jdbcTemplate.query(sql, new CageRowMapper());
 	    }
 
 	@SuppressWarnings("deprecation")
 	public List<Cage> showCageInfo(int idCage) {
 		Object[] params = new Object[] {idCage};
-		String sql = "SELECT * FROM cage WHERE ID_Cage = ?";
+		String sql = "SELECT * FROM cage JOIN staff on cage.ID_Staff = staff.ID_Staff WHERE ID_Cage = ?";
 			return jdbcTemplate.query(sql, params, new CageRowMapper());
 	}
+	
 	public void editCage(int idCage, String nameCage, int limit, int staffName) throws Exception {
 		String sql = "UPDATE Cage SET Name_Cage = ?, `Limit` = ?, ID_Staff = ?"
 				+ " WHERE ID_Cage = ?";
 		Object[] params = new Object[] {nameCage, limit, staffName, idCage};
+		int rs = jdbcTemplate.update(sql, params);
+		if(rs!= 1) {
+			throw new Exception(); 
+		}
+	}
+	public void addCage(String cageName, int limit, int staffName) throws Exception {
+		String sql = "INSERT INTO cage(Name_Cage, `Limit`, ID_Staff) "
+				+ "VALUES (?, ?, ?)";
+		Object[] params = new Object[] {cageName, limit, staffName};
 		int rs = jdbcTemplate.update(sql, params);
 		if(rs!= 1) {
 			throw new Exception(); 

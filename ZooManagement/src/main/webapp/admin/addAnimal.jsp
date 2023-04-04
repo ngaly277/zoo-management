@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Edit or Create Animal page</title>
+<title>Create Animal page</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href='<c:url value="/resources/css/style-page-admin.css" />'
 	rel="stylesheet" type="text/css">
@@ -93,47 +93,44 @@
 				<div class="col-xl-8">
 					<!-- Account details card-->
 					<div class="card mb-4">
-						<div class="card-header">Edit Animal</div>
+						<div class="card-header">Create Animal</div>
 						<div class="card-body">
-							<form action="editAnimal?idCage=${animal.cages.idCage}" method="post">
+							<form action="addAnimal" method="post">
 								<div class="row gx-3 mb-3">
-									<div class="col-md-6">
-										<label class="small mb-1" for="idAnimal">ID Động vật</label> <input
-											readonly class="form-control" id="idAnimal" name="idAnimal"
-											type="text" placeholder="Nhập ID Động vật"
-											value="<c:out value="${animal.idAnimal == null ? '' : String.valueOf(animal.idAnimal)}"/>">
+								<div class="col-md-6">
+										<label class="small mb-1" for="idCage">ID chuồng</label> <input
+											 readonly class="form-control" id="idCage" name="idCage"
+											type="text" placeholder=""
+											value = "${animalList.get(0).cages.idCage}">
 									</div>
 									<div class="col-md-6">
-										<label class="small mb-1" for="animalName">Tên Động vật</label> <input
+										<label class="small mb-1" for="animalName">Tên động vật</label> <input
 											class="form-control" id="animalName" name="animalName"
-											type="text" placeholder="Nhập ID Động vật"
-											value="<c:out value="${animal.animalName}"/>">
+											type="text" placeholder="Nhập tên động vật">
 									</div>
-									<div class="col-md-6">
-										<label class="small mb-1" for="animalStatus">Trạng thái Động vật</label> <input
-											class="form-control" id="animalStatus" name="animalStatus"
-											type="text" placeholder="Nhập tên chuồng"
-											value="<c:out value="${animal.animalStatus}"/>">
-									</div>
+								</div>
+								<div class="mb-3">
+									<label class="small mb-1" for="status">Trạng thái</label> <input
+										class="form-control" id="status" name="status" type="text"
+										placeholder="Nhập trạng thái">
 								</div>
 								<div class="mb-3">
 									<label class="small mb-1" for="detail">Thông tin thêm</label> <input
 										class="form-control" id="detail" name="detail" type="text"
-										placeholder="Nhập giới hạn"
-										value="<c:out value="${animal.detail}"/>">
+										placeholder="Nhập thông tin thêm">
 								</div>
 								<div class="mb-3">
 									<label class="small mb-1" for="food">Thức ăn</label> <input
 										class="form-control" id="food" name="food" type="text"
-										placeholder="Nhập giới hạn"
-										value="<c:out value="${animal.food}"/>">
+										placeholder="Nhập thức ăn">
 								</div>
-								<br> <label class="small mb-1" for="animalType">Loài động vật
-								</label> <select class="select" id="animalType" name="animalType">
+								<br> <label class="small mb-1" for="type">Loài động vật
+								</label> <select class="select" id="type" name="type">
 									<option value="">-- Chọn loài --</option>
-									<c:forEach var="type" items="${animalTypeList}">
-										<option value="<c:out value="${type.idAnimalType}"/>" <c:out value = "${type.animalType.equals(animal.types.animalType)? 'selected' : ''}"/>>${type.animalType}</option>
+										<c:forEach var="type" items="${typeList}">
+										<option value="<c:out value="${type.idAnimalType}"/>">${type.animalType}</option>
 									</c:forEach>
+
 								</select> <br> <br>
 								<button class="button-search" type="submit">Save</button>
 							</form>

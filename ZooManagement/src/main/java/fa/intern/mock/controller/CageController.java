@@ -37,7 +37,7 @@ public class CageController {
 		{
 		return "redirect:showAllCage";
 		}
-		else return "redirect:admin/Cage";
+		else return "redirect:admin/cage";
 	}
 	
 	@RequestMapping(value = "searchCage", method = RequestMethod.POST)
@@ -46,7 +46,7 @@ public class CageController {
 	                     ModelMap model) {
 		 List<Cage> cages = cageService.searchCage(option, search);
 		  model.addAttribute("cage", cages);
-	        return "admin/Cage";
+	        return "admin/cage";
 	}
 	
 	@RequestMapping(value = "/showCageInfo", method = RequestMethod.GET)
@@ -68,6 +68,19 @@ public class CageController {
 	        return "redirect:/showAllCage";
 	}
 	
+	@RequestMapping(value = "showStaff")
+	public String showStaff(ModelMap model) {
+		List<Staff> staffs = staffService.showStaff();
+	     model.addAttribute("staffList", staffs);
+		return "admin/addCage";
+	}
+	
+	@RequestMapping(value = "addCage")
+	public String addCage(@RequestParam("cageName") String cageName, @RequestParam("limit") int limit, 
+			@RequestParam("staffName") int staffName, ModelMap model) throws Exception {
+		cageService.addCage(cageName, limit, staffName);
+		return "redirect:showAllCage";
+	}
 	
 }
 

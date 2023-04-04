@@ -28,7 +28,7 @@ public class StaffDAO {
     }
 
     public Staff getStaffById(int id) {
-    	 Object[] params = new Object[]{id};
+    	 	Object[] params = new Object[]{id};
     	    String sql = "SELECT * FROM staff WHERE ID_Staff = ?";
     	    return jdbcTemplate.queryForObject(sql, params, new StaffRowMapper());
     	}

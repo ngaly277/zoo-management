@@ -32,5 +32,23 @@ public class AnimalService {
 	public List<Animal> showAnimalInfo(int idAnimal) {
         return animalDAO.showAnimalInfo(idAnimal);
 	}
+
+
+	public List<Animal> searchAnimal(String option, String search) {
+		return animalDAO.searchAnimal(option, search);
+	}
+
+
+	public void editAnimal(int idAnimal, String animalName, String animalStatus, String detail, String food,
+			int animalType) {
+		animalDAO.editAnimal(idAnimal, animalName, animalStatus, detail, food, animalType);
+		
+	}
+
+
+	public void addAnimal(int idCage, String animalName, String status, String detail, String food, int type) throws Exception {
+		animalDAO.addAnimal(idCage, animalName, status, detail, food, type);
+		
+	}
 	
 }

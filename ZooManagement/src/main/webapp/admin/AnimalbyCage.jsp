@@ -34,7 +34,7 @@
 					<li class="nav-link"><a href="admin.jsp"> <i
 							class='bx bx-home-alt icon'></i> <span class="text nav-text">Home</span>
 					</a></li>
-					<li class="nav-link"><a href="#"> <i
+					<li class="nav-link"><a href="<%=request.getContextPath()%>/showAllCage"> <i
 							class='bx bxs-castle icon'></i> <span class="text nav-text">Quản
 								lý chuồng</span>
 					</a></li>
@@ -89,7 +89,7 @@
 		<div class="text">Animal Page</div>
 		<h2 class="banner ">Animal Management Table</h2>
 		<form class="searchform"
-			action="<%=request.getContextPath()%>/searchCage" method="post">
+			action="searchAnimal" method="post">
 			<p class="text2">Search Information by:</p>
 			<select class="select" id="option" name="option">
 				<option>ID động vật</option>
@@ -104,7 +104,7 @@
 			<button class="button-search" type="reset">Reset</button>
 
 		</form>
-		<br> <br> <a href="" style="text-decoration: none">
+		<br> <br> <a href="<%=request.getContextPath()%>/showType?idCage=${animal.get(0).cages.idCage}" style="text-decoration: none">
 			<button style="margin-left: 70px" class="button-search">Thêm
 				động vật</button>
 		</a> <a href="" style="text-decoration: none">

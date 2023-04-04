@@ -89,7 +89,7 @@
 		<div class="text">Cage Page</div>
 		<h2 class="banner ">Cage Management Table</h2>
 		<form class="searchform"
-			action="<%=request.getContextPath()%>/searchCage" method="post">
+			action="searchCage" method="post">
 			<p class="text2">Search Information by:</p>
 			<select class="select" id="option" name="option">
 				<option>Mã chuồng</option>
@@ -104,7 +104,7 @@
 			<button class="button-search" type="reset">Reset</button>
 
 		</form>
-		<br> <br> <a href="" style="text-decoration: none">
+		<br> <br> <a href="<%=request.getContextPath()%>/showStaff" style="text-decoration: none">
 			<button style="margin-left: 70px" class="button-search">Thêm
 				chuồng</button>
 		</a> <a href="" style="text-decoration: none">
