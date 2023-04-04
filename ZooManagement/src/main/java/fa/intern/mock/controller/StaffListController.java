@@ -128,6 +128,13 @@ public class StaffListController {
 		return "redirect:/stafflist";
 	}
 	
+	@GetMapping(value = "staffdelete")
+	public String deleteStaff(@RequestParam("id") int id) {
+		System.out.println("delete: "+id);
+		staffService.deleteStaff(id);
+		return "redirect:/stafflist";
+	}
+	
 //	@PostMapping("staffcreate")
 //	public String processStaffCreate(Model model, ModelAttribute("staff") Staff staff) {
 //		model.addAttribute("staff", new Staff());

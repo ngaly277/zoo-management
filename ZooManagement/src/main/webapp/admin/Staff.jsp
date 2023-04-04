@@ -15,6 +15,17 @@
 	rel="stylesheet" type="text/css">
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css'
 	rel='stylesheet'>
+<script type="text/javascript">
+function confirm_decision(user_id){
+    if(confirm("you want to delete the user?")) // this will pop up confirmation box and if yes is clicked it call servlet else return to page
+     {
+       window.location="staffdelete?id="+user_id; 
+     }else{
+       return false;
+    }
+   return true;
+ }
+</script>
 </head>
 <body>
 
@@ -170,7 +181,7 @@
 							<%-- style="text-decoration: none; color: green" href="staffupdate/${stafflist.idStaff}"></a> &nbsp --%>
 							style="text-decoration: none; color: green" href="staffupdateform?id=${stafflist.idStaff}"></a> &nbsp
 							&nbsp <a class="bx bxs-trash bx-xs"
-							style="text-decoration: none; color: red" href=""></a></td>
+							style="text-decoration: none; color: red" <%-- href="staffdelete?id=${stafflist.idStaff}" --%> onclick="confirm_decision('${stafflist.idStaff}')"></a></td>
 						</tr>
 					</c:forEach>
 					<%-- </c:forEach> --%>

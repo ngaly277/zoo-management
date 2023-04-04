@@ -45,4 +45,8 @@ public class StaffService {
 		staffDAO.updateStaff(staff);
 	}
 	
+	public void deleteStaff(int id) {
+		staffDAO.deleteStaff(id);
+	}
+	
 }

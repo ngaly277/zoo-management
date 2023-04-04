@@ -155,4 +155,9 @@ public class StaffDAO {
 			String sql = "UPDATE staff SET Staff_Name = '"+staff.getStaffName()+"', Salary="+staff.getSalary()+", ID_Staff_Type = "+staff.getIdStaffType()+" WHERE ID_Staff = "+staff.getIdStaff();
 			jdbcTemplate.update(sql);
 		}
+		
+		public void deleteStaff(int id) {
+			String sql = "DELETE FROM staff WHERE ID_Staff = "+id;
+			jdbcTemplate.update(sql);
+		}
 }
