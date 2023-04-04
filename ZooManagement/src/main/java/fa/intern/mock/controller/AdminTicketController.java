@@ -100,6 +100,13 @@ public class AdminTicketController {
 		data.setTicket_Type(ticketType);
 		data.setAmount(amount);
 		data.setPrice(price);
+		
+		try {
+			
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			return String.format("redirect:/admin/tickets/edit?id=", id);
+		}
 
 		// If successful, will return to main page.
 		return "redirect:/admin/tickets";
