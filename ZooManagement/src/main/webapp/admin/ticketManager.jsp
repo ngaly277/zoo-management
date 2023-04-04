@@ -51,11 +51,11 @@
                             <td>${item.amount}</td>
                             <td>${item.price}</td>
                             <td>
-                                <form action="${myContext}/admin/tickets/delete?id=${item.id_Ticket}" method="post">
+                                <%-- <form action="${myContext}/admin/tickets/delete?id=${item.id_Ticket}" method="post"> --%>
                                     <a class="bx bxs-edit bx-xs" style="text-decoration:none; color: green" href="${myContext}/admin/tickets/edit?id=${item.id_Ticket}"></a>
                                     &nbsp &nbsp
-                                    <button type="submit" class="bx bxs-trash bx-xs" style="text-decoration:none; color: red; border: none; background-color: transparent; cursor: pointer;"></button>
-                                </form>
+                                    <button onclick="deleteConfirm(${item.id_Ticket})" class="bx bxs-trash bx-xs" style="text-decoration:none; color: red; border: none; background-color: transparent; cursor: pointer;"></button>
+                                <%-- </form> --%>
                             </td>
                         </tr>
                     </c:forEach>
@@ -63,7 +63,11 @@
             </table>
         </div>
         </div>
+        <form id="deleteForm" action="${myContext}/admin/tickets/delete" method="post">
+            <input type="text" name="id" id="deleteFormId" style="display: none;">
+        </form>
     </section>
 </body>
 <script src='<c:url value="/resources/js/js-page-admin.js" />'></script>
+<script src='<c:url value="/resources/js/admin-ticket-manager.js" />'></script>
 </html>

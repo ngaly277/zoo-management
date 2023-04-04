@@ -37,8 +37,11 @@ public class AdminTicketController {
 		@RequestParam(required = true) Integer price
 	) {
 		// TODO: Add here! If failed, return back to add ticket page
+		TicketType ticketType = new TicketType();
+		ticketType.setId_Ticket_Type(typeid);
+
 		Ticket ticket = new Ticket();
-		ticket.setTicketTypeId(typeid);
+		ticket.setTicket_Type(ticketType);
 		ticket.setAmount(amount);
 		ticket.setPrice(price);
 		Boolean result = ticketService.addTicket(ticket);
@@ -87,6 +90,16 @@ public class AdminTicketController {
 	) {
 		// TODO: Edit here! If failed, return back to edit ticket page
 		// return String.format("redirect:/admin/tickets/edit?id=%d", id);
+		Ticket data = ticketService.getTicketById(id.toString());
+		if (data == null)
+			return String.format("redirect:/admin/tickets/edit?id=", id);
+		
+		TicketType ticketType = data.getTicket_Type();
+		ticketType.setId_Ticket_Type(typeid);
+		
+		data.setTicket_Type(ticketType);
+		data.setAmount(amount);
+		data.setPrice(price);
 
 		// If successful, will return to main page.
 		return "redirect:/admin/tickets";
@@ -98,9 +111,11 @@ public class AdminTicketController {
 		@RequestParam(required = true) Integer id
 	) {
 		// TODO: Delete here.
+		// Use this for notify user for deletion was successful or failed.
+		boolean result = ticketService.deleteTicketById(id.toString());
 
 		// Any result will return to main page.
-		return String.format("redirect:/admin/tickets?q=%d", id);
+		return String.format("redirect:/admin/tickets?q=");
 	}
 
 	@RequestMapping(value="/admin/tickets", method = RequestMethod.GET)

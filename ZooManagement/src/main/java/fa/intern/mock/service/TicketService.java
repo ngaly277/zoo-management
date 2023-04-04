@@ -28,4 +28,12 @@ public class TicketService {
 	public boolean addTicket(Ticket ticket) {
 		return ticketDAO.addTicket(ticket);
 	}
+
+	public boolean editTicket(Ticket ticket) {
+		return ticketDAO.editTicket(ticket);
+	}
+
+	public boolean deleteTicketById(String ticketId) {
+		return ticketDAO.deleteTicketById(ticketId);
+	}
 }
