@@ -16,13 +16,12 @@ public class TicketTypeDAO {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	
-	public List<TicketType> getAllTicketType(){
+	public List<TicketType> getAllTicketType() {
 		String query = "SELECT * FROM Ticket_Type";
 		return jdbcTemplate.query(query, new TicketTypeMapper());
 	}
 	
 	public class TicketTypeMapper implements RowMapper<TicketType> {
-
 		public TicketType mapRow(ResultSet rs, int rowNum) throws SQLException {
 			TicketType tt = new TicketType();
 			tt.setId_Ticket_Type(rs.getInt("ID_Ticket_Type"));
@@ -30,6 +29,5 @@ public class TicketTypeDAO {
 			tt.setTicket_Description(rs.getNString("Ticket_Description"));
 			return tt;
 		}
-		
 	}
 }

@@ -24,12 +24,11 @@
                 <div class="searchbar"><input type="text" name="id" readonly value='${ticketId}'></div>
                 <br>
             </c:if>
-            <p class="text2">Ticket type:</p>
-            <select class="select">
-                <option value="1">Mã NV</option>
-                <option value="2">Tên</option>
-                <option value="3">Loại NV</option>
-                <option value="4">Username</option>
+            <p class="text2">Ticket type (hover option for description):</p>
+            <select class="select" name="type">
+                <c:forEach var="item" items="${ticketTypeList}">
+                    <option value="${item.id_Ticket_Type}" title="${item.ticket_Description}">${item.ticket_Type}</option>
+                </c:forEach>
             </select>
             <br>
             <p class="text2">Amount: </p>
@@ -38,8 +37,8 @@
             <p class="text2">Price: </p>
             <div class="searchbar"><input type="text" name="q"></div>
             <br>
-            <button class="button-search" type="submit">Search</button>
-            <button class="button-search" type="reset">Clear text</button>
+            <button class="button-search" type="submit"><c:out value='${ticketId != null ? "Edit" : "Add"}' /></button>
+            <button class="button-search" type="reset">Clear data</button>
         </form>
     </section>
 </body>

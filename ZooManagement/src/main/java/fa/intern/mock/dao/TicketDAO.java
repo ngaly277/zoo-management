@@ -22,9 +22,29 @@ public class TicketDAO {
 		String query = "SELECT ticket.ID_Ticket, ticket_type.ID_Ticket_Type, ticket_type.Ticket_Type, ticket_type.Ticket_Description, ticket_age.ID_Ticket_Age, ticket_age.Age_Description, ticket.Amount, ticket.Price FROM ticket INNER JOIN ticket_type ON ticket.ID_Ticket_Type = ticket_type.ID_Ticket_Type INNER JOIN ticket_age ON ticket_age.ID_Ticket_Age = ticket.ID_Ticket_Age where ticket.ID_Ticket_Type = " + idTicketType;
 		return jdbcTemplate.query(query, new TicketMapper());
 	}
+
+	public List<Ticket> getAllTickets(String searchQuery) {
+		// TODO: Need change this query because this database script hasn't contain "Ticket_Age" table!!!!!
+		String[] queryArray = {
+			"SELECT",
+			"Ticket.ID_Ticket, Ticket_Type.ID_Ticket_Type, Ticket_Type.Ticket_Type, Ticket_Type.Ticket_Description,",
+			"Ticket.Amount, Ticket.Price,",
+			"0 as ID_Ticket_Age, N'' as Age_Description",
+			"FROM Ticket INNER JOIN Ticket_Type ON Ticket.ID_Ticket_Type = Ticket_Type.ID_Ticket_Type",
+			"WHERE Ticket_Type LIKE N'%%%s%%' OR Ticket.Amount LIKE N'%%%s%%' OR Ticket.Price LIKE N'%%%s%%'",
+			";"
+		};
+		String query = String.join(" ", queryArray);
+		query = String.format(
+			query,
+			searchQuery == null ? "" : searchQuery,
+			searchQuery == null ? "" : searchQuery,
+			searchQuery == null ? "" : searchQuery
+		);
+		return jdbcTemplate.query(query, new TicketMapper());
+	}
 	
 	public class TicketMapper implements RowMapper<Ticket> {
-
 		public Ticket mapRow(ResultSet rs, int rowNum) throws SQLException {
 			Ticket t = new Ticket();
 			t.setId_Ticket(rs.getInt("ID_Ticket"));
@@ -44,8 +64,7 @@ public class TicketDAO {
 			t.setPrice(rs.getInt("Price"));
 			
 			return t;
-		}
-		
+		}	
 	}
 }
 

@@ -16,4 +16,8 @@ public class TicketService {
 	public List<Ticket> getAllTicketByType(int idTicketType) {
 		return ticketDAO.getAllTicketByType(idTicketType);
 	}
+
+	public List<Ticket> getAllTickets(String searchQuery) {
+		return ticketDAO.getAllTickets(searchQuery);
+	}
 }

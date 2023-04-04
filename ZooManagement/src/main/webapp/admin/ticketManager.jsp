@@ -34,25 +34,27 @@
             <table class="fl-table">
                 <thead>
                     <tr>
-                        <th>Name</th>
+                        <th>ID</th>
                         <th>Type</th>
+                        <th>Type Description</th>
                         <th>Amount</th>
                         <th>Price</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <c:forEach var="item" items="${data}">
+                    <c:forEach var="item" items="${tickets}">
                         <tr>
-                            <td>Testing ${item}</td>
-                            <td>Testing ${item}</td>
-                            <td>Testing ${item}</td>
-                            <td>Testing ${item}</td>
+                            <td>${item.id_Ticket}</td>
+                            <td>${item.ticket_Type.ticket_Type}</td>
+                            <td>${item.ticket_Type.ticket_Description}</td>
+                            <td>${item.amount}</td>
+                            <td>${item.price}</td>
                             <td>
-                                <form action="${myContext}/admin/tickets/delete?id=${item}" method="post">
-                                    <a class="bx bxs-edit bx-xs" style="text-decoration:none; color: green" href="${myContext}/admin/tickets/edit?id=${item}"></a>
+                                <form action="${myContext}/admin/tickets/delete?id=${item.id_Ticket}" method="post">
+                                    <a class="bx bxs-edit bx-xs" style="text-decoration:none; color: green" href="${myContext}/admin/tickets/edit?id=${item.id_Ticket}"></a>
                                     &nbsp &nbsp
-                                    <button type="submit" class="bx bxs-trash bx-xs" style="text-decoration:none; color: red; border: none; background-color: transparent;"></button>
+                                    <button type="submit" class="bx bxs-trash bx-xs" style="text-decoration:none; color: red; border: none; background-color: transparent; cursor: pointer;"></button>
                                 </form>
                             </td>
                         </tr>

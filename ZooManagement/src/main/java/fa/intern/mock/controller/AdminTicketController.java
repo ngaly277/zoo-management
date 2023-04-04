@@ -3,16 +3,30 @@ package fa.intern.mock.controller;
 import java.util.Arrays;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import fa.intern.mock.bean.Ticket;
+import fa.intern.mock.bean.TicketType;
+import fa.intern.mock.service.TicketService;
+import fa.intern.mock.service.TicketTypeService;
+
 @Controller
 public class AdminTicketController {
+	@Autowired
+	private TicketTypeService ticketTypeService;
+	
+	@Autowired
+	private TicketService ticketService;
+	
 	@RequestMapping(value="/admin/tickets/add", method = RequestMethod.GET)
-	public String addTicket() {
+	public String addTicket(Model model) {
+		List<TicketType> data = ticketTypeService.getAllTicketType();
+		model.addAttribute("ticketTypeList", data);
 		return "admin/ticketManagerEdit";
 	}
 
@@ -34,9 +48,9 @@ public class AdminTicketController {
 	@RequestMapping(value="/admin/tickets", method = RequestMethod.GET)
 	public String showAllTickets(@RequestParam(required = false) String q, Model model) {
 		// model.addAttribute("ticketTypeList", ticketTypeService.getAllTicketType());
-		List<Integer> data = Arrays.asList(1, 2, 3, 4, 5, 6);
+		List<Ticket> data = ticketService.getAllTickets(q);
 		model.addAttribute("searchQuery", q);
-		model.addAttribute("data", data);
+		model.addAttribute("tickets", data);
 		return "admin/ticketManager";
 	}
 }
