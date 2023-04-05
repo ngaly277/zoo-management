@@ -77,6 +77,6 @@ function confirmDelete(cageId) {
 	  if (confirm("Bạn có chắc muốn xóa cage này không?")) {
 	    window.location.href = "deleteCage?idCage=" + cageId;
 	  }
-	}
+	}      
 </script>
 </html>

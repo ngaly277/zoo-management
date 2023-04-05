@@ -9,11 +9,11 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
 import fa.intern.mock.bean.Animal;
 import fa.intern.mock.bean.Cage;
 import fa.intern.mock.bean.Staff;
+import fa.intern.mock.service.AnimalService;
 import fa.intern.mock.service.CageService;
 import fa.intern.mock.service.StaffService;
 
@@ -23,6 +23,8 @@ public class CageController {
 	private CageService cageService;
 	@Autowired
 	private StaffService staffService;
+	@Autowired 
+	private AnimalService animalService;
 
 	@RequestMapping(value = "showAllCage")
     public String getAllCages(Model model) {
@@ -33,12 +35,14 @@ public class CageController {
 	
 	@RequestMapping(value = "deleteCage", method = RequestMethod.GET)
 	public String deleteCage(@RequestParam("idCage") int idCage) {
-		if (cageService.deleteCage(idCage))
-		{
-		return "redirect:showAllCage";
+		List<Animal> data = animalService.getAnimalByIDCage(idCage);
+		if (data.isEmpty()) {
+			cageService.deleteCage(idCage);
+			return "redirect:showAllCage";				
 		}
-		else return "redirect:admin/cage";
+		else return "redirect:getAnimalbyIDCage?idCage=" + idCage;
 	}
+		
 	
 	@RequestMapping(value = "searchCage", method = RequestMethod.POST)
 	public String searchCage(@RequestParam("option") String option,
