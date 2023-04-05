@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import fa.intern.mock.bean.Account;
-import fa.intern.mock.dao.AccountDAO;
 import fa.intern.mock.service.AccountService;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
@@ -19,9 +18,6 @@ import jakarta.servlet.http.HttpSession;
 public class AccountController {
 	@Autowired
 	private AccountService accountService;
-	
-	@Autowired
-	private AccountDAO accountDAO;
 	
 	@RequestMapping(value="/")
 	public String index(Model model, HttpSession session, HttpServletRequest request) {
