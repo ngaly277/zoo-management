@@ -20,12 +20,12 @@ public class ContractDAO {
 	
 	public void createContract() {
 		String nothing = "nothing";
-		String sql = "insert into contracts (details) VALUE ('"+nothing+"')";
+		String sql = "insert into Contracts (Details) VALUE ('"+nothing+"')";
 		jdbcTemplate.update(sql);
 	}
 	
 	public List<Contracts> getTheLastContract(){
-		String sql = "SELECT * FROM contracts ORDER BY ID_Contract DESC LIMIT 1";
+		String sql = "SELECT * FROM Contracts ORDER BY ID_Contract DESC LIMIT 1";
 		List<Contracts> contractList = jdbcTemplate.query(sql, new RowMapper<Contracts>() {
 			
 			public Contracts mapRow(ResultSet rs, int rowNum) throws SQLException {

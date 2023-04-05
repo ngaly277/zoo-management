@@ -19,7 +19,7 @@ public class StaffDAO {
 	private JdbcTemplate jdbcTemplate;
 	
 	public List<Staff> getStaffList(){
-		String sql = "SELECT * FROM staff";
+		String sql = "SELECT * FROM Staff";
 		List<Staff> staffList = jdbcTemplate.query(sql, new RowMapper<Staff>() {
 			
 			public Staff mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -41,7 +41,7 @@ public class StaffDAO {
 	}
 	
 	public List<StaffType> getStaffTypeList(){
-		String sql = "SELECT * FROM staff_type";
+		String sql = "SELECT * FROM Staff_Type";
 		List<StaffType> staffTypeList = jdbcTemplate.query(sql, new RowMapper<StaffType>() {
 			
 			public StaffType mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -80,7 +80,7 @@ public class StaffDAO {
 //	}
 	
 	public List<Staff> getStaffById(int id){
-		String sql = "SELECT * FROM staff WHERE ID_STAFF = "+id;
+		String sql = "SELECT * FROM Staff WHERE ID_STAFF = "+id;
 		List<Staff> staffList = jdbcTemplate.query(sql, new RowMapper<Staff>() {
 			
 			public Staff mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -102,7 +102,7 @@ public class StaffDAO {
 	}
 	
 	public List<Staff> getStaffSearch(String searchString){
-		String sql = "SELECT * FROM staff WHERE Staff_Name LIKE '%"+searchString+"%' or  Username LIKE '%"+searchString+"%'";
+		String sql = "SELECT * FROM Staff WHERE Staff_Name LIKE '%"+searchString+"%' or  Username LIKE '%"+searchString+"%'";
 		List<Staff> staffList = jdbcTemplate.query(sql, new RowMapper<Staff>() {
 			
 			public Staff mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -124,12 +124,12 @@ public class StaffDAO {
 	}
 	
 	public void createStaff(Staff staff) {
-		String sql = "INSERT INTO staff (Staff_Name, Salary, ID_Contract, ID_Staff_Type, Username) VALUES ('"+staff.getStaffName()+"', "+staff.getSalary()+","+staff.getIdContract()+" , "+staff.getIdStaffType()+", '"+staff.getUsername()+"')";
+		String sql = "INSERT INTO Staff (Staff_Name, Salary, ID_Contract, ID_Staff_Type, Username) VALUES ('"+staff.getStaffName()+"', "+staff.getSalary()+","+staff.getIdContract()+" , "+staff.getIdStaffType()+", '"+staff.getUsername()+"')";
 		jdbcTemplate.update(sql);
 	}
 	
 	public List<Staff> getStaffByIdStaffType(int id){
-		String sql = "SELECT * FROM staff WHERE ID_Staff_Type = "+id;
+		String sql = "SELECT * FROM Staff WHERE ID_Staff_Type = "+id;
 		List<Staff> staffList = jdbcTemplate.query(sql, new RowMapper<Staff>() {
 			
 			public Staff mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -152,12 +152,12 @@ public class StaffDAO {
 	
 	// ----------------------------update---------------------------
 		public void updateStaff(Staff staff) {
-			String sql = "UPDATE staff SET Staff_Name = '"+staff.getStaffName()+"', Salary="+staff.getSalary()+", ID_Staff_Type = "+staff.getIdStaffType()+" WHERE ID_Staff = "+staff.getIdStaff();
+			String sql = "UPDATE Staff SET Staff_Name = '"+staff.getStaffName()+"', Salary="+staff.getSalary()+", ID_Staff_Type = "+staff.getIdStaffType()+" WHERE ID_Staff = "+staff.getIdStaff();
 			jdbcTemplate.update(sql);
 		}
 		
 		public void deleteStaff(int id) {
-			String sql = "DELETE FROM staff WHERE ID_Staff = "+id;
+			String sql = "DELETE FROM Staff WHERE ID_Staff = "+id;
 			jdbcTemplate.update(sql);
 		}
 }

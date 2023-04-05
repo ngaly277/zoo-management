@@ -10,7 +10,6 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import fa.intern.mock.bean.Customer;
-import fa.intern.mock.bean.TicketType;
 
 @Repository
 public class CustomerDAO {

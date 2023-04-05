@@ -2,8 +2,6 @@ package fa.intern.mock.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -25,7 +23,7 @@ public class AccountDAO {
 	}
 
 	public void createAccountThroughAddNewStaff(String string) {
-		String sql = "insert into account (Username, Pass, ID_Account_Type) VALUE ('" + string + "', '" + string
+		String sql = "insert into Account (Username, Pass, ID_Account_Type) VALUE ('" + string + "', '" + string
 				+ "', 2)";
 		jdbcTemplate.update(sql);
 	}
