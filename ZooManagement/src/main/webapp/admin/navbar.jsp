@@ -40,7 +40,7 @@
 						class="bx bxs-coupon icon <c:out value='${param.navToggle == "tickets" ? "active" : ""}' />"></i> <span class="text nav-text">Quản
 							lý đặt vé</span>
 				</a></li>
-				<li class="nav-link"><a href="Staff.jsp"> <i
+				<li class="nav-link"><a href="stafflist"> <i
 						class='bx bx-user icon'></i> <span class="text nav-text">Quản
 							lý nhân viên</span>
 				</a></li>
