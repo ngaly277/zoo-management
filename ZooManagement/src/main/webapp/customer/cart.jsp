@@ -17,14 +17,14 @@
 
 <script>
 	const now = new Date();
-	let listTicket = JSON.parse(window.localStorage.getItem("listTicket"));
+	let listTicket = JSON.parse(window.sessionStorage.getItem("listTicket"));
 	
 	if (!listTicket) {
 		$("#empty").css("display", "block");
 		
 	} else {
 		if (now.getTime() > listTicket.expiry) {
-			localStorage.removeItem("listTicket");
+			sessionStorage.removeItem("listTicket");
 		} else {
 			$("#empty").css("display", "none");
 			let totalPrice = 0;
@@ -43,7 +43,7 @@
 						'<div class="price-wrapper total-value">0</div>' +
 					'</section>' +
 				'</div>' +
-				'<form class="action">' +
+				'<form class="action" id="checkout">' +
 					'<div class="pay-btn-wrapper">' +
 						'<button type="submit" class="purchase">Thanh toán</button>' +
 					'</div>' +
@@ -118,10 +118,15 @@
 	function handleRemove(id) {
 		listTicket.tickets = listTicket.tickets.filter(ticket => ticket.id !== id);
 		if (listTicket.tickets.length === 0){
-			window.localStorage.removeItem("listTicket");
+			window.sessionStorage.removeItem("listTicket");
 		} else {
-			window.localStorage.setItem("listTicket", JSON.stringify(listTicket));
+			window.sessionStorage.setItem("listTicket", JSON.stringify(listTicket));
 		}
 		location.reload();
 	}
+	
+	$("#checkout").submit(function(e){
+		e.preventDefault();
+		window.location.replace('/ZooManagement/checkout');
+	});
 </script>
