@@ -16,10 +16,6 @@ public class AccountDAO {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
-//	public Account getAccount(String username) {
-//		String query = "SELECT * FROM Account WHERE Username = " + username;
-//		return jdbcTemplate.query(query, new AccountMapper()).get(0);
-//	}
 
 	public Account getAccount(String username) {
 		String query = "SELECT * FROM Account WHERE Username = " + username;

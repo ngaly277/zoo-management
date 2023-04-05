@@ -20,24 +20,7 @@ public class AccountController {
 	@Autowired
 	private AccountDAO accountDAO;
 	
-	@RequestMapping("login")
-	public String showLoginPage(Model model) {
-		model.addAttribute("account", new Account());
-		return "admin/Login";
-	}
 	
-	@PostMapping("processLogin")
-	public String show(Model model, @RequestParam("username") String u, @ModelAttribute("account") Account account) {
-		System.out.println("usernaaae: "+u);
-		System.out.println(account.getUsername()+"-"+account.getPassword());
-		Account a = accountService.getAccount(account.getUsername());
-		System.out.println(a+"?");
-		if(account.getUsername().equals(a.getUsername()) && account.getPassword().equals(a.getPassword())) {
-			return "admin/admin";
-		}
-		else {
-			return"admin/Login";
-		}
 		
-	}
+	
 }
