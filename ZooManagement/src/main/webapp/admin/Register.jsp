@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
   <!-- Design by foolishdeveloper.com -->
-    <title>Đăng nhập</title>
+    <title>Đăng ký</title>
  
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
@@ -25,8 +25,8 @@
     <div class="bg-img">
     <div class="bg-img2">
     </div>
-    <form:form action = "login" method = "post" modelAttribute="account" onsubmit = "return(validate());">
-        <!-- <h3>Đăng nhập</h3> -->
+    <form:form action = "register" method = "post" modelAttribute="account" onsubmit = "return(validate());">
+        <h3>Tạo tài khoản</h3>
 		<span id="error" style="color: #eb1c26; margin-top: 10px;">${error }</span>
 		
         <label for="username">Tên tài khoản</label>
@@ -35,23 +35,16 @@
         <label for="password">Mật khẩu</label>
         <form:input path="password" type="password" placeholder="Mật khẩu" id="password" name = "password" />
         <span id="password-invalid" style="color: #eb1c26; margin-top: 10px; display:none">Trường này không được để trống.</span>
+        <label for="password">Xác nhận mật khẩu</label>
+        <input type="password" placeholder="Xác nhận mật khẩu" id="confirm-password" name = "confirm-password" />
+        <span id="confirm-password-invalid" style="color: #eb1c26; margin-top: 10px; display:none"></span>
         
-        <button type = "submit">Đăng nhập</button>
-        <div class="checkbox-wrapper-54">
-		  <label class="switch">
-    		<input type="checkbox" id = "remember" name = "remember">
-    		<span class="slider"></span>
-  		 </label>
-		</div>
-
-		<br>
-		<p style="margin: 10px;">&emsp;&emsp;&emsp;&ensp;Tự động đăng nhập</p>
-        <br>	
-		<br>
-   		<p>
-   		 Chưa có tài khoản?
-    		<a href="register">
-        		Tạo tài khoản
+        <button style="margin-top: 20px;" type = "submit">Đăng ký</button>
+    
+   		<p style="margin-top: 10px;">
+   		 Đã có tài khoản?
+    		<a href="login">
+        		Đăng nhập ngay
     		</a>
     			
 		</p>
@@ -72,11 +65,25 @@
 	         }
 			
 			if( document.getElementById("password").value == "" ) {
-				console.log("password");
 	            document.getElementById("password-invalid").style.display = "block";
 	            check = false;
 	         } else {
 	        	 document.getElementById("password-invalid").style.display = "none";
+	         }
+			
+			if( document.getElementById("confirm-password").value == "" ) {
+	            document.getElementById("confirm-password-invalid").style.display = "block";
+	            document.getElementById("confirm-password-invalid").innerHTML = "Trường này không được để trống."
+	            check = false;
+	         } else {
+	        	 if (document.getElementById("password").value !== document.getElementById("confirm-password").value) {
+	        		document.getElementById("confirm-password-invalid").style.display = "block";
+	        		document.getElementById("confirm-password-invalid").innerHTML = "Mật khẩu không khớp."
+	 	            check = false;
+	        	 }
+	        	 else {
+	        		 document.getElementById("confirm-password-invalid").style.display = "none";
+	        	 }
 	         }
 			
 			return check;
