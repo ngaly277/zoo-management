@@ -10,19 +10,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href='<c:url value="/resources/css/style-page-admin.css" />' rel="stylesheet" type ="text/css"> 
  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
- <link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-	crossorigin="anonymous">
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-	integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-	crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
 <body>
-<jsp:include page="navbar.jsp" />
  <nav class="sidebar close">
         <header>
             <div class="image-text">
@@ -116,20 +105,15 @@
     </nav>
 
     <section class="home">
-        		<div class="text">Inventory Page</div>
-        <h2 class = "banner ">Inventory Management Table</h2>
-        <div class = "banner">
-			<a href="<%=request.getContextPath()%>/viewSupplier" class="btn btn-info" role="button">View Supplier</a>
-			<a href="<%=request.getContextPath()%>/viewBillDetail" class="btn btn-info" role="button">View Bill</a>
-		</div>
+        		<div class="text">Product Page In <c:out value="${inventory}" /></div>
+        <h2 class = "banner ">Product Management Table</h2>
           <c:url value="/SearchInventory" var="SearchInventory"/>
- 		<form:form class = "searchform" action="SearchInventory" method="post">
+ 		<form:form class = "searchform" action="searchProduct" method="post">
 					<p class = "text2" >Search Information by:</p>
     								<select name="op" class="select">
-     									 <option value="ID_Inventory">Mã kho</option>
-      									 <option value="Inventory_Name">Tên kho</option>
-      									 <option value="Inventory_Address">Địa chỉ</option>
-      									 <option value="ID_Inventory_Type">Loại kho</option>
+      									 <option value="Product_Name">Tên sản phẩm</option>
+      									 <option value="Supplier_Name">Nhà cung cấp</option>
+      									 <option value="Price">Đơn Giá</option>
     								</select>
                 	<p class = "text2" >Type here:</p>
   						<div class="searchbar"><input name="search" type="search" placeholder='Search' /></div>
@@ -143,22 +127,24 @@
     <table class="fl-table">
         <thead>
         <tr>
-            <th>Mã kho</th>
-            <th>Tên kho</th>
-            <th>Địa chỉ</th>
-            <th>Loại kho</th>
+            <th>STT</th>
+            <th>Tên sản phẩm</th>
+            <th>Số lượng tồn kho</th>
+            <th>Nhà cung cấp</th>
+            <th>Đơn Giá</th>
         </tr>
         </thead>
         <tbody>
-        <c:forEach items="${inventory}" var="item">
+        <c:forEach items="${product}" var="item">
         <tr>
             <td><c:out value="${item.id}" /></td>
             <td><c:out value="${item.name}" />
             	&nbsp &nbsp
-  				<a class = "bx bxs-box bx-xs" style="text-decoration:none; color: blue " href = "<%=request.getContextPath()%>/viewProduct?id=<c:out value="${item.id}-${item.name}" />">
+  				<a class = "bx bxs-box bx-xs" style="text-decoration:none; color: blue " href = "">
   					</a></td>
-            <td><c:out value="${item.address}" /></td>
-            <td><c:out value="${item.productType.name}" /></td>
+            <td><c:out value="${item.amount}" /></td>
+            <td><c:out value="${item.supplier.name}" /></td>
+            <td><c:out value="${item.price}" /></td>
         </tr>
         </c:forEach>
         <tbody>
@@ -166,6 +152,7 @@
 </div>
         </div>
     </section>
+
 </body>
-<script src='<c:url value="/resources/js/js-page-admin.js" />'></script>
+    <script src = '<c:url value="/resources/js/js-page-admin.js" />' ></script>
 </html>

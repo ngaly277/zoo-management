@@ -1,13 +1,21 @@
 package fa.intern.mock.bean;
 
 public class Contracts {
-	private int idContract;
+	private int id;
 	private String details;
-	public int getIdContract() {
-		return idContract;
+	public Contracts(int id, String details) {
+		super();
+		this.id = id;
+		this.details = details;
 	}
-	public void setIdContract(int idContract) {
-		this.idContract = idContract;
+	public Contracts() {
+		super();
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
 	}
 	public String getDetails() {
 		return details;
@@ -15,18 +23,4 @@ public class Contracts {
 	public void setDetails(String details) {
 		this.details = details;
 	}
-	public Contracts(int idContract, String details) {
-		super();
-		this.idContract = idContract;
-		this.details = details;
-	} 
-	
-	public Contracts() {
-		// TODO Auto-generated constructor stub
-	}
-	@Override
-	public String toString() {
-		return "Contracts [idContract=" + idContract + ", details=" + details + "]";
-	}
-	
 }

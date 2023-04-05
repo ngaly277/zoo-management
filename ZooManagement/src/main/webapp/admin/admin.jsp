@@ -13,10 +13,10 @@
 	rel='stylesheet'>
 </head>
 <body>
-	<jsp:include page="navbar.jsp"/>
-	<section class="home">
-		<div class="text">Hi</div>
-	</section>
+    <jsp:include page="navbar.jsp"/>
+    <section class="home">
+        		<div class="text">Hi</div>
+    </section>
 </body>
 <script src='<c:url value="/resources/js/js-page-admin.js" />'></script>
 </html>

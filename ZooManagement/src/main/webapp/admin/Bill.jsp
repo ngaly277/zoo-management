@@ -22,7 +22,6 @@
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
 <body>
-<jsp:include page="navbar.jsp" />
  <nav class="sidebar close">
         <header>
             <div class="image-text">
@@ -116,20 +115,21 @@
     </nav>
 
     <section class="home">
-        		<div class="text">Inventory Page</div>
-        <h2 class = "banner ">Inventory Management Table</h2>
+        		<div class="text">Bill Page</div>
+        <h2 class = "banner ">Bill History Table</h2>
         <div class = "banner">
-			<a href="<%=request.getContextPath()%>/viewSupplier" class="btn btn-info" role="button">View Supplier</a>
-			<a href="<%=request.getContextPath()%>/viewBillDetail" class="btn btn-info" role="button">View Bill</a>
+			<a href="<%=request.getContextPath()%>/showAddBill" class="button-search" role="button">Add Bill</a>
+			<a href="<%=request.getContextPath()%>/showAddBillAvailable" class="button-search" role="button">Add Bill (Available Product)</a>
 		</div>
           <c:url value="/SearchInventory" var="SearchInventory"/>
- 		<form:form class = "searchform" action="SearchInventory" method="post">
+ 		<form:form class = "searchform" action="SearchBillDetail" method="post">
 					<p class = "text2" >Search Information by:</p>
     								<select name="op" class="select">
-     									 <option value="ID_Inventory">Mã kho</option>
-      									 <option value="Inventory_Name">Tên kho</option>
-      									 <option value="Inventory_Address">Địa chỉ</option>
-      									 <option value="ID_Inventory_Type">Loại kho</option>
+      									 <option value="Bill_Name">Tên hóa đơn</option>
+      									 <option value="Bill_Type">Loại</option>
+      									 <option value="Supplier_Name">Nhà cung cấp</option>
+      									 <option value="Product_Name">Sản phẩm</option>
+      									 <option value="Transfer_Date ">Ngày</option>
     								</select>
                 	<p class = "text2" >Type here:</p>
   						<div class="searchbar"><input name="search" type="search" placeholder='Search' /></div>
@@ -143,22 +143,41 @@
     <table class="fl-table">
         <thead>
         <tr>
-            <th>Mã kho</th>
-            <th>Tên kho</th>
-            <th>Địa chỉ</th>
-            <th>Loại kho</th>
+            <th>STT</th>
+            <th>Tên hóa đơn</th>
+            <th>Loại</th>
+            <th>Nhà cung cấp</th>
+            <th>Sản phẩm</th>
+            <th>Số lượng</th>
+            <th>Ngày</th>
+            <th>Action</th>
         </tr>
         </thead>
         <tbody>
-        <c:forEach items="${inventory}" var="item">
+        <c:forEach items="${billDetail}" var="item">
         <tr>
             <td><c:out value="${item.id}" /></td>
-            <td><c:out value="${item.name}" />
-            	&nbsp &nbsp
-  				<a class = "bx bxs-box bx-xs" style="text-decoration:none; color: blue " href = "<%=request.getContextPath()%>/viewProduct?id=<c:out value="${item.id}-${item.name}" />">
-  					</a></td>
-            <td><c:out value="${item.address}" /></td>
-            <td><c:out value="${item.productType.name}" /></td>
+            <td><c:out value="${item.bill.name}" /></td>
+            <td>
+            <c:choose>
+    			<c:when test="${item.bill.billType=='0'}">
+        			nhập kho 
+        			<br />
+    			</c:when>    
+    			<c:otherwise>
+        			xuất kho 
+        			<br />
+    			</c:otherwise>
+			</c:choose>
+			</td>
+            <td><c:out value="${item.bill.supplier.name}" /></td>
+            <td><c:out value="${item.product.name}" /></td>
+            <td><c:out value="${item.amountTransfer}" /></td>
+            <td><c:out value="${item.transferDate}" /></td>
+            <td>
+            <a class = "bx bxs-trash bx-xs" style="text-decoration:none; color: red " href = "<%=request.getContextPath()%>/deleteBillDetail?id=<c:out value="${item.id}-${item.bill.id}" />">
+  					</a>
+  					</td>
         </tr>
         </c:forEach>
         <tbody>
@@ -166,6 +185,7 @@
 </div>
         </div>
     </section>
+
 </body>
-<script src='<c:url value="/resources/js/js-page-admin.js" />'></script>
+    <script src = '<c:url value="/resources/js/js-page-admin.js" />' ></script>
 </html>
