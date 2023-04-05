@@ -181,14 +181,4 @@ public class TicketDAO {
 		}
 		
 	}
-	
-	public class TicketIDMapper implements RowMapper<Ticket> {
-
-		public Ticket mapRow(ResultSet rs, int rowNum) throws SQLException {
-			Ticket t = new Ticket();
-			t.setId_Ticket(rs.getInt("ID_Ticket"));
-			return t;
-		}
-		
-	}
 }
