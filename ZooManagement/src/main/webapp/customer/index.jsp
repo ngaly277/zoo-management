@@ -75,7 +75,7 @@
 						<p class="animals-detail-content">
 							Hơn 1000 cá thể gồm hàng chục loài có vú, hàng chục giống chim, nhiều giống bò sát và giống có cánh các loại
 						</p>
-						<a class="btn-animals-detail" href="#">Khám phá động vật</a>
+						<a class="btn-animals-detail" href="/ZooManagement/map">Khám phá động vật</a>
 					</div>
 				</div>
 			</div>
@@ -86,7 +86,7 @@
 				<div class="link-cards__left">
 					<h2 class="link-cards__heading">Khám phá sở thú</h2>
 					<div class="link-cards__wrapper">
-						<a href="#" class="link-cards__link">
+						<a href="/ZooManagement/map" class="link-cards__link">
 							<div class="link-cards__img-wrapper">
 								<img class="link-cards__img" src='<c:url value="/resources/images/img1.webp"></c:url>' alt=""/>
 							</div>
@@ -96,7 +96,7 @@
 				</div>
 				<div class="link-cards__right">
 					<div class="link-cards__wrapper2">
-						<a href="#" class="link-cards__link">
+						<a href="/ZooManagement/map" class="link-cards__link">
 							<div class="link-cards__img-wrapper2">
 								<img class="link-cards__img" src='<c:url value="/resources/images/img2.webp"></c:url>' alt=""/>
 							</div>

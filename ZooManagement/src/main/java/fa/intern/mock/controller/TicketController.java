@@ -28,4 +28,9 @@ public class TicketController {
 		model.addAttribute("listTickets", ticketService.getAllTicketByType(id));
 		return "customer/add-ticket-card";
 	}
+	
+	@RequestMapping("map")
+	public String showMap(Model model) {
+		return "customer/map";
+	}
 }

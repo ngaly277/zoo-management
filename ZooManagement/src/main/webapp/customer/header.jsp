@@ -15,7 +15,7 @@
       <div class="navbar-nav">
         <a class="nav-link active" aria-current="page" href="/ZooManagement/">Trang chủ</a>
         <a class="nav-link" href="/ZooManagement/tickets">Mua vé</a>
-        <a class="nav-link" href="#">Về chúng tôi</a>
+        <a class="nav-link" href="/ZooManagement/map">Về chúng tôi</a>
         <div class="nav-item dropdown ml-3">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <img src='<c:url value="/resources/images/person-4.png"></c:url>' alt="person" width="30" height="30" />
