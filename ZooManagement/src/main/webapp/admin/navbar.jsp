@@ -50,7 +50,7 @@
 			</ul>
 		</div>
 		<div class="bottom-content">
-			<li class=""><a href="logout"> <i class='bx bx-log-out icon'></i>
+			<li class=""><a href="${myContext}/logout"> <i class='bx bx-log-out icon'></i>
 					<span class="text nav-text">Logout</span>
 			</a></li>
 			<li class="mode">
