@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import fa.intern.mock.bean.Account;
+import fa.intern.mock.dao.AccountDAO;
 import fa.intern.mock.service.AccountService;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
@@ -18,6 +19,9 @@ import jakarta.servlet.http.HttpSession;
 public class AccountController {
 	@Autowired
 	private AccountService accountService;
+	
+	@Autowired
+	private AccountDAO accountDAO;
 	
 	@RequestMapping(value="/")
 	public String index(Model model, HttpSession session, HttpServletRequest request) {
@@ -56,7 +60,6 @@ public class AccountController {
 			}
 			return "customer/index";
 		}
-		
 	}
 	
 	@RequestMapping(value="register", method = RequestMethod.GET)
@@ -78,9 +81,7 @@ public class AccountController {
 			accountService.insertAccount(account);
 			return "redirect:login";
 		}
-
 	}
-	
 	
 	@RequestMapping(value = "login", method = RequestMethod.POST)
 	public String login(@ModelAttribute("account") Account account, Model model, HttpSession session, HttpServletRequest request, HttpServletResponse response) {

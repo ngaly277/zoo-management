@@ -11,6 +11,10 @@ public class AccountService {
 	@Autowired
 	private AccountDAO accountDAO;
 	
+	public void createAccountThroughAddNewStaff(String string) {
+		accountDAO.createAccountThroughAddNewStaff(string);
+	}
+
 	public Account getAccount(String username) {
 		try {
 			return accountDAO.getAccount(username);
