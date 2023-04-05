@@ -22,6 +22,7 @@
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
 <body>
+<jsp:include page="navbar.jsp" />
  <nav class="sidebar close">
         <header>
             <div class="image-text">
@@ -165,7 +166,6 @@
 </div>
         </div>
     </section>
-
 </body>
-    <script src = '<c:url value="/resources/js/js-page-admin.js" />' ></script>
+<script src='<c:url value="/resources/js/js-page-admin.js" />'></script>
 </html>

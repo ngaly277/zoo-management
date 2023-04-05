@@ -14,17 +14,21 @@
     <div id="navbarNavAltMarkup">
       <div class="navbar-nav">
         <a class="nav-link active" aria-current="page" href="/ZooManagement/">Trang chủ</a>
-        <a class="nav-link" href="tickets">Mua vé</a>
-        <a class="nav-link" href="#">Về chúng tôi</a>
+        <a class="nav-link" href="/ZooManagement/tickets">Mua vé</a>
+        <a class="nav-link" href="/ZooManagement/map">Về chúng tôi</a>
         <div class="nav-item dropdown ml-3">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <img src='<c:url value="/resources/images/person-4.png"></c:url>' alt="person" width="30" height="30" />
           </a>
           <ul class="dropdown-menu dropdown-menu-end">
-            <li><a class="dropdown-item" href="#">Giỏ hàng</a></li>
-            <li><a class="dropdown-item" href="#">Lịch sử mua vé</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="login">Đăng nhập</a></li>
+          	<c:if test="${not empty username}">
+	            <!-- <li><a class="dropdown-item" href="#">Lịch sử đặt vé</a></li>
+	            <li><hr class="dropdown-divider"></li> -->
+	            <li><a class="dropdown-item" href="logout">Đăng xuất</a></li>
+	        </c:if>
+	        <c:if test="${empty username}">
+	            <li><a class="dropdown-item" href="login">Đăng nhập</a></li>
+	        </c:if>
           </ul>
         </div>
       </div>

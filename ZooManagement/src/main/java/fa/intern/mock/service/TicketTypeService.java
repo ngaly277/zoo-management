@@ -11,9 +11,25 @@ import fa.intern.mock.dao.TicketTypeDAO;
 @Service
 public class TicketTypeService {
 	@Autowired
-	private TicketTypeDAO ticketDAO;
+	private TicketTypeDAO ticketTypeDAO;
 	
-	public List<TicketType> getAllTicketType(){
-		return ticketDAO.getAllTicketType();
+	public List<TicketType> getAllTicketType(String searchQuery){
+		return ticketTypeDAO.getAllTicketType(searchQuery);
+	}
+
+	public TicketType getTicketTypeById(String ticketTypeId) {
+		return ticketTypeDAO.getTicketTypeById(ticketTypeId);
+	}
+
+	public boolean addTicketType(TicketType ticketType) {
+		return ticketTypeDAO.addTicketType(ticketType);
+	}
+
+	public boolean editTicketType(TicketType ticketType) {
+		return ticketTypeDAO.editTicketType(ticketType);
+	}
+
+	public boolean deleteTicketById(String ticketTypeId) {
+		return ticketTypeDAO.deleteTicketById(ticketTypeId);
 	}
 }
