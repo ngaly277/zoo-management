@@ -24,7 +24,14 @@
             <li><a class="dropdown-item" href="#">Giỏ hàng</a></li>
             <li><a class="dropdown-item" href="#">Lịch sử mua vé</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="login">Đăng nhập</a></li>
+          	<c:if test="${not empty username}">
+	            <!-- <li><a class="dropdown-item" href="#">Lịch sử đặt vé</a></li>
+	            <li><hr class="dropdown-divider"></li> -->
+	            <li><a class="dropdown-item" href="logout">Đăng xuất</a></li>
+	        </c:if>
+	        <c:if test="${empty username}">
+	            <li><a class="dropdown-item" href="login">Đăng nhập</a></li>
+	        </c:if>
           </ul>
         </div>
       </div>
