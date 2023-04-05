@@ -5,7 +5,6 @@ public class Account {
 	private String password;
 	private int id_Account_Type;
 	
-	
 	public String getUsername() {
 		return username;
 	}
@@ -41,6 +40,4 @@ public class Account {
 	public Account() {
 		super();
 	}
-	
-	
 }

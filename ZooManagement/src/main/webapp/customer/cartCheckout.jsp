@@ -24,7 +24,7 @@
 		
 	} else {
 		if (now.getTime() > listTicket.expiry) {
-			sessionStorage.removeItem("listTicket");
+			localStorage.removeItem("listTicket");
 		} else {
 			$("#empty").css("display", "none");
 			let totalPrice = 0;
@@ -43,11 +43,11 @@
 						'<div class="price-wrapper total-value">0</div>' +
 					'</section>' +
 				'</div>' +
-				'<form class="action" id="checkout">' +
+				'<div class="action">' +
 					'<div class="pay-btn-wrapper">' +
-						'<button type="submit" class="purchase">Thanh toán</button>' +
+						'<button type="submit" class="purchase">Hoàn thành thanh toán</button>' +
 					'</div>' +
-				'</form>' +
+				'</div>' +
 			'</div>');
 			let ticketID = "";
 			listTicket.tickets.forEach(ticket => {
@@ -124,9 +124,4 @@
 		}
 		location.reload();
 	}
-	
-	$("#checkout").submit(function(e){
-		e.preventDefault();
-		window.location.replace('/ZooManagement/checkout');
-	});
 </script>

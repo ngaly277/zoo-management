@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
@@ -8,27 +7,25 @@
 	xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>Cage Management page</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href='<c:url value="/resources/css/style-page-admin.css" />'
-	rel="stylesheet" type="text/css">
-<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css'
-	rel='stylesheet'>
-<script type="text/javascript">
-function confirm_decision(user_id){
-    if(confirm("you want to delete the user?")) // this will pop up confirmation box and if yes is clicked it call servlet else return to page
-     {
-       window.location="staffdelete?id="+user_id; 
-     }else{
-       return false;
-    }
-   return true;
- }
-</script>
+    <meta charset="UTF-8">
+    <title>Cage Management page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='<c:url value="/resources/css/style-page-admin.css" />' rel="stylesheet" type="text/css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+	<script type="text/javascript">
+		function confirm_decision(user_id){
+    		if(confirm("you want to delete the user?")) // this will pop up confirmation box and if yes is clicked it call servlet else return to page
+    		{
+		    	window.location="staffdelete?id="+user_id; 
+		    } else {
+    			return false;
+    		}
+    		return true;
+		}
+	</script>
 </head>
 <body>
-
+	<jsp:include page="navbar.jsp" />
 	<nav class="sidebar close">
 		<header>
 			<div class="image-text">
@@ -214,10 +211,8 @@ function confirm_decision(user_id){
 					<%-- </form> --%>
 				<tbody>
 			</table>
-			
 		</div>
 		</div>
-		
 	</section>
 </body>
 <script src='<c:url value="/resources/js/js-page-admin.js" />'></script>

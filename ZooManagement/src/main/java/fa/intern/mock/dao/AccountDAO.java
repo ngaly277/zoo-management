@@ -16,13 +16,23 @@ public class AccountDAO {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
-
 	public Account getAccount(String username) {
 		String query = "SELECT * FROM Account WHERE Username = " + username;
 		Account account = jdbcTemplate.query(query, new AccountMapper()).get(0);
 		System.out.println(
 				"hoho" + account.getPassword() + "-" + account.getPassword() + "-" + account.getId_Account_Type());
 		return account;
+	}
+
+	public void createAccountThroughAddNewStaff(String string) {
+		String sql = "insert into account (Username, Pass, ID_Account_Type) VALUE ('" + string + "', '" + string
+				+ "', 2)";
+		jdbcTemplate.update(sql);
+	}
+
+	public void insertAccount(Account a) {
+		String query = "INSERT INTO Account VALUES (?,?,?)";
+		jdbcTemplate.update(query, a.getUsername(), a.getPassword(), a.getId_Account_Type());
 	}
 
 	public class AccountMapper implements RowMapper<Account> {
@@ -34,10 +44,5 @@ public class AccountDAO {
 
 			return a;
 		}
-	}
-	
-	public void createAccountThroughAddNewStaff(String string) {
-		String sql = "insert into account (Username, Pass, ID_Account_Type) VALUE ('"+string+"', '"+string+"', 2)";
-		jdbcTemplate.update(sql);
 	}
 }
