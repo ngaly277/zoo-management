@@ -18,7 +18,7 @@ public class AdminTicketAgeController {
 	private TicketAgeService ticketAgeService;
 
 	@RequestMapping(value = "/admin/tickets/ticket-age", method = RequestMethod.GET)
-	public String pageShowTicketType(
+	public String pageTicketAgeShow(
 			Model model,
 			@RequestParam(required = false) String q) {
 		List<TicketAge> data = ticketAgeService.getAllTicketAge(q);
@@ -28,7 +28,7 @@ public class AdminTicketAgeController {
 	}
 
 	@RequestMapping(value = "/admin/tickets/ticket-age/add", method = RequestMethod.GET)
-	public String pageTicketAdd(Model model) {
+	public String pageTicketAgeAdd(Model model) {
 		return "admin/ticketAgeManagerEdit";
 	}
 
@@ -49,7 +49,7 @@ public class AdminTicketAgeController {
 	}
 
 	@RequestMapping(value = "/admin/tickets/ticket-age/delete", method = RequestMethod.POST)
-	public String deleteTicketAge(
+	public String actionTicketAgeDelete(
 			Model model,
 			@RequestParam(required = true) Integer id) {
 		// TODO: Delete here.
@@ -61,7 +61,7 @@ public class AdminTicketAgeController {
 	}
 
 	@RequestMapping(value = "/admin/tickets/ticket-age/edit", method = RequestMethod.GET)
-	public String pageTicketEdit(
+	public String pageTicketAgeEdit(
 			Model model,
 			@RequestParam(required = true) Integer id) {
 		// TODO: Check if ticket is exist before return to edit page.
@@ -81,7 +81,7 @@ public class AdminTicketAgeController {
 	}
 
 	@RequestMapping(value = "/admin/tickets/ticket-age/edit", method = RequestMethod.POST)
-	public String actionTicketEdit(
+	public String actionTicketAgeEdit(
 			Model model,
 			@RequestParam(required = true) Integer id,
 			@RequestParam(required = true) String desp) {

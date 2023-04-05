@@ -45,7 +45,7 @@
             <div class="searchbar"><input type="text" name="price" value="${ticketData.price == null ? "" : ticketData.price}"></div>
             <br>
             <input class="button-search" type="submit" value="<c:out value='${ticketData != null ? "Save changes" : "Add"}' />">
-            <input class="button-search" type="reset" value="Clear data">
+            <input class="button-search" type="reset" value="Reset data">
         </form>
     </section>
 </body>

@@ -63,8 +63,6 @@ public class TicketAgeDAO {
             return false;
 
         try {
-            // TODO: Need change this query because this database script hasn't contain
-            // "Ticket_Age" table!!!!!
             String[] queryArray = {
                     "INSERT INTO Ticket_Age(Age_Description)",
                     "VALUES (N'%s')",
@@ -85,8 +83,6 @@ public class TicketAgeDAO {
             return false;
 
         try {
-            // TODO: Need change this query because this database script hasn't contain
-            // "Ticket_Age" table!!!!!
             String[] queryArray = {
                     "UPDATE Ticket_Age",
                     "SET Age_Description = N'%s'",

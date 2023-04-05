@@ -22,7 +22,7 @@
             <p class="text2">Find a ticket:</p>
             <div class="searchbar"><input type="search" name="q" placeholder='Enter a query here...' value='<c:out value="${searchQuery}" />'></div>
             <button class="button-search" type="submit">Search</button>
-            <button class="button-search" type="reset">Clear text</button>
+            <button class="button-search" type="reset">Reset data</button>
         </form>
         <br>
         <br>
@@ -44,7 +44,7 @@
                         <th>Type</th>
                         <th>Type Description</th>
                         <th>Ticket age description</th>
-                        <th>Amount</th>
+                        <th>Amount (VND)</th>
                         <th>Price</th>
                         <th>Action</th>
                     </tr>

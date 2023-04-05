@@ -25,7 +25,7 @@
             <p class="text2">Find a ticket age:</p>
             <div class="searchbar"><input type="search" name="q" placeholder='Enter a query here...' value='<c:out value="${searchQuery}" />'></div>
             <button class="button-search" type="submit">Search</button>
-            <button class="button-search" type="reset">Clear text</button>
+            <button class="button-search" type="reset">Reset data</button>
         </form>
         <br>
         <br>
@@ -37,6 +37,7 @@
             <table class="fl-table">
                 <thead>
                     <tr>
+                        <th>ID</th>
                         <th>Description</th>
                         <th>Action</th>
                     </tr>
@@ -44,12 +45,13 @@
                 <tbody>
                     <c:forEach var="item" items="${ticketAge}">
                         <tr>
+                            <td>${item.id_Ticket_Age}</td>
                             <td>${item.age_Description}</td>
                             <td>
                                 <%-- <form action="${myContext}/admin/tickets/delete?id=${item.id_Ticket}" method="post"> --%>
                                     <a class="bx bxs-edit bx-xs" style="text-decoration:none; color: green" href="${myContext}/admin/tickets/ticket-age/edit?id=${item.id_Ticket_Age}"></a>
                                     &nbsp &nbsp
-                                    <button onclick="deleteConfirm(${item.id_Ticket_Age})" class="bx bxs-trash bx-xs" style="text-decoration:none; color: red; border: none; background-color: transparent; cursor: pointer;"></button>
+                                    <button onclick="deleteAgeConfirm(${item.id_Ticket_Age})" class="bx bxs-trash bx-xs" style="text-decoration:none; color: red; border: none; background-color: transparent; cursor: pointer;"></button>
                                 <%-- </form> --%>
                             </td>
                         </tr>

@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title><c:out value='${ticketAgeData != null ? "Edit" : "Add a"}' /> ticket age<c:out value='${ticketAgeData != null ? String.format(" ID = %d", ticketAgeData.id_Ticket_Age) : ""}' /></title>
+    <title><c:out value='${ticketAgeData != null ? "View and edit" : "Add a"}' /> ticket age<c:out value='${ticketAgeData != null ? String.format(" ID = %d", ticketAgeData.id_Ticket_Age) : ""}' /></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href='<c:url value="/resources/css/style-page-admin.css" />' rel="stylesheet" type="text/css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -28,7 +28,7 @@
             <div class="searchbar"><input type="text" name="desp" value="${ticketAgeData.age_Description == null ? "" : ticketAgeData.age_Description}"></div>
             <br>
             <input class="button-search" type="submit" value="<c:out value='${ticketAgeData != null ? "Save changes" : "Add"}' />">
-            <input class="button-search" type="reset" value="Clear data">
+            <input class="button-search" type="reset" value="Reset data">
         </form>
     </section>
 </body>

@@ -26,8 +26,6 @@ public class TicketDAO {
 
 	public List<Ticket> getAllTickets(String searchQuery) {
 		try {
-			// TODO: Need change this query because this database script hasn't contain
-			// "Ticket_Age" table!!!!!
 			String[] queryArray = {
 					"SELECT",
 					"Ticket.ID_Ticket, Ticket_Type.ID_Ticket_Type, Ticket_Type.Ticket_Type, Ticket_Type.Ticket_Description,",
@@ -56,8 +54,6 @@ public class TicketDAO {
 
 	public Ticket getTicketById(String ticketId) {
 		try {
-			// TODO: Need change this query because this database script hasn't contain
-			// "Ticket_Age" table!!!!!
 			String[] queryArray = {
 					"SELECT",
 					"Ticket.ID_Ticket, Ticket_Type.ID_Ticket_Type, Ticket_Type.Ticket_Type, Ticket_Type.Ticket_Description,",
@@ -88,8 +84,6 @@ public class TicketDAO {
 			return false;
 
 		try {
-			// TODO: Need change this query because this database script hasn't contain
-			// "Ticket_Age" table!!!!!
 			String[] queryArray = {
 					"INSERT INTO Ticket(ID_Ticket_Type, ID_Ticket_Age, Amount, Price)",
 					"VALUES (%d, %d, %d, %d)",
@@ -112,8 +106,6 @@ public class TicketDAO {
 			return false;
 
 		try {
-			// TODO: Need change this query because this database script hasn't contain
-			// "Ticket_Age" table!!!!!
 			String[] queryArray = {
 					"UPDATE Ticket",
 					"SET ID_Ticket_Type = %d, ID_Ticket_Age = %d, Amount = %d, Price = %d",

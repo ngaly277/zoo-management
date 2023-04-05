@@ -25,7 +25,7 @@
             <p class="text2">Find a ticket type:</p>
             <div class="searchbar"><input type="search" name="q" placeholder='Enter a query here...' value='<c:out value="${searchQuery}" />'></div>
             <button class="button-search" type="submit">Search</button>
-            <button class="button-search" type="reset">Clear text</button>
+            <button class="button-search" type="reset">Reset data</button>
         </form>
         <br>
         <br>
@@ -37,6 +37,7 @@
             <table class="fl-table">
                 <thead>
                     <tr>
+                        <th>ID</th>
                         <th>Name</th>
                         <th>Description</th>
                         <th>Action</th>
@@ -45,13 +46,14 @@
                 <tbody>
                     <c:forEach var="item" items="${ticketType}">
                         <tr>
+                            <td>${item.id_Ticket_Type}</td>
                             <td>${item.ticket_Type}</td>
                             <td>${item.ticket_Description}</td>
                             <td>
                                 <%-- <form action="${myContext}/admin/tickets/delete?id=${item.id_Ticket}" method="post"> --%>
                                     <a class="bx bxs-edit bx-xs" style="text-decoration:none; color: green" href="${myContext}/admin/tickets/ticket-type/edit?id=${item.id_Ticket_Type}"></a>
                                     &nbsp &nbsp
-                                    <button onclick="deleteConfirm(${item.id_Ticket_Type})" class="bx bxs-trash bx-xs" style="text-decoration:none; color: red; border: none; background-color: transparent; cursor: pointer;"></button>
+                                    <button onclick="deleteTypeConfirm(${item.id_Ticket_Type})" class="bx bxs-trash bx-xs" style="text-decoration:none; color: red; border: none; background-color: transparent; cursor: pointer;"></button>
                                 <%-- </form> --%>
                             </td>
                         </tr>
