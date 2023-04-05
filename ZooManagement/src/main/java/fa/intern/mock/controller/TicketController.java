@@ -18,8 +18,8 @@ public class TicketController {
 	private TicketService ticketService;
 	
 	@RequestMapping("tickets")
-	public String showAllTickets(Model model) {
-		model.addAttribute("ticketTypeList", ticketTypeService.getAllTicketType(null));
+	public String showTickets(Model model) {
+		model.addAttribute("ticketTypeList", ticketTypeService.getAllTicketType());
 		return "customer/tickets";
 	}
 	
