@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Cage Management page</title>
+<title>Animal Management page</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href='<c:url value="/resources/css/style-page-admin.css" />'
 	rel="stylesheet" type="text/css">
@@ -21,7 +21,7 @@
 				</span>
 
 				<div class="text logo-text">
-					<span class="name">Rainie</span> <span class="profession">Cage
+					<span class="name">Rainie</span> <span class="profession">Animal
 						Site</span>
 				</div>
 			</div>
@@ -34,7 +34,7 @@
 					<li class="nav-link"><a href="admin.jsp"> <i
 							class='bx bx-home-alt icon'></i> <span class="text nav-text">Home</span>
 					</a></li>
-					<li class="nav-link"><a href="#"> <i
+					<li class="nav-link"><a href="<%=request.getContextPath()%>/showAllCage"> <i
 							class='bx bxs-castle icon'></i> <span class="text nav-text">Quản
 								lý chuồng</span>
 					</a></li>
@@ -86,15 +86,15 @@
 	</nav>
 
 	<section class="home">
-		<div class="text">Cage Page</div>
-		<h2 class="banner ">Cage Management Table</h2>
+		<div class="text">Animal Page</div>
+		<h2 class="banner ">Animal Management Table</h2>
 		<form class="searchform"
-			action="searchCage" method="post">
+			action="searchAnimal?idCage=${idCage}" method="post">
 			<p class="text2">Search Information by:</p>
 			<select class="select" id="option" name="option">
-				<option>Mã chuồng</option>
-				<option>Tên chuồng</option>
-				<option>Người chăm sóc</option>
+				<option>ID động vật</option>
+				<option>Tên động vật</option>
+				<option>Loài động vật</option>
 			</select>
 			<p class="text2">Type here:</p>
 			<div class="searchbar">
@@ -104,9 +104,9 @@
 			<button class="button-search" type="reset">Reset</button>
 
 		</form>
-		<br> <br> <a href="<%=request.getContextPath()%>/showStaff" style="text-decoration: none">
+		<br> <br> <a href = "<%=request.getContextPath()%>/showType?idCage=${idCage}" style="text-decoration: none">
 			<button style="margin-left: 70px" class="button-search">Thêm
-				chuồng</button>
+				động vật</button>
 		</a> <a href="" style="text-decoration: none">
 			<button href="#" style="margin-left: 710px" class="prev">«
 				Trước</button>
@@ -118,29 +118,30 @@
 			<table class="fl-table" style="overflow-y: auto;">
 				<thead>
 					<tr>
-						<th>Mã chuồng</th>
-						<th>Tên chuồng</th>
-						<th>Giới hạn</th>
-						<th>Người chăm sóc</th>
+						<th>Mã động vật</th>
+						<th>Loài động vật</th>
+						<th>Trạng thái</th>
+						<th>Tên động vật</th>
+						<th>Thông tin</th>
+						<th>Thức ăn</th>
 						<th>Action</th>
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach items="${cage}" var="item">
+					<c:forEach items="${animal}" var="item">
 						<tr>
-							<td><c:out value="${item.idCage}" /></td>
-							<td><c:out value="${item.nameCage}" /> <a
-								class="bx bxs-message-edit bx-xs"
-								style="text-decoration: none; color: blue" href="<%=request.getContextPath()%>/getAnimalbyIDCage?idCage=${item.idCage}"> </a> &nbsp
-								&nbsp</td>
-							<td><c:out value="${item.limit}" /></td>
-							<td><c:out value="${item.staffs.staffName}" /></td>
+							<td><c:out value="${item.idAnimal}" /></td>
+							<td><c:out value="${item.types.animalType}" /></td>
+							<td><c:out value="${item.animalStatus}" /></td>
+							<td><c:out value="${item.animalName}" /></td>
+							<td><c:out value="${item.detail}" /></td>
+							<td><c:out value="${item.food}" /></td>
 							<td><a class="bx bxs-edit bx-xs"
 								style="text-decoration: none; color: green"
-								href="<%=request.getContextPath()%>/showCageInfo?idCage=${item.idCage}">
+								href="<%=request.getContextPath()%>/showAnimalInfo?idAnimal=${item.idAnimal}">
 							</a> &nbsp &nbsp <a class="bx bxs-trash bx-xs"
 								style="text-decoration: none; color: red" href="#"
-								onclick="confirmDelete(${item.idCage})"> </a></td>
+								onclick="confirmDelete(${item.cages.idCage}, ${item.idAnimal})"> </a></td>
 						</tr>
 					</c:forEach>
 				<tbody>
@@ -150,10 +151,12 @@
 </body>
 <script src='<c:url value="/resources/js/js-page-admin.js" />'></script>
 <script>
-function confirmDelete(cageId) {
-	  if (confirm("Bạn có chắc muốn xóa cage này không?")) {
-	    window.location.href = "deleteCage?idCage=" + cageId;
+function confirmDelete(idCage, idAnimal) {
+	  if (confirm("Bạn có chắc muốn xóa động vật này không?")) {
+		  console.log("deleteAnimal?idAnimal=" + idAnimal + "&idCage=" + idCage)
+	    window.location.href = "deleteAnimal?idAnimal=" + idAnimal + "&idCage=" + idCage
 	  }
 	}
+
 </script>
 </html>

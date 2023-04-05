@@ -18,15 +18,15 @@
 		<div class="content-container">
 			<h1 class="content-title">Chọn loại vé</h1>
 			<div class="warning-container">
-				<!-- <div class="message-container">
-					<i class='fa fa-exclamation-circle' style='color:#0F9F6C;font-size:20px;margin-right:20px;'></i>
-					<div style="font-size: 16px;">
+				<div class="message-container">
+					<i class='fa fa-exclamation-circle' style='color:#0F9F6C;font-size:30px;margin-right:20px;'></i>
+					<div style="font-size: 20px;">
 						Bạn đã có tài khoản? 
 						<a href="login">Đăng nhập</a>
 						Chưa có tài khoản?
 						<a href="#">Đăng ký ngay</a>
 					</div>
-				</div> -->
+				</div>
 				<div class="tickets-list">
 				<c:if test="${not empty ticketTypeList}">
 			      <c:forEach var="ticketType" items="${ticketTypeList}">
