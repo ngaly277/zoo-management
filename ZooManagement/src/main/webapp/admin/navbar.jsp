@@ -24,13 +24,9 @@
 				<li class="nav-link"><a href="#"> <i
 						class='bx bx-home-alt icon'></i> <span class="text nav-text">Home</span>
 				</a></li>
-				<li class="nav-link"><a href="Cage.jsp"> <i
+				<li class="nav-link"><a href="${myContext}/showAllCage"> <i
 						class='bx bxs-castle icon'></i> <span class="text nav-text">Quản
 							lý chuồng</span>
-				</a></li>
-				<li class="nav-link"><a href="Animal.jsp"> <i
-						class='bx bxs-dog icon'></i> <span class="text nav-text">Quản
-							lý động vật</span>
 				</a></li>
 				<li class="nav-link"><a href="Inventory.jsp"> <i
 						class='bx bx-box icon'></i> <span class="text nav-text">Quản
@@ -40,9 +36,12 @@
 						class="bx bxs-coupon icon <c:out value='${param.navToggle == "tickets" ? "active" : ""}' />"></i> <span class="text nav-text">Quản
 							lý đặt vé</span>
 				</a></li>
-				<li class="nav-link"><a href="stafflist"> <i
+				<li class="nav-link"><a href="${myContext}/stafflist"> <i
 						class='bx bx-user icon'></i> <span class="text nav-text">Quản
 							lý nhân viên</span>
+				</a></li>
+				<li class="nav-link"><a href="${myContext}/admin/ticket-history"> <i
+						class='bx bx-history icon'></i> <span class="text nav-text">Lịch sử bán vé</span>
 				</a></li>
 				<li class="nav-link"><a href="Revenue.jsp"> <i
 						class='bx bx-pie-chart-alt icon'></i> <span class="text nav-text">Doanh
