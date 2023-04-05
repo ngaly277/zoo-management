@@ -199,7 +199,7 @@ body.dark .sidebar header .toggle{
     transition: var(--tran-03);
 }
 
-.sidebar li a:hover{
+.sidebar li a:hover, .sidebar li a .active {
     background-color: var(--primary-color);
 }
 .sidebar li a:hover .icon,
@@ -485,7 +485,7 @@ body.dark .home .banner {
 
 /* ----------- Relevant Code Below ----- */
 
-input[type =search] { 
+input[type =search], input[type=text] { 
   width: 30%;
   height: 35px;
   border: 3px solid #324960;
