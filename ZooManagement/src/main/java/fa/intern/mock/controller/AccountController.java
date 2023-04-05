@@ -59,6 +59,29 @@ public class AccountController {
 		
 	}
 	
+	@RequestMapping(value="register", method = RequestMethod.GET)
+	public String register(Model model) {
+		model.addAttribute("account", new Account());
+		return "admin/Register";
+	}
+	
+	@RequestMapping(value="register", method = RequestMethod.POST)
+	public String register(@ModelAttribute("account")Account account, Model model) {
+		Account a = accountService.getAccount(account.getUsername());
+		if (a != null) {
+			model.addAttribute("error", "Tên tài khoản đã tồn tại.");
+			account.setPassword("");
+			model.addAttribute("account", account);
+			return "admin/Register";
+		} else {
+			account.setId_Account_Type(1);
+			accountService.insertAccount(account);
+			return "redirect:login";
+		}
+
+	}
+	
+	
 	@RequestMapping(value = "login", method = RequestMethod.POST)
 	public String login(@ModelAttribute("account") Account account, Model model, HttpSession session, HttpServletRequest request, HttpServletResponse response) {
 		if (accountService.loginAccount(account.getUsername(), account.getPassword()) == 1) {
@@ -68,10 +91,6 @@ public class AccountController {
 				Cookie ckUsername = new Cookie("username", account.getUsername());
 				ckUsername.setMaxAge(3600);
 				response.addCookie(ckUsername);
-				
-//				Cookie ckPassword = new Cookie("password", account.getPassword());
-//				ckPassword.setMaxAge(3600);
-//				response.addCookie(ckPassword);
 			}
 			return "redirect:/";
 		} else if (accountService.loginAccount(account.getUsername(), account.getPassword()) == -1) {
@@ -92,10 +111,6 @@ public class AccountController {
 				cookie.setMaxAge(0);
 				response.addCookie(cookie);
 			}
-//			if (cookie.getName().equalsIgnoreCase("password")) {
-//				cookie.setMaxAge(0);
-//				response.addCookie(cookie);
-//			}
 		}
 		return "redirect:/";
 	}
@@ -104,18 +119,16 @@ public class AccountController {
 		Account account = null;
 		Cookie[] cookies = request.getCookies();
 		String username = "";
-		String password = "";
-
-		for(Cookie cookie : cookies) {
-			if (cookie.getName().equalsIgnoreCase("username")) {
-				username = cookie.getValue();
+		
+		if (cookies.length != 0) {
+			for(Cookie cookie : cookies) {
+				if (cookie.getName().equalsIgnoreCase("username")) {
+					username = cookie.getValue();
+				}
 			}
-//			if (cookie.getName().equalsIgnoreCase("password")) {
-//				password = cookie.getValue();
-//			}
-		}
-		if(!username.isEmpty()) {
-			account = accountService.getAccount(username);
+			if(!username.isEmpty()) {
+				account = accountService.getAccount(username);
+			}
 		}
 		
 		return account;

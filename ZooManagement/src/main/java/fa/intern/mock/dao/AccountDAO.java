@@ -20,6 +20,11 @@ public class AccountDAO {
 		return jdbcTemplate.query(query, new AccountMapper()).get(0);
 	}
 	
+	public void insertAccount(Account a) {
+		String query = "INSERT INTO Account VALUES (?,?,?)";
+		jdbcTemplate.update(query, a.getUsername(), a.getPassword(), a.getId_Account_Type());
+	}
+	
 	public class AccountMapper implements RowMapper<Account> {
 		  public Account mapRow(ResultSet rs, int rowNum) throws SQLException {
 			  Account a = new Account();
