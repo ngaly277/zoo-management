@@ -23,6 +23,11 @@ public class TicketDAO {
 				+ idTicketType;
 		return jdbcTemplate.query(query, new TicketMapper());
 	}
+	
+	public Ticket getTicket(int idTicketType, int idTicketAge) {
+		String query = "SELECT * FROM Ticket WHERE ID_Ticket_Type = " + idTicketType + " and ID_Ticket_Age = " + idTicketAge;
+		return jdbcTemplate.query(query, new TicketIDMapper()).get(0);
+	}
 
 	public List<Ticket> getAllTickets(String searchQuery) {
 		try {
@@ -165,5 +170,15 @@ public class TicketDAO {
 
 			return t;
 		}
+	}
+	
+	public class TicketIDMapper implements RowMapper<Ticket> {
+
+		public Ticket mapRow(ResultSet rs, int rowNum) throws SQLException {
+			Ticket t = new Ticket();
+			t.setId_Ticket(rs.getInt("ID_Ticket"));
+			return t;
+		}
+		
 	}
 }

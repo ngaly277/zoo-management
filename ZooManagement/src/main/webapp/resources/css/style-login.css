@@ -1,9 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
 *,
 *:before,
 *:after{
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
 }
 body{
     background-color: #FFB6C1;
@@ -65,7 +68,7 @@ body{
   position: relative;
 }
 form{
-    height: 600px;
+    height: 620px;
     width: 400px;
     background-color: rgba(255,255,255,0.13);
     position: absolute;
@@ -90,6 +93,7 @@ form h3{
     font-weight: 500;
     line-height: 20px;
     text-align: center;
+    margin-bottom: 20px;
 }
 
 label{

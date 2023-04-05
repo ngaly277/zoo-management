@@ -23,15 +23,15 @@
 		<c:if test="${not empty listTickets}">
 			<h1 class="content-title">${listTickets.get(0).ticket_Type.ticket_Type }</h1>
 			<div class="warning-container">
-				<div class="message-container">
-					<i class='fa fa-exclamation-circle' style='color:#0F9F6C;font-size:30px;margin-right:20px;'></i>
-					<div style="font-size: 20px;">
+				<!-- <div class="message-container">
+					<i class='fa fa-exclamation-circle' style='color:#0F9F6C;font-size:20px;margin-right:20px;'></i>
+					<div style="font-size: 16px;">
 						Bạn đã có tài khoản? 
 						<a href="login">Đăng nhập</a>
 						Chưa có tài khoản?
 						<a href="#">Đăng ký ngay</a>
 					</div>
-				</div>
+				</div> -->
 				<article >
 					<figure class="ticket-detail">
 						<img class="ticket-detail-img" src='<c:url value="/resources/images/img3.jpg"></c:url>' alt=""/>
@@ -106,14 +106,14 @@
 	$("#basicDate").flatpickr({
 	    enableTime: false,
 	    minDate: "today",
-	    dateFormat: "d-m-Y"
+	    dateFormat: "Y-m-d"
 	});
 	$(".ticket-form").submit(function(e){
 		e.preventDefault();
 		
 		if(validateForm()){
 			const now = new Date();
-			let listTicket = JSON.parse(window.localStorage.getItem("listTicket")) || {tickets: [], expiry: now.getTime() + 60000};
+			let listTicket = JSON.parse(window.sessionStorage.getItem("listTicket")) || {tickets: [], expiry: now.getTime() + 600000};
 	
 			let item = listTicket.tickets.filter(ticket => ticket.id === (${listTickets.get(0).ticket_Type.id_Ticket_Type } + $('#basicDate').val()))[0];
 			let idCountTicket = "";
@@ -160,7 +160,7 @@
 				listTicket.tickets.push(item);
 			}
 			
-			window.localStorage.setItem("listTicket", JSON.stringify(listTicket));
+			window.sessionStorage.setItem("listTicket", JSON.stringify(listTicket));
 			
 			window.location.replace('/ZooManagement/tickets');
 		} else {

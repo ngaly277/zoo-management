@@ -36,4 +36,8 @@ public class TicketService {
 	public boolean deleteTicketById(String ticketId) {
 		return ticketDAO.deleteTicketById(ticketId);
 	}
+	
+	public Ticket getTicket(int idTicketType, int idTicketAge) {
+		return ticketDAO.getTicket(idTicketType, idTicketAge);
+	}
 }

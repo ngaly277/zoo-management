@@ -15,9 +15,14 @@ public class AccountDAO {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	
-	public Account getAccount(String username) {
-		String query = "SELECT * FROM Account WHERE Username = " + username;
+	public Account getAccount(String username) throws SQLException, IndexOutOfBoundsException{
+		String query = "SELECT * FROM Account WHERE Username = '" + username + "'";
 		return jdbcTemplate.query(query, new AccountMapper()).get(0);
+	}
+	
+	public void insertAccount(Account a) {
+		String query = "INSERT INTO Account VALUES (?,?,?)";
+		jdbcTemplate.update(query, a.getUsername(), a.getPassword(), a.getId_Account_Type());
 	}
 	
 	public class AccountMapper implements RowMapper<Account> {
@@ -25,7 +30,7 @@ public class AccountDAO {
 			  Account a = new Account();
 			  a.setUsername(rs.getString("Username"));
 			  a.setPassword(rs.getString("Pass"));
-			  a.setID_Account_Type(rs.getInt("ID_Account_Type"));
+			  a.setId_Account_Type(rs.getInt("ID_Account_Type"));
 			  return a;
 		  }
 		}
