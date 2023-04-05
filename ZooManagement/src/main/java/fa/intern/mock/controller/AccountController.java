@@ -30,7 +30,7 @@ public class AccountController {
 					return "customer/index";
 				}
 				if (account.getId_Account_Type() == 2) {
-					return "admin/Cage";
+					return "admin/admin";
 				}
 			} 
 		}
@@ -51,7 +51,7 @@ public class AccountController {
 					return "customer/index";
 				}
 				if (account.getId_Account_Type() == 2) {
-					return "admin/Cage";
+					return "admin/admin";
 				}
 			}
 			return "customer/index";

@@ -1,6 +1,5 @@
 package fa.intern.mock.service;
 
-import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,5 +48,9 @@ public class TicketHistoryService {
 	
 	public void updateCustomerByUsername(Customer c) {
 		customerDAO.updateCustomerByUsername(c);
+	}
+
+	public List<TicketHistory> getAllTicketHistory(String searchQuery) {
+		return ticketHistoryDAO.getAllTicketHistory(searchQuery);
 	}
 }
