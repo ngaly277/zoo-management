@@ -177,6 +177,6 @@ public class TicketDAO {
 			Ticket t = new Ticket();
 			t.setId_Ticket(rs.getInt("ID_Ticket"));
 			return t;
-		}	
+		}
 	}
 }
