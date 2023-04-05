@@ -28,7 +28,7 @@ public class StaffDAO {
     }
 
     public List<Staff> showStaff() {
-        String sql = "SELECT * FROM staff";
+        String sql = "SELECT * FROM Staff";
         return jdbcTemplate.query(sql, new StaffRowMapper());
     }
 

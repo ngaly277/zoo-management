@@ -20,7 +20,7 @@ public class ProductDAO {
 	private JdbcTemplate jdbcTemplate;
 	
 	public Supplier getSupplierByID(int id){    
-	    return jdbcTemplate.query("SELECT * FROM supplier WHERE ID_Supplier = " + id,new RowMapper<Supplier>(){    
+	    return jdbcTemplate.query("SELECT * FROM Supplier WHERE ID_Supplier = " + id,new RowMapper<Supplier>(){    
 	        public Supplier mapRow(ResultSet rs, int row) throws SQLException {    
 	        	Supplier e = new Supplier();    
 	            e.setId(rs.getInt(1)); 
@@ -33,7 +33,7 @@ public class ProductDAO {
 		}
 	
 	public List<Product> getAllProductcs(){    
-	    return jdbcTemplate.query("select * from product",new RowMapper<Product>(){    
+	    return jdbcTemplate.query("select * from Product",new RowMapper<Product>(){    
 	        public Product mapRow(ResultSet rs, int row) throws SQLException {    
 	        	Product e=new Product();    
 	            e.setId(rs.getInt(1)); 
@@ -51,9 +51,9 @@ public class ProductDAO {
 	public List<Product> getProductcsByOption(String op, String value){ 
 		String query = "";
 		if(op.equals("Supplier_Name"))
-			query =  "select * from product WHERE ID_Supplier IN ( SELECT ID_Supplier FROM supplier WHERE " + op + " = '" + value + "')";
+			query =  "select * from Product WHERE ID_Supplier IN ( SELECT ID_Supplier FROM Supplier WHERE " + op + " = '" + value + "')";
 		else
-			query = "select * from product where " + op + " = '" + value + "'";
+			query = "select * from Product where " + op + " = '" + value + "'";
 	    return jdbcTemplate.query(query,new RowMapper<Product>(){    
 	        public Product mapRow(ResultSet rs, int row) throws SQLException {    
 	        	Product e=new Product();    
@@ -70,7 +70,7 @@ public class ProductDAO {
 		} 
 	
 	public List<Product> getListProductcsByIDInventory(int id){    
-	    return jdbcTemplate.query("select * from product where ID_Inventory = " + id,new RowMapper<Product>(){    
+	    return jdbcTemplate.query("select * from Product where ID_Inventory = " + id,new RowMapper<Product>(){    
 	        public Product mapRow(ResultSet rs, int row) throws SQLException {    
 	        	Product e=new Product();    
 	            e.setId(rs.getInt(1)); 
@@ -87,12 +87,12 @@ public class ProductDAO {
 		} 
 	
 	public int deleteProduct(int id){    
-	    String sql="delete from product where ID_Product="+id+"";    
+	    String sql="delete from Product where ID_Product="+id+"";    
 	    return jdbcTemplate.update(sql);    
 	}  
 	
 	public int updateProduct(Product p){    
-	    String sql="update product set ID_Product='"+p.getId()+"', Product_Name="+p.getName()+"', Amount="+p.getAmount()+"', ID_Supplier="+p.getIdSupplier()+"', ID_Inventory="+p.getIdInventory()+"', Price="+p.getPrice()+"' where ID_Product="+p.getId()+"";    
+	    String sql="update Product set ID_Product='"+p.getId()+"', Product_Name="+p.getName()+"', Amount="+p.getAmount()+"', ID_Supplier="+p.getIdSupplier()+"', ID_Inventory="+p.getIdInventory()+"', Price="+p.getPrice()+"' where ID_Product="+p.getId()+"";    
 	    return jdbcTemplate.update(sql);    
 	} 
 }

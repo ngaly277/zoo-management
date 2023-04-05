@@ -17,7 +17,7 @@ public class ContractsDAO {
 	private JdbcTemplate jdbcTemplate;
 	
 	public List<Contracts> getAllContracts(){    
-	    return jdbcTemplate.query("select * from contracts",new RowMapper<Contracts>(){    
+	    return jdbcTemplate.query("select * from Contracts",new RowMapper<Contracts>(){    
 	        public Contracts mapRow(ResultSet rs, int row) throws SQLException {    
 	        	Contracts e=new Contracts();    
 	            e.setId(rs.getInt(1)); 
@@ -28,17 +28,17 @@ public class ContractsDAO {
 	} 
 	
 	public int deleteContracts(int id){    
-	    String sql="delete from contracts where ID_Contract="+id+"";    
+	    String sql="delete from Contracts where ID_Contract="+id+"";    
 	    return jdbcTemplate.update(sql);    
 	} 
 	
 	public int updateContracts(Contracts p){    
-	    String sql="update contracts set ID_Contract='"+p.getId()+"', Details="+p.getDetails()+"' where ID_Contract="+p.getId()+"";    
+	    String sql="update Contracts set ID_Contract='"+p.getId()+"', Details="+p.getDetails()+"' where ID_Contract="+p.getId()+"";    
 	    return jdbcTemplate.update(sql);    
 	}  
 	
 	public int saveContracts(Contracts p){    
-	    String sql="insert into contracts(Details) values('"+p.getDetails()+"')";    
+	    String sql="insert into Contracts(Details) values('"+p.getDetails()+"')";    
 	    return jdbcTemplate.update(sql);    
 	}    
 	

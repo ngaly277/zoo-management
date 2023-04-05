@@ -21,7 +21,7 @@ public class BillDetailDAO {
 	private JdbcTemplate jdbcTemplate;
 	
 	public Supplier getSupplierByID(int id){    
-	    return jdbcTemplate.query("SELECT * FROM supplier WHERE ID_Supplier = " + id,new RowMapper<Supplier>(){    
+	    return jdbcTemplate.query("SELECT * FROM Supplier WHERE ID_Supplier = " + id,new RowMapper<Supplier>(){    
 	        public Supplier mapRow(ResultSet rs, int row) throws SQLException {    
 	        	Supplier e = new Supplier();    
 	            e.setId(rs.getInt(1)); 
@@ -34,7 +34,7 @@ public class BillDetailDAO {
 		}
 	
 	public Bill getBillByID(int id){    
-	    return jdbcTemplate.query("select * from bill WHERE ID_Bill = " + id,new RowMapper<Bill>(){    
+	    return jdbcTemplate.query("select * from Bill WHERE ID_Bill = " + id,new RowMapper<Bill>(){    
 	        public Bill mapRow(ResultSet rs, int row) throws SQLException {    
 	        	Bill e=new Bill();    
 	            e.setId(rs.getInt(1)); 
@@ -48,7 +48,7 @@ public class BillDetailDAO {
 	}
 	
 	public Product getProductcsByID(int id){    
-	    return jdbcTemplate.query("select * from product where ID_Product = " + id + "",new RowMapper<Product>(){    
+	    return jdbcTemplate.query("select * from Product where ID_Product = " + id + "",new RowMapper<Product>(){    
 	        public Product mapRow(ResultSet rs, int row) throws SQLException {    
 	        	Product e=new Product();    
 	            e.setId(rs.getInt(1)); 
@@ -64,7 +64,7 @@ public class BillDetailDAO {
 		} 
 	
 	public List<BillDetail> getAllBillDetail(){    
-	    return jdbcTemplate.query("select * from bill_detail",new RowMapper<BillDetail>(){    
+	    return jdbcTemplate.query("select * from Bill_Detail",new RowMapper<BillDetail>(){    
 	        public BillDetail mapRow(ResultSet rs, int row) throws SQLException {    
 	        	BillDetail e=new BillDetail();    
 	            e.setId(rs.getInt(1)); 
@@ -82,13 +82,13 @@ public class BillDetailDAO {
 	public List<BillDetail> getBillDetailByOption(String op, String value){   
 		String query = "";
 		if(op.equals("Bill_Name") || op.equals("Bill_Type"))
-			query =  "select * from bill_detail WHERE ID_Bill IN ( SELECT ID_Bill FROM bill WHERE " + op + " = '" + value + "')";
+			query =  "select * from Bill_Detail WHERE ID_Bill IN ( SELECT ID_Bill FROM Bill WHERE " + op + " = '" + value + "')";
 		else if(op.equals("Supplier_Name"))
-			query =  "select * from bill_detail WHERE ID_Bill IN ( SELECT ID_Bill FROM bill WHERE ID_Supplier IN ( SELECT ID_Supplier FROM supplier WHERE " + op + " = '" + value + "'))";
+			query =  "select * from Bill_Detail WHERE ID_Bill IN ( SELECT ID_Bill FROM Bill WHERE ID_Supplier IN ( SELECT ID_Supplier FROM Supplier WHERE " + op + " = '" + value + "'))";
 		else if(op.equals("Product_Name"))
-			query =  "select * from bill_detail WHERE ID_Product IN ( SELECT ID_Product FROM product WHERE " + op + " = '" + value + "')";
+			query =  "select * from Bill_Detail WHERE ID_Product IN ( SELECT ID_Product FROM Product WHERE " + op + " = '" + value + "')";
 		else 
-			query =  "select * from bill_detail where " + op + " = '" + value + "'";
+			query =  "select * from Bill_Detail where " + op + " = '" + value + "'";
 		
 	    return jdbcTemplate.query(query, new RowMapper<BillDetail>(){    
 	        public BillDetail mapRow(ResultSet rs, int row) throws SQLException {    
@@ -106,21 +106,21 @@ public class BillDetailDAO {
 	} 
 	
 	public int deleteBillDetail(int id, int idBill){   		 
-	    String sql="delete from bill_detail where ID_Bill_Detail="+id+"";    
+	    String sql="delete from Bill_Detail where ID_Bill_Detail="+id+"";    
 	    jdbcTemplate.update(sql); 
-	    String sql1="delete from bill where ID_Bill="+idBill+"";    
+	    String sql1="delete from Bill where ID_Bill="+idBill+"";    
 	    return jdbcTemplate.update(sql1);
 	} 
 	
 	public int updateBillDetail(BillDetail p){    
-	    String sql="update bill_detail set ID_Bill_Detail='"+p.getId()+"', ID_Bill="+p.getIdBill()+"', Amount_Transfer="+p.getAmountTransfer()+"', Transfer_Date="+p.getAmountTransfer()+"' where ID_Bill_Detail="+p.getId()+"";    
+	    String sql="update Bill_Detail set ID_Bill_Detail='"+p.getId()+"', ID_Bill="+p.getIdBill()+"', Amount_Transfer="+p.getAmountTransfer()+"', Transfer_Date="+p.getAmountTransfer()+"' where ID_Bill_Detail="+p.getId()+"";    
 	    return jdbcTemplate.update(sql);    
 	}  
 	
 	public Product saveProduct(Product p){    
-	    String sql="insert into product(Product_Name, Amount, ID_Supplier, ID_Inventory, Price) values('"+p.getName()+"'," + p.getAmount() + ","+ p.getIdSupplier() + ","+ p.getIdInventory() + ","+ p.getPrice() + ")";    
+	    String sql="insert into Product(Product_Name, Amount, ID_Supplier, ID_Inventory, Price) values('"+p.getName()+"'," + p.getAmount() + ","+ p.getIdSupplier() + ","+ p.getIdInventory() + ","+ p.getPrice() + ")";    
 	    jdbcTemplate.update(sql);    
-	    return jdbcTemplate.query("SELECT * FROM product ORDER BY ID_Product DESC LIMIT 1",new RowMapper<Product>(){    
+	    return jdbcTemplate.query("SELECT * FROM Product ORDER BY ID_Product DESC LIMIT 1",new RowMapper<Product>(){    
 	        public Product mapRow(ResultSet rs, int row) throws SQLException {    
 	        	Product e=new Product();    
 	            e.setId(rs.getInt(1)); 
@@ -130,9 +130,9 @@ public class BillDetailDAO {
 	} 
 	
 	public Bill saveBill(Bill p){    
-	    String sql="insert into bill(Bill_Name, Bill_Type, ID_Supplier) values('"+p.getName()+"'," + p.getBillType() + ","+ p.getIdSupplier() + ")";    
+	    String sql="insert into Bill(Bill_Name, Bill_Type, ID_Supplier) values('"+p.getName()+"'," + p.getBillType() + ","+ p.getIdSupplier() + ")";    
 	    jdbcTemplate.update(sql);    
-	    return jdbcTemplate.query("SELECT * FROM bill ORDER BY ID_Bill DESC LIMIT 1",new RowMapper<Bill>(){    
+	    return jdbcTemplate.query("SELECT * FROM Bill ORDER BY ID_Bill DESC LIMIT 1",new RowMapper<Bill>(){    
 	        public Bill mapRow(ResultSet rs, int row) throws SQLException {    
 	        	Bill e=new Bill();    
 	            e.setId(rs.getInt(1)); 
@@ -145,7 +145,7 @@ public class BillDetailDAO {
 		Product product = saveProduct(p);
 		Bill bill = saveBill(b);
 		java.sql.Date sqlDate = new java.sql.Date(d.getTransferDate().getTime());
-	    String sql="insert into bill_detail(ID_Bill,Amount_Transfer,Transfer_Date,ID_Product) values("+bill.getId()+","+d.getAmountTransfer()+",'"+sqlDate+"'," + product.getId() + ")";    
+	    String sql="insert into Bill_Detail(ID_Bill,Amount_Transfer,Transfer_Date,ID_Product) values("+bill.getId()+","+d.getAmountTransfer()+",'"+sqlDate+"'," + product.getId() + ")";    
 	    return jdbcTemplate.update(sql);    
 	} 
 	
@@ -154,12 +154,12 @@ public class BillDetailDAO {
 		java.sql.Date sqlDate = new java.sql.Date(d.getTransferDate().getTime());
 		String sql = "";
 		if(b.getBillType() == 0)
-			sql="update product set Amount= (SELECT Amount FROM product WHERE ID_Product = " + p.getId() +") + "+p.getAmount()+" where ID_Product="+p.getId()+"";   
+			sql="update Product set Amount= (SELECT Amount FROM product WHERE ID_Product = " + p.getId() +") + "+p.getAmount()+" where ID_Product="+p.getId()+"";   
 		else {
-			sql="update product set Amount= (SELECT Amount FROM product WHERE ID_Product = " + p.getId() +") - "+p.getAmount()+" where ID_Product="+p.getId()+"";   
+			sql="update Product set Amount= (SELECT Amount FROM product WHERE ID_Product = " + p.getId() +") - "+p.getAmount()+" where ID_Product="+p.getId()+"";   
 		}
 	    jdbcTemplate.update(sql);  
-	    String sql1="insert into bill_detail(ID_Bill,Amount_Transfer,Transfer_Date,ID_Product) values("+bill.getId()+","+d.getAmountTransfer()+",'"+sqlDate+"'," + p.getId() + ")";    
+	    String sql1="insert into Bill_Detail(ID_Bill,Amount_Transfer,Transfer_Date,ID_Product) values("+bill.getId()+","+d.getAmountTransfer()+",'"+sqlDate+"'," + p.getId() + ")";    
 	    return jdbcTemplate.update(sql1);    
 	} 
 }

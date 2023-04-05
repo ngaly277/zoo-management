@@ -11,7 +11,6 @@ import org.springframework.stereotype.Repository;
 
 import fa.intern.mock.bean.Inventory;
 import fa.intern.mock.bean.ProductType;
-import fa.intern.mock.dao.AccountDAO.AccountMapper;
 
 @Repository
 public class InventoryDAO {
@@ -19,7 +18,7 @@ public class InventoryDAO {
 	private JdbcTemplate jdbcTemplate;
 	
 	public ProductType getProductTypeByID(int id){    
-	    return jdbcTemplate.query("SELECT * FROM product_type WHERE ID_Product_Type = " + id,new RowMapper<ProductType>(){    
+	    return jdbcTemplate.query("SELECT * FROM Product_Type WHERE ID_Product_Type = " + id,new RowMapper<ProductType>(){    
 	        public ProductType mapRow(ResultSet rs, int row) throws SQLException {    
 	        	ProductType e = new ProductType();    
 	            e.setId(rs.getInt(1)); 
@@ -30,7 +29,7 @@ public class InventoryDAO {
 		} 
 	
 	public List<Inventory> getAllInventory(){    
-	    return jdbcTemplate.query("select * from inventory",new RowMapper<Inventory>(){    
+	    return jdbcTemplate.query("select * from Inventory",new RowMapper<Inventory>(){    
 	        public Inventory mapRow(ResultSet rs, int row) throws SQLException {    
 	        	Inventory e=new Inventory();    
 	            e.setId(rs.getInt(1)); 
@@ -44,7 +43,7 @@ public class InventoryDAO {
 		}    
 	
 	public List<Inventory> getInventoryByOption(String op, String value){    
-	    return jdbcTemplate.query("select * from inventory where " + op + " = '" + value + "'",new RowMapper<Inventory>(){    
+	    return jdbcTemplate.query("select * from Inventory where " + op + " = '" + value + "'",new RowMapper<Inventory>(){    
 	        public Inventory mapRow(ResultSet rs, int row) throws SQLException {    
 	        	Inventory e=new Inventory();    
 	            e.setId(rs.getInt(1)); 
@@ -58,12 +57,12 @@ public class InventoryDAO {
 		}   
 	
 	public int deleteInventory(int id){    
-	    String sql="delete from inventory where ID_Inventory="+id+"";    
+	    String sql="delete from Inventory where ID_Inventory="+id+"";    
 	    return jdbcTemplate.update(sql);    
 	}   
 	
 	public int updateInventory(Inventory p){    
-	    String sql="update inventory set ID_Inventory='"+p.getId()+"', Inventory_Address="+p.getAddress()+"', Inventory_Name="+p.getName()+"', ID_Inventory_Type="+p.getIdType()+"' where ID_Inventory="+p.getId()+"";    
+	    String sql="update Inventory set ID_Inventory='"+p.getId()+"', Inventory_Address="+p.getAddress()+"', Inventory_Name="+p.getName()+"', ID_Inventory_Type="+p.getIdType()+"' where ID_Inventory="+p.getId()+"";    
 	    return jdbcTemplate.update(sql);    
 	}  
 	
