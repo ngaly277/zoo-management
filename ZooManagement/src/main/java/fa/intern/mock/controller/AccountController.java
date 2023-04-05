@@ -91,9 +91,9 @@ public class AccountController {
 			}
 			return "redirect:/";
 		} else if (accountService.loginAccount(account.getUsername(), account.getPassword()) == -1) {
-			model.addAttribute("error", "Your password was wrong");
+			model.addAttribute("error", "Bạn nhập sai mật khẩu.");
 		} else {
-			model.addAttribute("error", "Your username was wrong");
+			model.addAttribute("error", "Tên tài khoản không tồn tại.");
 		}
 		model.addAttribute("account", account);
 		return "admin/Login";
