@@ -40,20 +40,20 @@
 									<div class="col-md-6">
 										<label class="small mb-1" for="animalStatus">Trạng thái Động vật</label> <input
 											class="form-control" id="animalStatus" name="animalStatus"
-											type="text" placeholder="Nhập tên chuồng"
+											type="text" placeholder="Nhập trạng thái"
 											value="<c:out value="${animal.animalStatus}"/>">
 									</div>
 								</div>
 								<div class="mb-3">
 									<label class="small mb-1" for="detail">Thông tin thêm</label> <input
 										class="form-control" id="detail" name="detail" type="text"
-										placeholder="Nhập giới hạn"
+										placeholder="Nhập thông tin"
 										value="<c:out value="${animal.detail}"/>">
 								</div>
 								<div class="mb-3">
 									<label class="small mb-1" for="food">Thức ăn</label> <input
 										class="form-control" id="food" name="food" type="text"
-										placeholder="Nhập giới hạn"
+										placeholder="Nhập thức ăn"
 										value="<c:out value="${animal.food}"/>">
 								</div>
 								<br> <label class="small mb-1" for="animalType">Loài động vật
