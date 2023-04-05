@@ -1,5 +1,7 @@
 package fa.intern.mock.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,5 +23,13 @@ public class ContractService {
 	
 	public void deleteContract(int id) {
 		contractsDAO.deleteContracts(id);
+	}
+	
+	public void createContract() {
+		contractsDAO.createContract();
+	}
+	
+	public List<Contracts> getTheLastContract() {
+		return contractsDAO.getTheLastContract();
 	}
 }

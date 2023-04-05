@@ -82,7 +82,7 @@ public class StaffListController {
 		accountService.createAccountThroughAddNewStaff(staff.getUsername());
 		contractService.createContract();
 		List<Contracts> contractList = contractService.getTheLastContract();
-		staff.setIdContract(contractList.get(0).getIdContract());
+		staff.setIdContract(contractList.get(0).getId());
 		System.out.println(staff.getStaffName()+"-"+staff.getSalary()+"-"+staff.getIdContract()+"-"+staff.getIdStaffType()+"-"+staff.getUsername());
 		staffService.createStaff(staff);
 		
