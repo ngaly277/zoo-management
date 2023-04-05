@@ -131,9 +131,11 @@ public class SupplierDAO {
 	    jdbcTemplate.update(sql1);   
 	} 
 	
-	public int updateSupplier(Supplier p){    
-	    String sql="update supplier set ID_Supplier='"+p.getId()+"', ID_Contract="+p.getIdContract()+"', ID_Supplier_Type="+p.getIdSupplierType()+"', Supplier_Name="+p.getName()+"' where ID_Supplier="+p.getId()+"";    
-	    return jdbcTemplate.update(sql);    
+	public void updateSupplier(Supplier p, Contracts c){   
+		String sql="update contracts set Details='"+c.getDetails()+"' where ID_Contract="+c.getId()+"";       
+	    jdbcTemplate.update(sql);
+	    String sql1="update supplier set ID_Supplier_Type="+p.getIdSupplierType()+", Supplier_Name='"+p.getName()+"' where ID_Supplier="+p.getId()+"";    
+	    jdbcTemplate.update(sql1);    
 	} 
 	
 	public Contracts saveContracts(Contracts p){    

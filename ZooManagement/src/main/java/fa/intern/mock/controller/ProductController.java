@@ -19,9 +19,20 @@ public class ProductController {
 	
 	@RequestMapping("/viewProduct")
 	public String showViewProduct(HttpServletRequest request, Model model) {
-		String id = request.getParameter("id");
+		String[] id = request.getParameter("id").split("-");
 		
-		List<Product> list = productService.getListProductcsByIDInventory(Integer.parseInt(id));
+		List<Product> list = productService.getListProductcsByIDInventory(Integer.parseInt(id[0]));
+		model.addAttribute("product", list);
+		model.addAttribute("inventory", id[1]);
+		return "admin/Product";
+	}
+	
+	@RequestMapping("/searchProduct")
+	public String searchProduct(HttpServletRequest request, Model model) {
+		String op = request.getParameter("op");
+		String search = request.getParameter("search");
+		
+		List<Product> list = productService.getProductcsByOption(op, search);
 		model.addAttribute("product", list);
 		return "admin/Product";
 	}

@@ -51,7 +51,7 @@
                     </li>
 
                     <li class="nav-link">
-                        <a href="#">
+                        <a href="<%=request.getContextPath()%>/viewInventory">
                             <i class='bx bx-box icon'></i>
                             <span class="text nav-text">Quản lý kho</span>
                         </a>
@@ -109,7 +109,6 @@
         <h2 class = "banner ">Supplier Management Table</h2>
         <div class = "banner">
 			<a href="<%=request.getContextPath()%>/showAddSupplier" class="button-search" role="button">Add Supplier</a>
-
 		</div>
           <c:url value="/SearchInventory" var="SearchInventory"/>
  		<form:form class = "searchform" action="SearchSupplier" method="post">

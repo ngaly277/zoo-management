@@ -105,7 +105,7 @@
 					<div class="card mb-4">
 						<div class="card-header">Insert Bill</div>
 						<div class="card-body">
-							<form:form class="searchform" action="addBill" method="post">
+							<form:form name="AddBill" class="searchform" action="updateAmountProduct" method="post">
 								<br />
 								<!-- Form Row-->
 								<div class="row gx-3 mb-3">
@@ -119,6 +119,7 @@
 										<label class="small mb-1" for="Title">Loại</label> <select
 											name="type" class="form-control">
 											<option value="0">Nhập Kho</option>
+											<option value="1">Xuất Kho</option>
 										</select>
 									</div>
 									<div class="col-md-6">
@@ -143,23 +144,13 @@
 										<input readonly="readonly" class="form-control" value="${dateNow}" type="text">
 									</div>
 								</div>
-								<div class="row gx-3 mb-3">
-									<div class="col-md-6">
-										<label class="small mb-1" for="Title">Tên sản phẩm:</label> <input
-											class="form-control" name="nameProduct" type="text">
-									</div>
-									<div class="col-md-6">
-										<label class="small mb-1" for="Title">Chọn kho:</label>
-										<select name="opInventory" class="form-control">
-											<c:forEach items="${inventory}" var="item">
+								<div class="col-md-6">
+										<label class="small mb-1" for="Brief">Chọn sản phẩm có sẵn trong kho:</label> <select name="opProduct" class="form-control">
+											<c:forEach items="${products}" var="item">
 												<option value="${item.id}"><c:out
-														value="${item.name}" /></option>
+														value="${item.name} - ${item.amount} sản phẩm" /></option>
 											</c:forEach>
 										</select>
-									</div>
-									<div class="col-md-6">
-										<label class="small mb-1" for="Title">Giá:</label> <input
-											class="form-control" name="price" type="number">
 									</div>
 								</div>
 								<!-- Save changes button-->
@@ -175,5 +166,6 @@
 	</section>
 
 </body>
+<script src='<c:url value="/resources/js/js-page-addBill.js" />'></script>
 <script src='<c:url value="/resources/js/js-page-admin.js" />'></script>
 </html>

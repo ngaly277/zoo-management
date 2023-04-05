@@ -61,7 +61,7 @@
                     </li>
 
                     <li class="nav-link">
-                        <a href="#">
+                        <a href="<%=request.getContextPath()%>/viewInventory">
                             <i class='bx bx-box icon'></i>
                             <span class="text nav-text">Quản lý kho</span>
                         </a>
@@ -146,7 +146,6 @@
             <th>Tên kho</th>
             <th>Địa chỉ</th>
             <th>Loại kho</th>
-            <th>Action</th>
         </tr>
         </thead>
         <tbody>
@@ -155,16 +154,10 @@
             <td><c:out value="${item.id}" /></td>
             <td><c:out value="${item.name}" />
             	&nbsp &nbsp
-  				<a class = "bx bxs-box bx-xs" style="text-decoration:none; color: blue " href = "<%=request.getContextPath()%>/viewProduct?id=<c:out value="${item.id}" />">
+  				<a class = "bx bxs-box bx-xs" style="text-decoration:none; color: blue " href = "<%=request.getContextPath()%>/viewProduct?id=<c:out value="${item.id}-${item.name}" />">
   					</a></td>
             <td><c:out value="${item.address}" /></td>
             <td><c:out value="${item.productType.name}" /></td>
-            <td><a class = "bx bxs-edit bx-xs" style="text-decoration:none; color: green" href = "">
-  					</a>
-  					&nbsp &nbsp
-            <a class = "bx bxs-trash bx-xs" style="text-decoration:none; color: red " href = "<%=request.getContextPath()%>/deleteInventory?id=<c:out value="${item.id}" />">
-  					</a>
-  					</td>
         </tr>
         </c:forEach>
         <tbody>

@@ -22,6 +22,10 @@ public class ProductService {
 		return productDAO.getListProductcsByIDInventory(id);
 	}
 	
+	public List<Product> getProductcsByOption(String op, String value) {
+		return productDAO.getProductcsByOption(op, value);
+	}
+	
 	public void deleteProduct(int id) {
 		productDAO.deleteProduct(id);
 	}

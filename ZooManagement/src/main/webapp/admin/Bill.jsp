@@ -61,7 +61,7 @@
                     </li>
 
                     <li class="nav-link">
-                        <a href="#">
+                        <a href="<%=request.getContextPath()%>/viewInventory">
                             <i class='bx bx-box icon'></i>
                             <span class="text nav-text">Quản lý kho</span>
                         </a>
@@ -116,8 +116,11 @@
 
     <section class="home">
         		<div class="text">Bill Page</div>
-        <h2 class = "banner ">Bill History Table (Sữa ko đường)</h2>
-        <h2></h2>
+        <h2 class = "banner ">Bill History Table</h2>
+        <div class = "banner">
+			<a href="<%=request.getContextPath()%>/showAddBill" class="button-search" role="button">Add Bill</a>
+			<a href="<%=request.getContextPath()%>/showAddBillAvailable" class="button-search" role="button">Add Bill (Available Product)</a>
+		</div>
           <c:url value="/SearchInventory" var="SearchInventory"/>
  		<form:form class = "searchform" action="SearchBillDetail" method="post">
 					<p class = "text2" >Search Information by:</p>
@@ -125,6 +128,7 @@
       									 <option value="Bill_Name">Tên hóa đơn</option>
       									 <option value="Bill_Type">Loại</option>
       									 <option value="Supplier_Name">Nhà cung cấp</option>
+      									 <option value="Product_Name">Sản phẩm</option>
       									 <option value="Transfer_Date ">Ngày</option>
     								</select>
                 	<p class = "text2" >Type here:</p>
@@ -143,6 +147,7 @@
             <th>Tên hóa đơn</th>
             <th>Loại</th>
             <th>Nhà cung cấp</th>
+            <th>Sản phẩm</th>
             <th>Số lượng</th>
             <th>Ngày</th>
             <th>Action</th>
@@ -166,12 +171,11 @@
 			</c:choose>
 			</td>
             <td><c:out value="${item.bill.supplier.name}" /></td>
+            <td><c:out value="${item.product.name}" /></td>
             <td><c:out value="${item.amountTransfer}" /></td>
             <td><c:out value="${item.transferDate}" /></td>
-            <td><a class = "bx bxs-edit bx-xs" style="text-decoration:none; color: green" href = "">
-  					</a>
-  					&nbsp &nbsp
-            <a class = "bx bxs-trash bx-xs" style="text-decoration:none; color: red " href = "<%=request.getContextPath()%>/deleteBillDetail?id=<c:out value="${item.id}" />">
+            <td>
+            <a class = "bx bxs-trash bx-xs" style="text-decoration:none; color: red " href = "<%=request.getContextPath()%>/deleteBillDetail?id=<c:out value="${item.id}-${item.bill.id}" />">
   					</a>
   					</td>
         </tr>

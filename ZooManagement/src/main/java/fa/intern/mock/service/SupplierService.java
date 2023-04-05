@@ -31,8 +31,8 @@ public class SupplierService {
 		supplierDAO.saveSupplier(supplier, contracts);
 	}
 	
-	public void updateSupplier(Supplier supplier) {
-		supplierDAO.updateSupplier(supplier);
+	public void updateSupplier(Supplier p, Contracts c) {
+		supplierDAO.updateSupplier(p, c);
 	}
 	
 	public void deleteSupplier(int id) {

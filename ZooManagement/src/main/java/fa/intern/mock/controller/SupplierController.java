@@ -52,6 +52,27 @@ public class SupplierController {
 		return "redirect:/viewSupplier";
 	}
 	
+	@RequestMapping("/updateSupplier")
+	public String updateSupplier(HttpServletRequest request, Model model) {
+		int idSupplier = Integer.parseInt(request.getParameter("idSupplier"));
+		int idContract = Integer.parseInt(request.getParameter("idContracts"));
+		String name = request.getParameter("name");
+		int op = Integer.parseInt(request.getParameter("op"));
+		String detail = request.getParameter("detail");
+		
+		Supplier s = new Supplier();
+		s.setId(idSupplier);
+		s.setName(name);
+		s.setIdSupplierType(op);
+		
+		Contracts c = new Contracts();
+		c.setId(idContract);
+		c.setDetails(detail);
+		
+		supplierService.updateSupplier(s, c);
+		return "redirect:/viewSupplier";
+	}
+	
 	@RequestMapping("/viewSupplier")
 	public String showViewSupplier(Model model) {
 		List<Supplier> list = supplierService.getAllSupplier();

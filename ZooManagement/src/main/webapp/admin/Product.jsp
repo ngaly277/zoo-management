@@ -51,7 +51,7 @@
                     </li>
 
                     <li class="nav-link">
-                        <a href="#">
+                        <a href="<%=request.getContextPath()%>/viewInventory">
                             <i class='bx bx-box icon'></i>
                             <span class="text nav-text">Quản lý kho</span>
                         </a>
@@ -105,18 +105,15 @@
     </nav>
 
     <section class="home">
-        		<div class="text">Product Page In "Kho 1"</div>
+        		<div class="text">Product Page In <c:out value="${inventory}" /></div>
         <h2 class = "banner ">Product Management Table</h2>
           <c:url value="/SearchInventory" var="SearchInventory"/>
- 		<form:form class = "searchform" action="SearchInventory" method="post">
+ 		<form:form class = "searchform" action="searchProduct" method="post">
 					<p class = "text2" >Search Information by:</p>
     								<select name="op" class="select">
-     									 <option value="ID_Inventory">STT</option>
-      									 <option value="Inventory_Name">Tên sản phẩm</option>
-      									 <option value="Inventory_Address">Số lượng tồn kho</option>
-      									 <option value="ID_Inventory_Type">Nhà cung cấp</option>
-      									 <option value="ID_Inventory_Type">Kho</option>
-      									 <option value="ID_Inventory_Type">Đơn Giá</option>
+      									 <option value="Product_Name">Tên sản phẩm</option>
+      									 <option value="Supplier_Name">Nhà cung cấp</option>
+      									 <option value="Price">Đơn Giá</option>
     								</select>
                 	<p class = "text2" >Type here:</p>
   						<div class="searchbar"><input name="search" type="search" placeholder='Search' /></div>
@@ -132,11 +129,9 @@
         <tr>
             <th>STT</th>
             <th>Tên sản phẩm</th>
-            <th>ID bill detail</th>
             <th>Số lượng tồn kho</th>
             <th>Nhà cung cấp</th>
             <th>Đơn Giá</th>
-            <th>Action</th> 
         </tr>
         </thead>
         <tbody>
@@ -147,16 +142,9 @@
             	&nbsp &nbsp
   				<a class = "bx bxs-box bx-xs" style="text-decoration:none; color: blue " href = "">
   					</a></td>
-            <td><c:out value="${item.idBillDetail}" /></td>
             <td><c:out value="${item.amount}" /></td>
             <td><c:out value="${item.supplier.name}" /></td>
             <td><c:out value="${item.price}" /></td>
-            <td><a class = "bx bxs-edit bx-xs" style="text-decoration:none; color: green" href = "">
-  					</a>
-  					&nbsp &nbsp
-            <a class = "bx bxs-trash bx-xs" style="text-decoration:none; color: red " href = "<%=request.getContextPath()%>/deleteProduct?id=<c:out value="${item.id}" />">
-  					</a>
-  					</td>
         </tr>
         </c:forEach>
         <tbody>

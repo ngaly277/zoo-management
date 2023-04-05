@@ -61,7 +61,7 @@
                     </li>
 
                     <li class="nav-link">
-                        <a href="#">
+                        <a href="<%=request.getContextPath()%>/viewInventory">
                             <i class='bx bx-box icon'></i>
                             <span class="text nav-text">Quản lý kho</span>
                         </a>
@@ -122,35 +122,73 @@
             <div class="card mb-4">
                 <div class="card-header">Insert Supplier with Contract</div>
                 <div class="card-body">
-                    <form:form class = "searchform" action="addSupplier" method="post">
-                    	<br/>
-                        <!-- Form Row-->
-                        <div class="row gx-3 mb-3">
-                            <!-- Form Group (first name)-->
-                            <div class="col-md-6">
-                                <label class="small mb-1" for="Title">Tên nhà cung cấp</label>
-                                <input class="form-control" value="${supplier.name}" name="name" type="text" >
-                            </div>
-                            <!-- Form Group (last name)-->
-                            <div class="col-md-6">
-                                <label class="small mb-1" for="Brief">Loại sản phẩm cung cấp</label>
-                                <select name="op" class="form-control">
-                                	<c:forEach items="${supplierType}" var="item">
-     									 <option value="${item.id}"><c:out value="${item.supplierType}" /></option>
-     								</c:forEach>
-    								</select>
-                            </div>
-                        </div>
-                        <br/>
-                        <!-- Form Group (email address)-->
-                        <div class="mb-3">
-                            <label class="small mb-1" for="Content">Chi tiết hợp đồng</label>
-                            <textarea name="detail" class="form-control" rows="10" cols="50">${supplier.contracts.details}</textarea>
-                        </div>
-                        <!-- Save changes button-->
-                        <br>
-                        <button class="button-search" type="submit">Save</button>
-                    </form:form>
+                	<c:choose>
+    					<c:when test="${supplier.name==null}">
+		    				<form:form class = "searchform" action="addSupplier" method="post">
+		                    	<br/>
+		                        <!-- Form Row-->
+		                        <div class="row gx-3 mb-3">
+		                            <!-- Form Group (first name)-->
+		                            <div class="col-md-6">
+		                                <label class="small mb-1" for="Title">Tên nhà cung cấp</label>
+		                                <input class="form-control" value="${supplier.name}" name="name" type="text" >
+		                            </div>
+		                            <!-- Form Group (last name)-->
+		                            <div class="col-md-6">
+		                                <label class="small mb-1" for="Brief">Loại sản phẩm cung cấp</label>
+		                                <select name="op" class="form-control">
+		                                	<c:forEach items="${supplierType}" var="item">
+		     									 <option value="${item.id}"><c:out value="${item.supplierType}" /></option>
+		     								</c:forEach>
+		    								</select>
+		                            </div>
+		                        </div>
+		                        <br/>
+		                        <!-- Form Group (email address)-->
+		                        <div class="mb-3">
+		                            <label class="small mb-1" for="Content">Chi tiết hợp đồng</label>
+		                            <textarea name="detail" class="form-control" rows="10" cols="50">${supplier.contracts.details}</textarea>
+		                        </div>
+		                        <!-- Save changes button-->
+		                        <br>
+		                        <button class="button-search" type="submit">Save</button>
+		                    </form:form>
+    					</c:when>   
+    					 
+    					<c:otherwise>
+    						<form:form class = "searchform" action="updateSupplier" method="post">
+		                    	<br/>
+		                        <!-- Form Row-->
+		                        <div class="row gx-3 mb-3">
+		                            <!-- Form Group (first name)-->
+		                            <div class="col-md-6">
+		                                <label class="small mb-1" for="Title">Tên nhà cung cấp</label>
+		                                <input class="form-control" value="${supplier.name}" name="name" type="text" >
+		                            </div>
+		                            <!-- Form Group (last name)-->
+		                            <div class="col-md-6">
+		                                <label class="small mb-1" for="Brief">Loại sản phẩm cung cấp</label>
+		                                <select name="op" class="form-control">
+		                                	<c:forEach items="${supplierType}" var="item">
+		     									 <option value="${item.id}"><c:out value="${item.supplierType}" /></option>
+		     								</c:forEach>
+		    								</select>
+		                            </div>
+		                            <input style="display: none;" class="form-control" value="${supplier.id}" name="idSupplier" type="text" >
+		                            <input style="display: none;" class="form-control" value="${supplier.contracts.id}" name="idContracts" type="text" >
+		                        </div>
+		                        <br/>
+		                        <!-- Form Group (email address)-->
+		                        <div class="mb-3">
+		                            <label class="small mb-1" for="Content">Chi tiết hợp đồng</label>
+		                            <textarea name="detail" class="form-control" rows="10" cols="50">${supplier.contracts.details}</textarea>
+		                        </div>
+		                        <!-- Save changes button-->
+		                        <br>
+		                        <button class="button-search" type="submit">Edit</button>
+		                    </form:form>
+    					</c:otherwise>  					
+					</c:choose>                   
                     <br>
                 </div>
             </div>

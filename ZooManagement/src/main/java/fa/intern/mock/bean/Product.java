@@ -3,17 +3,15 @@ package fa.intern.mock.bean;
 public class Product {
 	private int id;
 	private String name;
-	private int idBillDetail;
 	private int amount;
 	private int idSupplier;
 	private int idInventory;
 	private int price;
 	private Supplier supplier;
-	public Product(int id, String name, int idBillDetail, int amount, int idSupplier, int idInventory, int price) {
+	public Product(int id, String name, int amount, int idSupplier, int idInventory, int price) {
 		super();
 		this.id = id;
 		this.name = name;
-		this.idBillDetail = idBillDetail;
 		this.amount = amount;
 		this.idSupplier = idSupplier;
 		this.idInventory = idInventory;
@@ -33,12 +31,6 @@ public class Product {
 	}
 	public void setName(String name) {
 		this.name = name;
-	}
-	public int getIdBillDetail() {
-		return idBillDetail;
-	}
-	public void setIdBillDetail(int idBillDetail) {
-		this.idBillDetail = idBillDetail;
 	}
 	public int getAmount() {
 		return amount;
@@ -70,12 +62,11 @@ public class Product {
 	public void setSupplier(Supplier supplier) {
 		this.supplier = supplier;
 	}
-	public Product(int id, String name, int idBillDetail, int amount, int idSupplier, int idInventory, int price,
+	public Product(int id, String name, int amount, int idSupplier, int idInventory, int price,
 			Supplier supplier) {
 		super();
 		this.id = id;
 		this.name = name;
-		this.idBillDetail = idBillDetail;
 		this.amount = amount;
 		this.idSupplier = idSupplier;
 		this.idInventory = idInventory;
