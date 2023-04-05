@@ -89,7 +89,7 @@
 		<div class="text">Animal Page</div>
 		<h2 class="banner ">Animal Management Table</h2>
 		<form class="searchform"
-			action="searchAnimal" method="post">
+			action="searchAnimal?idCage=${idCage}" method="post">
 			<p class="text2">Search Information by:</p>
 			<select class="select" id="option" name="option">
 				<option>ID động vật</option>

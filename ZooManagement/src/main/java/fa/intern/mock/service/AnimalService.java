@@ -34,8 +34,8 @@ public class AnimalService {
 	}
 
 
-	public List<Animal> searchAnimal(String option, String search) {
-		return animalDAO.searchAnimal(option, search);
+	public List<Animal> searchAnimal(String idCage, String option, String search) {
+		return animalDAO.searchAnimal(idCage, option, search);
 	}
 
 

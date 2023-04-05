@@ -54,9 +54,9 @@ public class AnimalController {
 	}
 
 	@RequestMapping(value = "/searchAnimal")
-	public String searchAnimal(@RequestParam("option") String option, @RequestParam("search") String search,
+	public String searchAnimal(@RequestParam("idCage") String idCage, @RequestParam("option") String option, @RequestParam("search") String search,
 			ModelMap model) {
-		List<Animal> animals = animalService.searchAnimal(option, search);
+		List<Animal> animals = animalService.searchAnimal(idCage, option, search);
 		model.addAttribute("animal", animals);
 		return "admin/AnimalbyCage";
 	}

@@ -28,7 +28,7 @@ public class AnimalDAO {
             animal.setFood(rs.getString("Food"));
             Cage cage = new Cage();
             cage.setIdCage(rs.getInt("ID_Cage"));
-            cage.setLimit(rs.getInt("Limit"));
+            //cage.setLimit(rs.getInt("Limit"));
             animal.setCages(cage);
             Animal_Type animalType = new Animal_Type();
             animalType.setIdAnimalType(rs.getInt("ID_Animal_Type"));
@@ -64,7 +64,7 @@ public class AnimalDAO {
 				+ "WHERE ID_Animal = ?";
 			return jdbcTemplate.query(sql, params, new AnimalRowMapper());
 	}
-	public List<Animal> searchAnimal(String option, String search) {
+	public List<Animal> searchAnimal(String idCage, String option, String search) {
 		String sql = null;
 
         if (option.equals("ID động vật")) {
@@ -79,6 +79,7 @@ public class AnimalDAO {
             		+ "JOIN animal_type t ON a.ID_Animal_Type = t.ID_Animal_Type\r\n"
             		+ "WHERE t.Animal_Type LIKE " + "'%" + search + "%'";
         }
+        sql += idCage == null ? "" : " AND ID_Cage=" + idCage;
 
         return jdbcTemplate.query(sql, new AnimalRowMapper());
 }
