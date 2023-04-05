@@ -56,7 +56,6 @@ public class AccountController {
 			}
 			return "customer/index";
 		}
-		
 	}
 	
 	@RequestMapping(value="register", method = RequestMethod.GET)
@@ -78,9 +77,7 @@ public class AccountController {
 			accountService.insertAccount(account);
 			return "redirect:login";
 		}
-
 	}
-	
 	
 	@RequestMapping(value = "login", method = RequestMethod.POST)
 	public String login(@ModelAttribute("account") Account account, Model model, HttpSession session, HttpServletRequest request, HttpServletResponse response) {

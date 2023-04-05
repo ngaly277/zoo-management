@@ -21,6 +21,9 @@
               <img src='<c:url value="/resources/images/person-4.png"></c:url>' alt="person" width="30" height="30" />
           </a>
           <ul class="dropdown-menu dropdown-menu-end">
+            <li><a class="dropdown-item" href="#">Giỏ hàng</a></li>
+            <li><a class="dropdown-item" href="#">Lịch sử mua vé</a></li>
+            <li><hr class="dropdown-divider"></li>
             <c:if test="${not empty username}">
 	            <!-- <li><a class="dropdown-item" href="#">Lịch sử đặt vé</a></li>
 	            <li><hr class="dropdown-divider"></li> -->
