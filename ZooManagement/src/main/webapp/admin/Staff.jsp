@@ -25,9 +25,7 @@
 	</script>
 </head>
 <body>
-	<jsp:include page="navbar.jsp">
-        
-    </jsp:include>
+	<jsp:include page="navbar.jsp"/>
 	<section class="home">
 		<div class="text">Staff Page</div>
 		<h2 class="banner ">Staff Management Table</h2>

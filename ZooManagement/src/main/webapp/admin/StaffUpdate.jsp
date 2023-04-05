@@ -18,9 +18,7 @@
 </head>
 <body>
 
-	<jsp:include page="navbar.jsp">
-        
-    </jsp:include>
+	<jsp:include page="navbar.jsp"/>
 
 	<section class="home">
 		<div class="text">Staff Updating Page</div>
