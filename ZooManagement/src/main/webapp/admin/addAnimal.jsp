@@ -101,7 +101,7 @@
 										<label class="small mb-1" for="idCage">ID chuồng</label> <input
 											 readonly class="form-control" id="idCage" name="idCage"
 											type="text" placeholder=""
-											value = "${animalList.get(0).cages.idCage}">
+											value = "${idCage}">
 									</div>
 									<div class="col-md-6">
 										<label class="small mb-1" for="animalName">Tên động vật</label> <input

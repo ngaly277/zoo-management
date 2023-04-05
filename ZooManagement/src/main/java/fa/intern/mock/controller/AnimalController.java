@@ -14,6 +14,7 @@ import fa.intern.mock.bean.Animal_Type;
 import fa.intern.mock.bean.Cage;
 import fa.intern.mock.service.AnimalService;
 import fa.intern.mock.service.AnimalTypeService;
+import fa.intern.mock.service.CageService;
 
 @Controller
 public class AnimalController {
@@ -22,11 +23,14 @@ public class AnimalController {
 	private AnimalService animalService;
 	@Autowired
 	private AnimalTypeService animalTypeService;
+	@Autowired 
+	private CageService cageService;
 
 	@RequestMapping(value = "/getAnimalbyIDCage")
 	public String getAnimalByIDCage(@RequestParam("idCage") int idCage, ModelMap model) {
 		List<Animal> animals = animalService.getAnimalByIDCage(idCage);
 		model.addAttribute("animal", animals);
+		model.addAttribute("idCage" ,idCage);
 		return "admin/AnimalbyCage";
 	}
 
@@ -68,10 +72,16 @@ public class AnimalController {
 	
 	@RequestMapping(value = "showType")
 	public String showType(@RequestParam("idCage") int idCage, ModelMap model) {
+		
+		if(cageService.showCageInfo(idCage).get(0).getLimit() <= animalService.getAnimalByIDCage(idCage).size()) {
+			return "redirect:getAnimalbyIDCage?idCage=" + idCage;
+		}
+		
 		List<Animal> animals = animalService.getAnimalByIDCage(idCage);
 		model.addAttribute("animalList", animals);
 		List<Animal_Type> types = animalTypeService.showTypes();
 		model.addAttribute("typeList", types);
+		model.addAttribute("idCage", idCage);
 		return "admin/addAnimal";
 	}
 	

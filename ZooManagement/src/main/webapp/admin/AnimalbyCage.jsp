@@ -104,7 +104,7 @@
 			<button class="button-search" type="reset">Reset</button>
 
 		</form>
-		<br> <br> <a href="<%=request.getContextPath()%>/showType?idCage=${animal.get(0).cages.idCage}" style="text-decoration: none">
+		<br> <br> <a href = "<%=request.getContextPath()%>/showType?idCage=${idCage}" style="text-decoration: none">
 			<button style="margin-left: 70px" class="button-search">Thêm
 				động vật</button>
 		</a> <a href="" style="text-decoration: none">
@@ -153,9 +153,10 @@
 <script>
 function confirmDelete(idCage, idAnimal) {
 	  if (confirm("Bạn có chắc muốn xóa động vật này không?")) {
-		  console.log("deleteAnimal?idAnimal=" + idAnimal + "&idCage=" + idCage);
-	    window.location.href = "deleteAnimal?idAnimal=" + idAnimal + "&idCage=" + idCage;
+		  console.log("deleteAnimal?idAnimal=" + idAnimal + "&idCage=" + idCage)
+	    window.location.href = "deleteAnimal?idAnimal=" + idAnimal + "&idCage=" + idCage
 	  }
 	}
+
 </script>
 </html>

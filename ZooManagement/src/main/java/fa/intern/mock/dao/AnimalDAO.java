@@ -28,6 +28,7 @@ public class AnimalDAO {
             animal.setFood(rs.getString("Food"));
             Cage cage = new Cage();
             cage.setIdCage(rs.getInt("ID_Cage"));
+            cage.setLimit(rs.getInt("Limit"));
             animal.setCages(cage);
             Animal_Type animalType = new Animal_Type();
             animalType.setIdAnimalType(rs.getInt("ID_Animal_Type"));
@@ -39,7 +40,14 @@ public class AnimalDAO {
 	@SuppressWarnings("deprecation")
 	public List<Animal> getAnimalByIDCage(int idCage) {
 		Object[] params = new Object[] {idCage};
-		 String sql = "SELECT * FROM animal join animal_type on animal.ID_Animal_Type = animal_type.ID_Animal_Type WHERE ID_Cage = ?";
+		 String sql = "SELECT a.ID_Animal, a.Animal_Status, a.Animal_Name, a.Details, a.Food,\r\n"
+		 		+ "c.ID_Cage, c.Limit,\r\n"
+		 		+ "t.ID_Animal_Type, t.Animal_Type\r\n"
+		 		+ "FROM animal as a \r\n"
+		 		+ "inner join animal_type as t\r\n"
+		 		+ "on a.ID_Animal_Type = t.ID_Animal_Type\r\n"
+		 		+ "inner join cage as c \r\n"
+		 		+ "on c.ID_Cage = a.ID_Cage WHERE c.ID_Cage = ?";
 	        return jdbcTemplate.query(sql, params, new AnimalRowMapper());
 	}
 	public boolean deleteAnimal(int idAnimal) {
