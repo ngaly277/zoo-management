@@ -23,9 +23,9 @@ public class TicketController {
 		return "customer/tickets";
 	}
 	
-	@RequestMapping("customer/{id}")
+	@RequestMapping("tickets/{id}")
 	public String showTicketByType(@PathVariable int id, Model model) {
 		model.addAttribute("listTickets", ticketService.getAllTicketByType(id));
-		return "add-ticket-card";
+		return "customer/add-ticket-card";
 	}
 }

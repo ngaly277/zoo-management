@@ -138,7 +138,6 @@
 		$("#form-checkout").submit(function(e){
 			e.preventDefault();
 			
-
 			if(validate()) {
 				let listTicket = JSON.parse(window.sessionStorage.getItem("listTicket"));
 				let data = {};
