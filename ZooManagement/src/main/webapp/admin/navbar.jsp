@@ -1,11 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href='<c:url value="/resources/css/style-page-admin.css" />'
-	rel="stylesheet" type="text/css">
-<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css'
-	rel='stylesheet'>
+<link href='<c:url value="/resources/css/style-page-admin.css" />' rel="stylesheet" type="text/css">
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+<c:set var="myContext" value="${pageContext.request.contextPath}"/>
 
 <nav class="sidebar close">
 	<header>
@@ -38,8 +36,8 @@
 						class='bx bx-box icon'></i> <span class="text nav-text">Quản
 							lý kho</span>
 				</a></li>
-				<li class="nav-link"><a href="#"> <i
-						class='bx bxs-coupon icon'></i> <span class="text nav-text">Quản
+				<li class="nav-link"><a href="${myContext}/admin/tickets"> <i
+						class="bx bxs-coupon icon <c:out value='${param.navToggle == "tickets" ? "active" : ""}' />"></i> <span class="text nav-text">Quản
 							lý đặt vé</span>
 				</a></li>
 				<li class="nav-link"><a href="Staff.jsp"> <i
