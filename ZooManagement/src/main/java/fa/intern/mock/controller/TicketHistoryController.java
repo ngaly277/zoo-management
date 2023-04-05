@@ -27,7 +27,7 @@ public class TicketHistoryController {
 	private TicketService ticketService;
 	
 	@RequestMapping("checkout")
-	public String showCheckoutTickets(Model model, HttpSession session) {
+	public String showCheckout(Model model, HttpSession session) {
 		String username = (String)session.getAttribute("username");
 		
 		if (username == null) {
