@@ -28,7 +28,7 @@
 						class='bx bxs-castle icon'></i> <span class="text nav-text">Quản
 							lý chuồng</span>
 				</a></li>
-				<li class="nav-link"><a href="Inventory.jsp"> <i
+				<li class="nav-link"><a href="${myContext}/viewInventory"> <i
 						class='bx bx-box icon'></i> <span class="text nav-text">Quản
 							lý kho</span>
 				</a></li>
