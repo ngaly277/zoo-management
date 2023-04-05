@@ -21,7 +21,7 @@
 	<div class="menu-bar">
 		<div class="menu">
 			<ul class="menu-links">
-				<li class="nav-link"><a href="#"> <i
+				<li class="nav-link"><a href="${myContext}/"> <i
 						class='bx bx-home-alt icon'></i> <span class="text nav-text">Home</span>
 				</a></li>
 				<li class="nav-link"><a href="${myContext}/showAllCage"> <i

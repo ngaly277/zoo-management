@@ -41,4 +41,28 @@ public class ContractsDAO {
 	    String sql="insert into contracts(Details) values('"+p.getDetails()+"')";    
 	    return jdbcTemplate.update(sql);    
 	}    
+	
+	public void createContract() {
+		String nothing = "nothing";
+		String sql = "insert into Contracts (Details) VALUE ('"+nothing+"')";
+		jdbcTemplate.update(sql);
+	}
+	
+	public List<Contracts> getTheLastContract(){
+		String sql = "SELECT * FROM Contracts ORDER BY ID_Contract DESC LIMIT 1";
+		List<Contracts> contractList = jdbcTemplate.query(sql, new RowMapper<Contracts>() {
+			
+			public Contracts mapRow(ResultSet rs, int rowNum) throws SQLException {
+				Contracts contracts = new Contracts();
+				
+				contracts.setId(rs.getInt("ID_Contract"));
+				contracts.setDetails(rs.getString("Details"));
+				
+				System.out.println("contractID: "+contracts.getId()+"-"+contracts.getDetails());
+				return contracts;
+				
+			}
+		});
+		return contractList;
+	}
 }
