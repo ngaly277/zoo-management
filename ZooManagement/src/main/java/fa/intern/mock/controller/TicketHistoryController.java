@@ -8,7 +8,10 @@ import java.time.format.DateTimeFormatter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import fa.intern.mock.bean.Customer;
@@ -42,6 +45,29 @@ public class TicketHistoryController {
 		}
 		return "customer/checkout";
 
+	}
+	
+	@RequestMapping(value="ticket-history/{pageid}", method = RequestMethod.GET)
+	public String showHistoryCustomer(Model model, HttpSession session, @PathVariable int pageid, @RequestParam(required = false) String search) {
+		String username = (String)session.getAttribute("username");
+		if (username != null) {
+			Customer customer = ticketHistoryService.getCustomerByUsername(username);
+			if (customer != null) {
+				model.addAttribute("currentPage", pageid);
+				int total = 7;
+				if (pageid != 1) {
+					pageid = (pageid - 1) * total + 1;
+				}
+				int pages = (ticketHistoryService.getAllTicketHistoryByCustomer(search, customer.getId_Customer()).size()%2 == 0) ? (ticketHistoryService.getAllTicketHistoryByCustomer(search, customer.getId_Customer()).size() / total) : (ticketHistoryService.getAllTicketHistoryByCustomer(search, customer.getId_Customer()).size() / total + 1);
+				model.addAttribute("listHistory", ticketHistoryService.getAllTicketHistoryByCustomerPage(search, customer.getId_Customer(), pageid, total));
+				model.addAttribute("totalPages", pages);
+				
+			} else {
+				model.addAttribute("listHistory", null);
+			}
+		}
+		model.addAttribute("searchQuery", search);
+		return "customer/ticketHistory";
 	}
 	
 	@RequestMapping(value = "/insertTicketHistory")

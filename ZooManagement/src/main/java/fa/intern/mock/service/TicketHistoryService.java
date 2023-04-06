@@ -53,4 +53,12 @@ public class TicketHistoryService {
 	public List<TicketHistory> getAllTicketHistory(String searchQuery) {
 		return ticketHistoryDAO.getAllTicketHistory(searchQuery);
 	}
+	
+	public List<TicketHistory> getAllTicketHistoryByCustomer(String searchQuery, int idCustomer) {
+		return ticketHistoryDAO.getAllTicketHistoryByCustomer(searchQuery, idCustomer);
+	}
+	
+	public List<TicketHistory> getAllTicketHistoryByCustomerPage(String searchQuery, int idCustomer, int pageid, int total) {
+		return ticketHistoryDAO.getAllTicketHistoryByCustomerPage(searchQuery, idCustomer, pageid, total);
+	}
 }

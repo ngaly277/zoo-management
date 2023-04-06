@@ -22,8 +22,8 @@
           </a>
           <ul class="dropdown-menu dropdown-menu-end">
           	<c:if test="${not empty username}">
-	            <!-- <li><a class="dropdown-item" href="#">Lịch sử đặt vé</a></li>
-	            <li><hr class="dropdown-divider"></li> -->
+	            <li><a class="dropdown-item" href="/ZooManagement/ticket-history/1">Lịch sử đặt vé</a></li>
+	            <li><hr class="dropdown-divider"></li>
 	            <li><a class="dropdown-item" href="/ZooManagement/logout">Đăng xuất</a></li>
 	        </c:if>
 	        <c:if test="${empty username}">

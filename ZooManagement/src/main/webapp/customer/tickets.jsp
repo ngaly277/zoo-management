@@ -22,13 +22,13 @@
 				<c:if test="${not empty ticketTypeList}">
 			      <c:forEach var="ticketType" items="${ticketTypeList}">
 						<article class="ticket">
-							<a href="add-tickets" class="ticket-img-link">
+							<a href="tickets/${ticketType.id_Ticket_Type }" class="ticket-img-link">
 								<figure>
 									<img class="ticket-img" src='<c:url value="/resources/images/img3.jpg"></c:url>' alt=""/>
 									
 								</figure>
 							</a>
-							<a href="add-tickets" class="ticket-name">
+							<a href="tickets/${ticketType.id_Ticket_Type }" class="ticket-name">
 								<h2 class="ticket-name-content">${ticketType.ticket_Type}</h2>
 							</a>
 							<div class="ticket-desc">

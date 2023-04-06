@@ -59,6 +59,69 @@ public class TicketHistoryDAO {
 				searchQuery == null ? "" : searchQuery);
 		return jdbcTemplate.query(query, new TicketHistoryMaapper());
 	}
+	
+	public List<TicketHistory> getAllTicketHistoryByCustomer(String searchQuery, int idCustomer) {
+		String[] queryArray = {
+				"SELECT ID_Ticket_History, Purchase_Date, Amount, Ticket_Type, Age_Description, Customer_Name, Staff_Name FROM Ticket_History\r\n"
+				+ "				LEFT JOIN (\r\n"
+				+ "				SELECT ID_Ticket, Ticket_Type, Age_Description FROM Ticket\r\n"
+				+ "				LEFT JOIN Ticket_Type ON Ticket.ID_Ticket_Type = Ticket_Type.ID_Ticket_Type\r\n"
+				+ "				LEFT JOIN Ticket_Age ON Ticket.ID_Ticket_Age = Ticket_Age.ID_Ticket_Age) AS c ON Ticket_History.ID_Ticket = c.ID_Ticket\r\n"
+				+ "				LEFT JOIN (SELECT ID_Customer, Customer_Name FROM Customer) AS d ON Ticket_History.ID_Customer = d.ID_Customer\r\n"
+				+ "				LEFT JOIN (SELECT ID_Staff, Staff_Name FROM Staff) AS e ON Ticket_History.ID_Staff = e.ID_Staff\r\n"
+				+ "				WHERE Ticket_History.ID_Customer = '"+ idCustomer +"' AND ID_Ticket_History LIKE '%%%s%%'\r\n"
+				+ "				OR Purchase_Date LIKE '%%%s%%'\r\n"
+				+ "				OR Amount LIKE '%%%s%%'\r\n"
+				+ "				OR Ticket_Type LIKE '%%%s%%'\r\n"
+				+ "				OR Age_Description LIKE '%%%s%%'\r\n"
+				+ "				OR Customer_Name LIKE '%%%s%%'\r\n"
+				+ "				OR Staff_Name LIKE '%%%s%%'\r\n"
+				+ "				ORDER BY Purchase_Date DESC, ID_Ticket_History ASC;"
+		};
+		String query = String.join(" ", queryArray);
+		query = String.format(
+				query,
+				searchQuery == null ? "" : searchQuery,
+				searchQuery == null ? "" : searchQuery,
+				searchQuery == null ? "" : searchQuery,
+				searchQuery == null ? "" : searchQuery,
+				searchQuery == null ? "" : searchQuery,
+				searchQuery == null ? "" : searchQuery,
+				searchQuery == null ? "" : searchQuery);
+		return jdbcTemplate.query(query, new TicketHistoryMaapper());
+	}
+	
+	public List<TicketHistory> getAllTicketHistoryByCustomerPage(String searchQuery, int idCustomer, int pageid, int total) {
+		String[] queryArray = {
+				"SELECT ID_Ticket_History, Purchase_Date, Amount, Ticket_Type, Age_Description, Customer_Name, Staff_Name FROM Ticket_History\r\n"
+				+ "				LEFT JOIN (\r\n"
+				+ "				SELECT ID_Ticket, Ticket_Type, Age_Description FROM Ticket\r\n"
+				+ "				LEFT JOIN Ticket_Type ON Ticket.ID_Ticket_Type = Ticket_Type.ID_Ticket_Type\r\n"
+				+ "				LEFT JOIN Ticket_Age ON Ticket.ID_Ticket_Age = Ticket_Age.ID_Ticket_Age) AS c ON Ticket_History.ID_Ticket = c.ID_Ticket\r\n"
+				+ "				LEFT JOIN (SELECT ID_Customer, Customer_Name FROM Customer) AS d ON Ticket_History.ID_Customer = d.ID_Customer\r\n"
+				+ "				LEFT JOIN (SELECT ID_Staff, Staff_Name FROM Staff) AS e ON Ticket_History.ID_Staff = e.ID_Staff\r\n"
+				+ "				WHERE Ticket_History.ID_Customer = '"+ idCustomer +"' AND ID_Ticket_History LIKE '%%%s%%'\r\n"
+				+ "				OR Purchase_Date LIKE '%%%s%%'\r\n"
+				+ "				OR Amount LIKE '%%%s%%'\r\n"
+				+ "				OR Ticket_Type LIKE '%%%s%%'\r\n"
+				+ "				OR Age_Description LIKE '%%%s%%'\r\n"
+				+ "				OR Customer_Name LIKE '%%%s%%'\r\n"
+				+ "				OR Staff_Name LIKE '%%%s%%'\r\n"
+				+ "				ORDER BY Purchase_Date DESC, ID_Ticket_History ASC\r\n"
+				+ "                LIMIT "+ (pageid - 1) + ","+ total + ";"
+		};
+		String query = String.join(" ", queryArray);
+		query = String.format(
+				query,
+				searchQuery == null ? "" : searchQuery,
+				searchQuery == null ? "" : searchQuery,
+				searchQuery == null ? "" : searchQuery,
+				searchQuery == null ? "" : searchQuery,
+				searchQuery == null ? "" : searchQuery,
+				searchQuery == null ? "" : searchQuery,
+				searchQuery == null ? "" : searchQuery);
+		return jdbcTemplate.query(query, new TicketHistoryMaapper());
+	}
 
 	public class TicketHistoryMaapper implements RowMapper<TicketHistory> {
 		public TicketHistory mapRow(ResultSet rs, int rowNum) throws SQLException {
